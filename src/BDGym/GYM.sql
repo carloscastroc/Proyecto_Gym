@@ -1,4 +1,8 @@
 
+-- Falta modificar plan de entrenamiento, ejercicio,  tejercio
+-- Cambiar TipoPromocion x NombrePromocion
+-- 
+
 -- =============================================
 -- Creación de la Base de Datos
 -- =============================================
@@ -24,7 +28,7 @@ IdEmpleado char(5) primary key,
 IdCargo char(5),
 Nombre varchar(50),
 Apellido varchar(50),
-DNI int,
+DNI varchar(8),
 Direccion varchar(100),
 Telefono int,
 Correo varchar(100),
@@ -36,7 +40,7 @@ IdSocio char(5) primary key,
 IdEmpleado char(5),
 Nombre varchar(50),
 Apellido varchar(50),
-DNI int,
+DNI varchar(8),
 Telefono int,
 Email varchar(100),
 F_Inscripcion date,
@@ -89,7 +93,8 @@ Estado varchar(10),
 foreign key (IdPago) references Pagos (IdPago));
 
 create table Membresia(
-IdSocio char(5) primary key,
+IdMenbresia char (5) primary key,
+IdSocio char(5),
 IdPlan char(5),
 IdPago char(5),
 F_Inicio date,
@@ -107,7 +112,7 @@ IdTipo char(5) primary key,
 TipoEjercicio varchar(50));
 
 create table PlanEntrenamiento(
-IdPlanEntrenamiento char(5) primary key,
+IdPlanEntrenamiento char(5),
 IdEmpleado char(5),
 IdPlanE char(5),
 IdTipo char(5),

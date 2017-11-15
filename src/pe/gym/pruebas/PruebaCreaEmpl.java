@@ -23,7 +23,7 @@ public class PruebaCreaEmpl {
             bean.setIdCargo("C0003");
             bean.setNombre("Juan");
             bean.setApellido("Gutierrez");
-            bean.setDNI(12345678);
+            bean.setDNI("12345678");
             bean.setDireccion("Algun lugar del mundo");
             bean.setTelefono(1234567);
             bean.setCorreo("alguncorreo@gmail.com");

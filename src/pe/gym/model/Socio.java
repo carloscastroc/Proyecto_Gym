@@ -17,7 +17,7 @@ private String IdSocio;
 private String IdEmpleado;
 private String Nombre;
 private String Apellido;
-private int DNI;
+private String DNI;
 private int Telefono;
 private String Email;
 private String F_inscripcion;
@@ -59,11 +59,11 @@ public Socio(){
         this.Apellido = Apellido;
     }
 
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 

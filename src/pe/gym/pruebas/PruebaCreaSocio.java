@@ -34,7 +34,7 @@ public class PruebaCreaSocio {
             bean.setIdEmpleado("E0001");
             bean.setNombre("Juan");
             bean.setApellido("Caceres");
-            bean.setDNI(12345678);
+            bean.setDNI("12345678");
             bean.setTelefono(1234567);
             bean.setEmail("alguncorreoxd@gmail.com");
             bean.setF_inscripcion(fec);

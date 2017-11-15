@@ -23,7 +23,7 @@ public class SocioMapper implements RowMapper<Socio> {
         bean.setIdEmpleado(rs.getString("IdEmpleado"));
         bean.setNombre(rs.getString("Nombre"));
         bean.setApellido(rs.getString("Apellido"));
-        bean.setDNI(rs.getInt("DNI"));
+        bean.setDNI(rs.getString("DNI"));
         bean.setTelefono(rs.getInt("Telefono"));
         bean.setEmail(rs.getString("Email"));
         bean.setF_inscripcion(rs.getString("F_Inscripcion"));

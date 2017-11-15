@@ -24,7 +24,7 @@ public class EmpleadoMapper implements RowMapper<Empleado>{
     bean.setIdCargo(rs.getString("IdCargo"));
     bean.setNombre(rs.getString("Nombre"));
     bean.setApellido(rs.getString("Apellido"));
-    bean.setDNI(rs.getInt("DNI"));
+    bean.setDNI(rs.getString("DNI"));
     bean.setDireccion(rs.getString("Direccion"));
     bean.setTelefono(rs.getInt("Telefono"));
     bean.setCorreo(rs.getString("Correo"));

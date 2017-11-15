@@ -35,6 +35,10 @@ public class SocioService implements SocioServiceEspec {
       cn = conectaBD.obtener();
       // Inicio de Tx
       cn.setAutoCommit(false);
+      //Comprobar que no haya un registro existente del nuevo socio
+      //Pendiente
+      
+      
       //Obtener id de Socio
       String sql="call GENERACODIGOSOCIO()";
       PreparedStatement pstm=cn.prepareStatement(sql);
@@ -48,14 +52,14 @@ public class SocioService implements SocioServiceEspec {
       pstm.setString(2, bean.getIdEmpleado());
       pstm.setString(3, bean.getNombre());
       pstm.setString(4, bean.getApellido());
-      pstm.setInt(5, bean.getDNI());
+      pstm.setString(5, bean.getDNI());
       pstm.setInt(6, bean.getTelefono());
       pstm.setString(7, bean.getEmail());
       pstm.setString(8, bean.getF_inscripcion());
       pstm.setString(9, bean.getEstado());
       pstm.executeUpdate();
       pstm.close();
-      // Recuperar ID del empleado
+      // Recuperar ID del socio
       bean.setIdSocio(id);
       // Confirmar Tx
       cn.commit();

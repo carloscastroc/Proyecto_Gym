@@ -199,7 +199,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
             bean.setIdEmpleado("E0001");
             bean.setNombre(txtnombre.getText());
             bean.setApellido(txtapellido.getText());
-            bean.setDNI(Integer.parseInt(txtdni.getText()));
+            bean.setDNI(txtdni.getText());
             bean.setTelefono(Integer.parseInt(txttelf.getText()));
             bean.setEmail(txtemail.getText());
             bean.setEstado(cboestado.getItemAt(0));

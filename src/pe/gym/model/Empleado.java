@@ -15,7 +15,7 @@ private String IdEmpleado;
 private String IdCargo;
 private String Nombre;
 private String Apellido;
-private int DNI;
+private String DNI;
 private String Direccion;
 private int Telefono;
 private String Correo;
@@ -59,11 +59,11 @@ public Empleado(){
         this.Apellido = Apellido;
     }
 
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 

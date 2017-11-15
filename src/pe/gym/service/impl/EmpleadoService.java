@@ -93,7 +93,7 @@ public class EmpleadoService implements EmpleadoServiceEspec {
             pstm.setString(2, bean.getIdCargo());
             pstm.setString(3, bean.getNombre());
             pstm.setString(4, bean.getApellido());
-            pstm.setInt(5, bean.getDNI());
+            pstm.setString(5, bean.getDNI());
             pstm.setString(6, bean.getDireccion());
             pstm.setInt(7, bean.getTelefono());
             pstm.setString(8, bean.getCorreo());
