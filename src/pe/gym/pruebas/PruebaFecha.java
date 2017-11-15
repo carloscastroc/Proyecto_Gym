@@ -26,22 +26,9 @@ public class PruebaFecha {
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         String fec=sdf.format(ahora);
         System.out.println(fec);
-        System.out.println("Nueva fecha: "+ParseFecha(fec));
+        
         
     }
     
-    public static Date ParseFecha(String fecha)
-    {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } 
-        catch (ParseException ex) 
-        {
-            System.out.println(ex);
-        }
-        return fechaDate;
-    }
-
+    
 }
