@@ -38,7 +38,7 @@ public class PruebaCreaSocio {
             bean.setTelefono(1234567);
             bean.setEmail("alguncorreoxd@gmail.com");
             bean.setF_inscripcion(fec);
-            bean.setEstado("");
+            bean.setEstado("Activo");
 
             // Proceso
             SocioServiceEspec service;

@@ -26,12 +26,11 @@ public class EmpleadoService implements EmpleadoServiceEspec {
     private final String SQL_SELECT = "select IdEmpleado, "
             + "IdCargo, Nombre, Apellido, DNI, Direccion, Telefono, Correo, Estado "
             + "from empleado ";
-    
+
     private final String SQL_INSERT = "insert into empleado("
             + "IdEmpleado,IdCargo, Nombre, Apellido, DNI, Direccion, "
             + "Telefono, Correo, Estado) values (?,?,?,?,?,?,?,?,?) ";
-    private final String SQL_UPDATE ="";
-    
+    private final String SQL_UPDATE = "";
 
     @Override
     public Empleado validar(String usuario, String clave) {
@@ -54,23 +53,19 @@ public class EmpleadoService implements EmpleadoServiceEspec {
             }
             rs.close();
             pstm.close();
-            if (resultado == 0) {
-                throw new RuntimeException("Datos incorrectos.");
+            if(resultado == 0){
+                throw new RuntimeException("Datos incorrectos");
             }
             // Recuperar datos del empleado
             bean = leerPorId(idemp);
-            System.out.println("Bienvenido usuario");
-
-        } catch (Exception ex) {
-            String texto = "Error en el proceso. ";
-            texto += ex.getMessage();
-            throw new RuntimeException(texto);
+            bean.setUser(usuario);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error en el proceso: "+e.getMessage());
         } finally {
             try {
                 cn.close();
-            } catch (SQLException ex) {
-            String texto = "Error en el proceso 2. ";
-            texto += ex.getMessage();
+            } catch (Exception e) {
             }
         }
         return bean;
@@ -80,56 +75,55 @@ public class EmpleadoService implements EmpleadoServiceEspec {
     @Override
     public void crear(Empleado bean) {
         Connection cn = null;
-    try {
-      // Obtener objeto Connection
-      cn = conectaBD.obtener();
-      // Inicio de Tx
-      cn.setAutoCommit(false);
-      //Obtener id de empleado
-      String sql="call GENERACODIGOEMPL()";
-      PreparedStatement pstm=cn.prepareStatement(sql);
-      ResultSet res = pstm.executeQuery();
-      res.next();
-      String id=res.getString("cod");
-      
-      // Registrar empleado
-      pstm = cn.prepareStatement(SQL_INSERT);
-      pstm.setString(1, id);
-      pstm.setString(2, bean.getIdCargo());
-      pstm.setString(3, bean.getNombre());
-      pstm.setString(4, bean.getApellido());
-      pstm.setInt(5, bean.getDNI());
-      pstm.setString(6, bean.getDireccion());
-      pstm.setInt(7, bean.getTelefono());
-      pstm.setString(8, bean.getCorreo());
-      pstm.setString(9, bean.getEstado());
-      pstm.executeUpdate();
-      pstm.close();
-      // Recuperar ID del empleado
-      bean.setIdEmpleado(id);
-      // Confirmar Tx
-      cn.commit();
-    } catch (Exception e) {
-      try {
-        cn.rollback();
-      } catch (Exception e1) {
-      }
-      String texto = "Error en el proceso crear empleado. ";
-      texto += e.getMessage();
-      throw new RuntimeException(texto);
-    } finally{
-      try {
-        cn.close();
-      } catch (Exception e) {
-      }
-    }
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            //Obtener id de empleado
+            String sql = "call GENERACODIGOEMPL()";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            String id = res.getString("cod");
+
+            // Registrar empleado
+            pstm = cn.prepareStatement(SQL_INSERT);
+            pstm.setString(1, id);
+            pstm.setString(2, bean.getIdCargo());
+            pstm.setString(3, bean.getNombre());
+            pstm.setString(4, bean.getApellido());
+            pstm.setInt(5, bean.getDNI());
+            pstm.setString(6, bean.getDireccion());
+            pstm.setInt(7, bean.getTelefono());
+            pstm.setString(8, bean.getCorreo());
+            pstm.setString(9, bean.getEstado());
+            pstm.executeUpdate();
+            pstm.close();
+            // Recuperar ID del empleado
+            bean.setIdEmpleado(id);
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso crear empleado. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override
     public void modificar(Empleado bean) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
     @Override
     public Empleado leerPorId(String id) {
@@ -154,8 +148,7 @@ public class EmpleadoService implements EmpleadoServiceEspec {
             String texto = "Error en el proceso. ";
             texto += e.getMessage();
             throw new RuntimeException(texto);
-        } 
-        finally {
+        } finally {
             try {
                 cn.close();
             } catch (Exception e) {
@@ -163,10 +156,5 @@ public class EmpleadoService implements EmpleadoServiceEspec {
         }
         return bean;
     }
-
-
-
-
-  
 
 }

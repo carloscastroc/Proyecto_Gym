@@ -35,15 +35,14 @@ public class SocioService implements SocioServiceEspec {
       cn = conectaBD.obtener();
       // Inicio de Tx
       cn.setAutoCommit(false);
-      //Obtener id de empleado
+      //Obtener id de Socio
       String sql="call GENERACODIGOSOCIO()";
       PreparedStatement pstm=cn.prepareStatement(sql);
       ResultSet res = pstm.executeQuery();
       res.next();
       String id=res.getString("cod");
-            
       
-      // Registrar empleado
+      // Registrar Socio
       pstm = cn.prepareStatement(SQL_INSERT);
       pstm.setString(1, id);
       pstm.setString(2, bean.getIdEmpleado());

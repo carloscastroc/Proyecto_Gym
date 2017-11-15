@@ -21,6 +21,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -102,16 +103,23 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
+            
+
+            // Datos
             String usuario = this.txtuser.getText();
-            String password = this.txtpass.getText();
+            String clave = String.valueOf(this.txtpass.getPassword());
+
             // Proceso
-            EmpleadoServiceEspec service;
-            service = new EmpleadoService();
-            Empleado bean = service.validar(usuario, password);
-            JOptionPane.showMessageDialog(null, "Bienvenido Usuario: " + bean.getNombre()
-            +" "+bean.getApellido());
+            EmpleadoServiceEspec service = new EmpleadoService();
+             service.validar(usuario, clave);
+
+            // Cargar formulario principaa
+            JOptionPane.showMessageDialog(null, "Bienvenido Usuario: ");
+
         } catch (Exception e) {
+
             JOptionPane.showMessageDialog(null, "Error. "+e.getMessage());
+
         }
 
 

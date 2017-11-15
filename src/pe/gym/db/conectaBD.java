@@ -11,23 +11,27 @@ import java.sql.*;
  * @author Carlos
  */
 public class conectaBD {
-       private static Connection cnx = null;
-   public static Connection obtener() throws SQLException, ClassNotFoundException {
-      if (cnx == null) {
-         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost/GYM", "root", "");
-         } catch (SQLException ex) {
-            throw new SQLException(ex);
-         } catch (ClassNotFoundException ex) {
-            throw new ClassCastException(ex.getMessage());
-         }
-      }
-      return cnx;
+       
+   public static Connection obtener() {
+      Connection cn = null;
+    try {
+      // Parámetros de conexión
+      String driver = "com.mysql.jdbc.Driver";
+      String urlDB = "jdbc:mysql://localhost:3306/gym";
+      String user = "root";
+      String pass = "";
+      // Cargar el driver
+      Class.forName(driver).newInstance();
+      // Realizar la conexión
+      cn = DriverManager.getConnection(urlDB, user, pass);
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException("No se ha encontrado el driver.");
+    } catch(SQLException e){
+      throw new RuntimeException(e.getMessage());
+    } catch(Exception e){
+      throw new RuntimeException("No se tiene acceso a la base de datos.");
+    }
+    return cn;
    }
-   public static void cerrar() throws SQLException {
-      if (cnx != null) {
-         cnx.close();
-      }
-   }
+   
 }

@@ -24,11 +24,13 @@ public class PruebaLogin {
             EmpleadoServiceEspec service;
             service = new EmpleadoService();
             Empleado bean = service.validar(usuario, clave);
+            System.out.println("Acceso OK.");
             System.out.println("Codigo: "+bean.getIdEmpleado());
             System.out.println("Nombre: "+bean.getNombre());
            
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            System.out.println(e.getCause());
         }
     }
 
