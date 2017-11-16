@@ -1,7 +1,8 @@
 
--- Falta modificar plan de entrenamiento, ejercicio,  tejercio
--- Cambiar TipoPromocion x NombrePromocion
--- 
+
+-- Falta modifica la ultima parte tablas : infnutricional, detplan, detnutricional
+
+
 
 -- =============================================
 -- Creación de la Base de Datos
@@ -36,7 +37,7 @@ Estado varchar(10),
 foreign key (IdCargo) references Cargo (IdCargo));
 
 create table Socio(
-IdSocio char(5) primary key,
+IdSocio char(6) primary key,
 IdEmpleado char(5),
 Nombre varchar(50),
 Apellido varchar(50),
@@ -57,26 +58,23 @@ foreign key (IdEmpleado) references Empleado (IdEmpleado));
 create table Promociones(
 IdPromociones char(5) primary key,
 IdEmpleado char(5),
-TipoPromocion varchar(50),
+NombrePromocion varchar(50),
 Importe decimal(8,2),
 Descripcion varchar(50),
 foreign key (IdEmpleado) references Empleado (IdEmpleado));
 
 create table Planes(
 IdPlan char(5) primary key,
-IdPromociones char(5),
-Tipo varchar(50),
+IdEmpleado char(5),
 Nro_Meses int,
 Importe decimal(8,2),
 Estado varchar(10),
-foreign key (IdPromociones) references Promociones (IdPromociones));
+foreign key (IdEmpleado) references Empleado (IdEmpleado));
 
 create table Pagos(
-IdPago char(5) primary key,
+IdPago char(8) primary key,
 IdSocio char(5),
 Tipo_de_Pago varchar(20),
-Importe decimal(8,2),
-Fecha date,
 IGV decimal(8,2),
 Subtotal decimal(8,2),
 Total decimal(8,2),
@@ -85,48 +83,67 @@ Estado varchar(10)
 );
 
 create table DetPagos(
-IdPago char(5),
+IdPago char(8),
+IdEmpleado char(5),
 NroCuota varchar(3),
 Importe decimal(8,2),
-F_Pago date,
+F_UPago date,
 Estado varchar(10),
+foreign key (IdEmpleado) references Empleado (IdEmpleado),
 foreign key (IdPago) references Pagos (IdPago));
 
 create table Membresia(
-IdMenbresia char (5) primary key,
-IdSocio char(5),
+IdMenbresia char (8) primary key,
+IdSocio char(6),
+IdEmpleado char(5),
 IdPlan char(5),
-IdPago char(5),
+IdPromociones char(5),
+IdPago char(8),
 F_Inicio date,
 F_Fin date,
 Estado varchar(10),
+foreign key (IdEmpleado) references Empleado (IdEmpleado),
 foreign key (IdPlan) references Planes (IdPlan),
+foreign key (IdPromociones) references Promociones (IdPromociones),
 foreign key (IdPago) references Pagos (IdPago));
-
-create table Ejercicio(
-IdPlanE char(5) primary key,
-Ejercicio varchar(50));
 
 create table TipoEjercicio(
 IdTipo char(5) primary key,
 TipoEjercicio varchar(50));
 
-create table PlanEntrenamiento(
-IdPlanEntrenamiento char(5),
-IdEmpleado char(5),
-IdPlanE char(5),
+create table Ejercicio(
+IdPlanE char(5) primary key,
 IdTipo char(5),
-IdSocio char(5),
+Ejercicio varchar(50),
+foreign key(IdTipo) references TipoEjercicio(IdTipo));
+
+create table PlanEntrenamiento(
+IdPlanEntrenamiento char(8) primary key,
+IdEmpleado char(5),
+IdMenbresia char(8),
+foreign key (IdEmpleado) references Empleado (IdEmpleado),
+foreign key (IdMenbresia) references Membresia (IdMenbresia));
+
+create table DetPlanEntrenamiento(
+IdPlanEntrenamiento char(8),
+IdPlanE char(5),
 N_Maquina int,
 Serie int,
 Repeticiones int,
+foreign key (IdPlanEntrenamiento) references PlanEntrenamiento (IdPlanEntrenamiento),
+foreign key (IdPlanE) references Ejercicio (IdPlanE));
+
+create table InfNutricional(
+IdInfNutricional char(8) primary key,
+IdEmpleado char(5),
+IdPlanEntrenamiento char(5),
+IdSocio char(5),
 foreign key (IdEmpleado) references Empleado (IdEmpleado),
-foreign key (IdPlanE) references Ejercicio (IdPlanE),
-foreign key (IdTipo) references TipoEjercicio (IdTipo),
+foreign key (IdPlanEntrenamiento) references PlanEntrenamiento (IdPlanEntrenamiento),
 foreign key (IdSocio) references Socio (IdSocio));
 
 create table DetNutricional(
-IdDetNutricional char(5) primary key,
+IdInfNutricional char(8),
 Fecha date,
 Peso decimal(3,2),
 IMC decimal(3,2),
@@ -139,20 +156,12 @@ Cintura decimal(3,2),
 CaderaAlta decimal(3,2),
 Gluteos decimal(3,2),
 Muslo decimal(3,2),
-Pantorrillas decimal(3,2));
-
-create table InfNutricional(
-IdInfNutricional char(5) primary key,
-IdEmpleado char(5),
-IdDetNutricional char(5),
-IdPlanEntrenamiento char(5),
-IdSocio char(5),
-foreign key (IdEmpleado) references Empleado (IdEmpleado),
-foreign key (IdDetNutricional) references DetNutricional (IdDetNutricional),
-foreign key (IdPlanEntrenamiento) references PlanEntrenamiento (IdPlanEntrenamiento),
-foreign key (IdSocio) references Socio (IdSocio));
+Pantorrillas decimal(3,2),
+foreign key (IdInfNutricional) references InfNutricional (IdInfNutricional));
 
 
+
+--Varlores Cargo
 
 
 insert into cargo (IdCargo,Descripcion) values ('C0001','Administrador');
@@ -161,15 +170,21 @@ insert into cargo (IdCargo,Descripcion) values ('C0003','Cajero');
 insert into cargo (IdCargo,Descripcion) values ('C0004','Nutrionista');
 insert into cargo (IdCargo,Descripcion) values ('C0005','Evaluador');
 
-insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0001','C0001','Jorge','Prieto','71062405','VMT','9229310989','prietoramosjorge@gmail.com','');
-insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0002','C0002','Brayan','Moscoso','45632589','1ERA PRO','945632581','brianmoscoso@gmail.com','');
-insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0003','C0003','Carlos','Castro','45879632','Ate','985623574','castrocarlos@gmail.com','');
-insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0004','C0004','Fernando','Casas','69851687','Ate','998613458','Casasfernando@gmail.com','');
-insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0005','C0005','Jann','Sajami','45699872','Ate','989496782','sajamijann@gmail.com','');
+--Valores Empleado
 
-insert into Socio (IdSocio,IdEmpleado,Nombre,Apellido,DNI,Telefono,Email,F_Inscripcion,Estado) values ('S0001','E0001','Deivy','Prieto','45623598','9229310989','prietodeivy@gmail.com','2017/06/10','');
-insert into Socio (IdSocio,IdEmpleado,Nombre,Apellido,DNI,Telefono,Email,F_Inscripcion,Estado) values ('S0002','E0001','Johan','Alba','369852679','998649712','albajohan@gmail.com','2017/06/20','');
-insert into Socio (IdSocio,IdEmpleado,Nombre,Apellido,DNI,Telefono,Email,F_Inscripcion,Estado) values ('S0003','E0001','Jeinz','Felix','65823147','99963125','felixjeinz@gmail.com','2017/06/07','');
+insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0001','C0001','Jorge','Prieto','71062405','VMT','9229310989','prietoramosjorge@gmail.com','Activo');
+insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0002','C0002','Brayan','Moscoso','45632589','1ERA PRO','945632581','brianmoscoso@gmail.com','Activo');
+insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0003','C0003','Carlos','Castro','45879632','Ate','985623574','castrocarlos@gmail.com','Activo');
+insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0004','C0004','Fernando','Casas','69851687','Ate','998613458','Casasfernando@gmail.com','Activo');
+insert into Empleado (IdEmpleado,IdCargo,Nombre,Apellido,DNI,Direccion,Telefono,Correo,Estado) values ('E0005','C0005','Jann','Sajami','45699872','Ate','989496782','sajamijann@gmail.com','Activo');
+
+--Valores Socio
+
+insert into Socio (IdSocio,IdEmpleado,Nombre,Apellido,DNI,Telefono,Email,F_Inscripcion,Estado) values ('S00001','E0002','Deivy','Prieto','45623598','9229310989','prietodeivy@gmail.com','2017/06/10','Activo');
+insert into Socio (IdSocio,IdEmpleado,Nombre,Apellido,DNI,Telefono,Email,F_Inscripcion,Estado) values ('S00002','E0002','Johan','Alba','369852679','998649712','albajohan@gmail.com','2017/06/20','Activo');
+insert into Socio (IdSocio,IdEmpleado,Nombre,Apellido,DNI,Telefono,Email,F_Inscripcion,Estado) values ('S00003','E0002','Jeinz','Felix','65823147','99963125','felixjeinz@gmail.com','2017/06/07','Activo');
+
+--Valores Usuario
 
 insert into usuario (IdUsuario,IdEmpleado,user,pass) values ('U0001','E0001','jorge',SHA('prieto'));
 insert into usuario (IdUsuario,IdEmpleado,user,pass) values ('U0002','E0002','brayan',SHA('moscoso'));
@@ -177,30 +192,38 @@ insert into usuario (IdUsuario,IdEmpleado,user,pass) values ('U0003','E0003','ca
 insert into usuario (IdUsuario,IdEmpleado,user,pass) values ('U0004','E0004','fernando',SHA('casas'));
 insert into usuario (IdUsuario,IdEmpleado,user,pass) values ('U0005','E0005','jann',SHA('sajami'));
 
-insert into Promociones (IdPromociones,IdEmpleado,TipoPromocion,Importe,Descripcion) values ('P0001','E0001','2x1','150.00','Pagando 2 meses pagas 1');
-insert into Promociones (IdPromociones,IdEmpleado,TipoPromocion,Importe,Descripcion) values ('P0002','E0001','50% a socios antiguos','75.00','A socios que lleven mas de 3 meses pagaran mitad precio');
+--Valores Promociones
+
+insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Importe,Descripcion) values ('P0001','E0001','Sin Promocion','0.00','Plan sin promocion.');
+insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Importe,Descripcion) values ('P0002','E0001','2x1','150.00','Pagando 2 meses pagas 1');
+insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Importe,Descripcion) values ('P0003','E0001','50% a socios antiguos','75.00','A socios que lleven mas de 3 meses pagaran mitad precio');
 
 
-insert into Planes (IdPlan,IdPromociones,Tipo,Nro_Meses,Importe,Estado) values ('PLA01','P0001','Normal','2','150.00','Pendiente');
-insert into Planes (IdPlan,IdPromociones,Tipo,Nro_Meses,Importe,Estado) values ('PLA02','P0001','Normal','4','300.00','Cancelado');
+--Valores Planes
+
+insert into Planes (IdPlan,IdEmpleado,Tipo,Nro_Meses,Importe,Estado) values ('PLA01','E0001','Normal','1','150.00','Activo');
+insert into Planes (IdPlan,IdEmpleado,Tipo,Nro_Meses,Importe,Estado) values ('PLA02','E0001','Normal','2','300.00','Activo'); 
+
+--Valores Pagos
+
+insert into Pagos (IdPago,IdSocio,Tipo_de_Pago,IGV,Subtotal,Total,NroCuotas,Estado) values ('PA000001','S00001','Contado','22.88','127.12','150.00','1','Cancelado');
+insert into Pagos (IdPago,IdSocio,Tipo_de_Pago,IGV,Subtotal,Total,NroCuotas,Estado) values ('PA000002','S00002','Contado','45.76','254.24','300.00','2','Cancelado');
 
 
-insert into Pagos (IdPago,IdSocio,Tipo_de_Pago,Importe,Fecha,IGV,Subtotal,Total,NroCuotas,Estado) values ('PA001','S0001','Contado','150.00','2017/09/11','0.18','27.00','177.00','2','Pendiente');
-insert into Pagos (IdPago,IdSocio,Tipo_de_Pago,Importe,Fecha,IGV,Subtotal,Total,NroCuotas,Estado) values ('PA002','S0002','Contado','300.00','2017/09/11','0.18','54.00','354.00','1','Cancelado');
-insert into Pagos (IdPago,IdSocio,Tipo_de_Pago,Importe,Fecha,IGV,Subtotal,Total,NroCuotas,Estado) values ('PA003','S0003','Contado','300.00','2017/09/11','0.18','54.00','354.00','1','Cancelado');
+--Valores DetPagos
 
-insert into DetPagos (IdPago,NroCuota,Importe,F_Pago,Estado) values ('PA001','1','88.50','2017/09/11','Cancelado');
-insert into DetPagos (IdPago,NroCuota,Importe,F_Pago,Estado) values ('PA001','2','88.50','2017/10/11','Cancelado');
+insert into DetPagos (IdPago,IdEmpleado,NroCuota,Importe,F_UPago,Estado) values ('PA000001','E0003','1','150.00','2017/09/11','Cancelado');
+insert into DetPagos (IdPago,IdEmpleado,NroCuota,Importe,F_UPago,Estado) values ('PA000002','E0003','1','150.00','2017/10/11','Cancelado');
+insert into DetPagos (IdPago,IdEmpleado,NroCuota,Importe,F_UPago,Estado) values ('PA000002','E0003','2','150.00','2017/10/01','Pendiente');
 
-insert into Membresia (IdSocio,IdPlan,IdPago,F_Inicio,F_Fin,Estado) values ('S0001','PLA01','PA001','2017/09/11','2017/11/11','Culminado');
-insert into Membresia (IdSocio,IdPlan,IdPago,F_Inicio,F_Fin,Estado) values ('S0002','PLA02','PA001','2017/09/11','2017/11/11','Culminado');
-insert into Membresia (IdSocio,IdPlan,IdPago,F_Inicio,F_Fin,Estado) values ('S0003','PLA01','PA001','2017/09/11','2017/11/11','Culminado');
 
-insert into Ejercicio (IdPlanE,Ejercicio) values ('EJ001','Planchas');
-insert into Ejercicio (IdPlanE,Ejercicio) values ('EJ002','Bicicleta');
-insert into Ejercicio (IdPlanE,Ejercicio) values ('EJ003','Planchas cruzadas');
-insert into Ejercicio (IdPlanE,Ejercicio) values ('EJ004','Barras');
-insert into Ejercicio (IdPlanE,Ejercicio) values ('EJ005','Trotar');
+--Valores Menbresia
+
+insert into Membresia (IdMenbresia,IdSocio,IdEmpleado,IdPlan,IdPromociones,IdPago,F_Inicio,F_Fin,Estado) values ('ME000001','S00001','E0002','PLA01','P0001','PA000001','2017/09/11','2017/10/11','Culminado');
+insert into Membresia (IdMenbresia,IdSocio,IdEmpleado,IdPlan,IdPromociones,IdPago,F_Inicio,F_Fin,Estado) values ('ME000002','S00002','E0002','PLA02','P0001','PA000002','2017/09/11','2017/11/11','Culminado');
+
+
+--Valores TipoEjercicio
 
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ01','Pectorales');
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ02','Piernas');
@@ -208,15 +231,27 @@ insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ03','Triceps');
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ04','Biceps');
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ05','Calentamiento');
 
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdPlanE,IdTipo,IdSocio,N_Maquina,Serie,Repeticiones) values ('PEN01','E0005','EJ001','TEJ01','S0001','1','10','4');
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdPlanE,IdTipo,IdSocio,N_Maquina,Serie,Repeticiones) values ('PEN02','E0005','EJ002','TEJ02','S0001','1','15','4');
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdPlanE,IdTipo,IdSocio,N_Maquina,Serie,Repeticiones) values ('PEN03','E0005','EJ003','TEJ03','S0002','1','15','4');
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdPlanE,IdTipo,IdSocio,N_Maquina,Serie,Repeticiones) values ('PEN04','E0005','EJ004','TEJ04','S0003','1','10','4');
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdPlanE,IdTipo,IdSocio,N_Maquina,Serie,Repeticiones) values ('PEN05','E0005','EJ005','TEJ05','S0003','1','10','4');
+--Valores Ejercicio
+
+insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ001','TEJ01','Planchas');
+insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ002','TEJ02','Bicicleta');
+insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ003','TEJ03','Planchas cruzadas');
+insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ004','TEJ04','Barras');
+insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ005','TEJ05','Trotar');
+
+--Valores PlanEntrenamiento
+
+insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdSocio) values ('PE000001','E0005','S00001');
+insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdSocio) values ('PE000001','E0005','S00001');
+
+
+--Valores DetNutricional
 
 insert into DetNutricional (IdDetNutricional,Fecha,Peso,IMC,Masa_Grasa,Cuello,Hombros,Brazos_Antebrazos,Pecho_Busto,Cintura,CaderaAlta,Gluteos,Muslo,Pantorrillas) values ('DNU01','2017/09/11','80.50','12.2','30.45','42.00','240.00','50.00','300.00','120.00','126.00','140.00','80.00','60.00');
 insert into DetNutricional (IdDetNutricional,Fecha,Peso,IMC,Masa_Grasa,Cuello,Hombros,Brazos_Antebrazos,Pecho_Busto,Cintura,CaderaAlta,Gluteos,Muslo,Pantorrillas) values ('DNU02','2017/09/11','80.50','12.2','30.45','42.00','240.00','50.00','300.00','120.00','126.00','140.00','80.00','60.00');
 insert into DetNutricional (IdDetNutricional,Fecha,Peso,IMC,Masa_Grasa,Cuello,Hombros,Brazos_Antebrazos,Pecho_Busto,Cintura,CaderaAlta,Gluteos,Muslo,Pantorrillas) values ('DNU03','2017/09/11','80.50','12.2','30.45','42.00','240.00','50.00','300.00','120.00','126.00','140.00','80.00','60.00');
+
+--Valores InfNutricional
 
 insert into InfNutricional(IdInfNutricional,IdEmpleado,IdDetNutricional,IdPlanEntrenamiento,IdSocio) values ('INU01','E0004','DNU01','PEN01','S0001');
 insert into InfNutricional(IdInfNutricional,IdEmpleado,IdDetNutricional,IdPlanEntrenamiento,IdSocio) values ('INU02','E0004','DNU02','PEN02','S0002');
