@@ -1,0 +1,24 @@
+id socio  6
+
+id pagos  8
+
+id menbre 8 
+
+
+
+
+Forma de Registro de Menbresia:
+-Busca o registra nuevo socio.
+-Consulta Tablas planes y promociones.
+-Prepara menbresia (primero se crearan pagos y su detalle automaticamente y de ahi tomara el idpago para la menbresia).
+-Busca Inf Nutricional si ya existe el socio.Registra info nutricional, luego detnutricional(el idplanentrenamiento queda en blanco, se debe agregar con un update)
+-Se consulta la info nutricional por idsocio
+-Se registra los ejercicios que hara, lo cual se guardara en detalle(la tabla detalle se crea luego de la tabla planentrenamiento)
+-Acaba el registro.
+
+
+127.12
+
+
+254.24
+45.76
