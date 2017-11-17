@@ -74,14 +74,14 @@ foreign key (IdEmpleado) references Empleado (IdEmpleado));
 
 create table Pagos(
 IdPago char(8) primary key,
-IdSocio char(5),
+IdSocio char(6),
 Tipo_de_Pago varchar(20),
 IGV decimal(8,2),
 Subtotal decimal(8,2),
 Total decimal(8,2),
 NroCuotas int,
-Estado varchar(10)
-);
+Estado varchar(10),
+foreign key (IdSocio) references Socio (IdSocio));
 
 create table DetPagos(
 IdPago char(8),
@@ -258,41 +258,3 @@ insert into InfNutricional(IdInfNutricional,IdEmpleado,IdSocio) values ('IN00000
 -- Valores DetNutricional
 
 insert into DetNutricional (IdInfNutricional,Fecha,Peso,IMC,Masa_Grasa,Cuello,Hombros,Brazos_Antebrazos,Pecho_Busto,Cintura,CaderaAlta,Gluteos,Muslo,Pantorrillas) values ('IN000001','2017/09/11','80.50','12.2','30.45','42.00','240.00','50.00','300.00','120.00','126.00','140.00','80.00','60.00');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

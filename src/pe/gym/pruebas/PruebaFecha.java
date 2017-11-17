@@ -18,8 +18,6 @@ public class PruebaFecha {
     public static void main(String[] args) {
         
         
-        
-        
         Date ahora = new Date();
 
         String DATE_FORMAT = "yyyy/MM/dd";

@@ -27,6 +27,7 @@ public class PruebaLogin {
             System.out.println("Acceso OK.");
             System.out.println("Codigo: "+bean.getIdEmpleado());
             System.out.println("Nombre: "+bean.getNombre());
+            System.out.println("Rol: "+bean.getIdCargo());
            
         } catch (Exception e) {
             System.err.println(e.getMessage());

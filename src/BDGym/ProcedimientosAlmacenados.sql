@@ -18,7 +18,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOSOCIO`()
 begin
-declare cod char(5);
+declare cod char(6);
 set cod=(select  max(IdSocio) from socio);
 set cod=CONCAT('S',RIGHT(Concat('00000',right(IFNULL(cod,'00000'),5)+1 ),5));  -- Probar esto
 select cod;

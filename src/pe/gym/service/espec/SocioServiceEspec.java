@@ -6,6 +6,7 @@
 package pe.gym.service.espec;
 
 
+import java.util.List;
 import pe.gym.model.Socio;
 
 /**
@@ -14,6 +15,6 @@ import pe.gym.model.Socio;
  */
 public interface SocioServiceEspec extends CrudServiceSpec<Socio>{
     
-    Socio consultar(int DNI, String ape);
+    List<Socio> consultar(String DNI);
     
 }

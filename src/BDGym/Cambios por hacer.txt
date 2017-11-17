@@ -1,8 +1,5 @@
-id socio  6
+-Importante: Aun faltan todos los procedimientos Almacenados
 
-id pagos  8
-
-id menbre 8 
 
 
 
