@@ -242,7 +242,7 @@ insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ005','TEJ05','Trota
 
 -- Valores PlanEntrenamiento
 
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdMenbresia) values ('PE000001','E0005','ME000001');
+insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdMembresia) values ('PE000001','E0005','ME000001');
 
 -- Valores DetPlanEntrenamiento
 
