@@ -1,6 +1,7 @@
 
 
--- Falta modifica la ultima parte tablas : infnutricional, detplan, detnutricional
+-- Faltan procedimientos almacenados:
+-- Procedimientos almacenados actuales: GeneraCodigoSocio, GeneraCodigoEmpleado.
 
 
 
@@ -94,7 +95,7 @@ foreign key (IdEmpleado) references Empleado (IdEmpleado),
 foreign key (IdPago) references Pagos (IdPago));
 
 create table Membresia(
-IdMenbresia char (8) primary key,
+IdMembresia char (8) primary key,
 IdSocio char(6),
 IdEmpleado char(5),
 IdPlan char(5),
@@ -122,9 +123,9 @@ foreign key(IdTipo) references TipoEjercicio(IdTipo));
 create table PlanEntrenamiento(
 IdPlanEntrenamiento char(8) primary key,
 IdEmpleado char(5),
-IdMenbresia char(8),
+IdMembresia char(8),
 foreign key (IdEmpleado) references Empleado (IdEmpleado),
-foreign key (IdMenbresia) references Membresia (IdMenbresia));
+foreign key (IdMembresia) references Membresia (IdMembresia));
 
 create table DetPlanEntrenamiento(
 IdPlanEntrenamiento char(8),
@@ -217,10 +218,10 @@ insert into DetPagos (IdPago,IdEmpleado,NroCuota,Importe,F_UPago,Estado) values 
 insert into DetPagos (IdPago,IdEmpleado,NroCuota,Importe,F_UPago,Estado) values ('PA000002','E0003','2','150.00','2017/10/01','Pendiente');
 
 
--- Valores Menbresia
+-- Valores Membresia
 
-insert into Membresia (IdMenbresia,IdSocio,IdEmpleado,IdPlan,IdPromociones,IdPago,F_Inicio,F_Fin,Estado) values ('ME000001','S00001','E0002','PLA01','P0001','PA000001','2017/09/11','2017/10/11','Culminado');
-insert into Membresia (IdMenbresia,IdSocio,IdEmpleado,IdPlan,IdPromociones,IdPago,F_Inicio,F_Fin,Estado) values ('ME000002','S00002','E0002','PLA02','P0001','PA000002','2017/09/11','2017/11/11','Culminado');
+insert into Membresia (IdMembresia,IdSocio,IdEmpleado,IdPlan,IdPromociones,IdPago,F_Inicio,F_Fin,Estado) values ('ME000001','S00001','E0002','PLA01','P0001','PA000001','2017/09/11','2017/10/11','Culminado');
+insert into Membresia (IdMembresia,IdSocio,IdEmpleado,IdPlan,IdPromociones,IdPago,F_Inicio,F_Fin,Estado) values ('ME000002','S00002','E0002','PLA02','P0001','PA000002','2017/09/11','2017/11/11','Culminado');
 
 
 -- Valores TipoEjercicio

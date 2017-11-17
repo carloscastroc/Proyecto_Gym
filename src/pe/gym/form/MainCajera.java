@@ -91,13 +91,13 @@ public class MainCajera extends javax.swing.JFrame {
 
         btnPlanes.setBackground(new java.awt.Color(227, 125, 41));
         btnPlanes.setForeground(new java.awt.Color(255, 255, 255));
-        btnPlanes.setText("MEMBRESIA");
+        btnPlanes.setText("REPORTE CAJA");
         btnPlanes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPlanes.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
 
         btnGastos.setBackground(new java.awt.Color(227, 125, 41));
         btnGastos.setForeground(new java.awt.Color(255, 255, 255));
-        btnGastos.setText("PLANES");
+        btnGastos.setText("IMP. REPORTES");
         btnGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGastos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
         btnGastos.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class MainCajera extends javax.swing.JFrame {
 
         btnEmpleados.setBackground(new java.awt.Color(227, 125, 41));
         btnEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmpleados.setText("SOCIOS");
+        btnEmpleados.setText("PAGOS");
         btnEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEmpleados.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
 
@@ -126,7 +126,7 @@ public class MainCajera extends javax.swing.JFrame {
 
         btnUsuarios.setBackground(new java.awt.Color(227, 125, 41));
         btnUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuarios.setText("PROMOCIONES");
+        btnUsuarios.setText("MOVIMIENTO");
         btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUsuarios.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
 

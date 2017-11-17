@@ -7,11 +7,10 @@ package pe.gym.form;
 
 import javax.swing.JOptionPane;
 import pe.gym.controller.SocioController;
-import pe.gym.model.Empleado;
 import pe.gym.model.Socio;
 import pe.gym.util.CargaComponentes;
 import static pe.gym.util.Herramientas.ObtenerFecha;
-import pe.gym.util.Session;
+
 
 /**
  *
@@ -288,12 +287,13 @@ public class RegistraSocio extends javax.swing.JDialog {
             bean.setF_inscripcion(fecha);
             bean.setEstado(cboestado.getSelectedItem().toString());
 
-            control.crearSocio(bean);
+            control.modificarSocio(bean);
 
             JOptionPane.showMessageDialog(null, "Socio modificado Correctamente, su id es: "
                     + bean.getIdSocio());
 
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -382,6 +382,7 @@ public class RegistraSocio extends javax.swing.JDialog {
         txtapellido.setText(bean.getApellido());
         txtapellido.setEnabled(false);
         txtdni.setText(bean.getDNI());
+        txtdni.setEnabled(false);
         txttelf.setText(""+bean.getTelefono());
         txtemail.setText(bean.getEmail());
         cboestado.setSelectedItem(""+bean.getEstado());

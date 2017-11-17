@@ -91,10 +91,11 @@ public class SocioService implements SocioServiceEspec {
             cn.setAutoCommit(false);
 
             //Actualizar
-            PreparedStatement pstm = cn.prepareStatement("UPDATE socio set Telefono=?, Email=? WHERE IdSocio=?");
+            PreparedStatement pstm = cn.prepareStatement("UPDATE socio set Telefono=?, Email=?, Estado=? WHERE IdSocio=?");
             pstm.setInt(1, bean.getTelefono());
             pstm.setString(2, bean.getEmail());
-            pstm.setString(3, bean.getIdSocio());
+            pstm.setString(3, bean.getEstado());
+            pstm.setString(4, bean.getIdSocio());
             pstm.executeUpdate();
             pstm.close();
             // Confirmar Tx
