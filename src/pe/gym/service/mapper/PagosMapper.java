@@ -22,12 +22,10 @@ public class PagosMapper implements RowMapper<Pagos> {
         bean.setIdPago(rs.getString("IdPago"));
         bean.setIdSocio(rs.getString("IdSocio"));
         bean.setTipo_de_Pago(rs.getString("Tipo_de_Pago"));
-        bean.setImporte(rs.getDouble("Importe"));
-        bean.setFecha(rs.getString("Fecha"));
         bean.setIGV(rs.getDouble("IGV"));
         bean.setSubtotal(rs.getDouble("Subtotal"));
         bean.setTotal(rs.getDouble("Total"));
-        bean.setNroCuotas(rs.getInt("Cuotas"));
+        bean.setNroCuotas(rs.getInt("NroCuotas"));
         bean.setEstado(rs.getString("Estado"));
         
         return bean;

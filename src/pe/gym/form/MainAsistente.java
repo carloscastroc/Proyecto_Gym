@@ -50,7 +50,7 @@ public class MainAsistente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnPromociones = new principal.MaterialButtomRectangle();
         cerrarSesion = new principal.MaterialButtomRectangle();
-        btnPromociones1 = new principal.MaterialButtomRectangle();
+        btnAsignar = new principal.MaterialButtomRectangle();
         escritorio = new pe.gym.util.Escritorio();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,11 +147,11 @@ public class MainAsistente extends javax.swing.JFrame {
             }
         });
 
-        btnPromociones1.setBackground(new java.awt.Color(227, 125, 41));
-        btnPromociones1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPromociones1.setText("ASIGNAR");
-        btnPromociones1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPromociones1.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnAsignar.setBackground(new java.awt.Color(227, 125, 41));
+        btnAsignar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAsignar.setText("ASIGNAR");
+        btnAsignar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAsignar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -167,7 +167,7 @@ public class MainAsistente extends javax.swing.JFrame {
                     .addComponent(btnPromociones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSocios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPromociones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -187,7 +187,7 @@ public class MainAsistente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPromociones, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -295,10 +295,10 @@ public class MainAsistente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private principal.MaterialButtomRectangle btnAsignar;
     private principal.MaterialButtomRectangle btnMembresia;
     private principal.MaterialButtomRectangle btnPlanes;
     private principal.MaterialButtomRectangle btnPromociones;
-    private principal.MaterialButtomRectangle btnPromociones1;
     private principal.MaterialButtomRectangle btnSocios;
     private principal.MaterialButtomRectangle cerrarSesion;
     public static pe.gym.util.Escritorio escritorio;

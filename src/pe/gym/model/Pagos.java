@@ -15,8 +15,6 @@ public class Pagos {
     private String IdPago;
     private String IdSocio;
     private String Tipo_de_Pago;
-    private double Importe;
-    private String Fecha;
     private double IGV;
     private double Subtotal;
     private double Total;
@@ -49,22 +47,6 @@ public class Pagos {
 
     public void setTipo_de_Pago(String Tipo_de_Pago) {
         this.Tipo_de_Pago = Tipo_de_Pago;
-    }
-
-    public double getImporte() {
-        return Importe;
-    }
-
-    public void setImporte(double Importe) {
-        this.Importe = Importe;
-    }
-
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String Fecha) {
-        this.Fecha = Fecha;
     }
 
     public double getIGV() {

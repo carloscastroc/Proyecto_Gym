@@ -148,7 +148,7 @@
                           <Component id="btnPromociones" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnSocios" alignment="0" max="32767" attributes="0"/>
                           <Component id="cerrarSesion" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnPromociones1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnAsignar" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -173,7 +173,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnPromociones" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnPromociones1" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="btnAsignar" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace pref="157" max="32767" attributes="0"/>
                       <Component id="cerrarSesion" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -314,7 +314,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cerrarSesionActionPerformed"/>
               </Events>
             </Component>
-            <Component class="principal.MaterialButtomRectangle" name="btnPromociones1">
+            <Component class="principal.MaterialButtomRectangle" name="btnAsignar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="29" green="7d" red="e3" type="rgb"/>
