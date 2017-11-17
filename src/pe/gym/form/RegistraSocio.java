@@ -74,7 +74,8 @@ public class RegistraSocio extends javax.swing.JDialog {
 
         jLabel11.setText("Fecha Incripcion : ");
 
-        dateChooserCombo1.setCalendarPreferredSize(new java.awt.Dimension(300, 200));
+        dateChooserCombo1.setCalendarPreferredSize(new java.awt.Dimension(320, 200));
+        dateChooserCombo1.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
 
         jLabel10.setText("E-mail : ");
 
@@ -277,6 +278,7 @@ public class RegistraSocio extends javax.swing.JDialog {
         try {
             SocioController control = new SocioController();
             Socio bean = new Socio();
+            bean.setIdSocio(jLabel2.getText());
             bean.setIdEmpleado(jlblnomemp.getText());
             bean.setNombre(txtnombre.getText());
             bean.setApellido(txtapellido.getText());
@@ -375,17 +377,17 @@ public class RegistraSocio extends javax.swing.JDialog {
         btnModificar.setVisible(true);
         btnRegistrar.setVisible(false);
         btnLimpiar.setVisible(false);
-        jLabel2.setText(""+bean.getIdSocio());
+        jLabel2.setText(bean.getIdSocio());
          
-        txtnombre.setText("" + bean.getNombre());
+        txtnombre.setText(bean.getNombre());
         txtnombre.setEnabled(false);
         txtapellido.setText(bean.getApellido());
         txtapellido.setEnabled(false);
         txtdni.setText(bean.getDNI());
         txtdni.setEnabled(false);
-        txttelf.setText(""+bean.getTelefono());
+        txttelf.setText(String.valueOf(bean.getTelefono()));
         txtemail.setText(bean.getEmail());
-        cboestado.setSelectedItem(""+bean.getEstado());
+        cboestado.setSelectedItem(bean.getEstado());
 
     }
 

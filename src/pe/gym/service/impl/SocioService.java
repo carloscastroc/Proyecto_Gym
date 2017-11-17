@@ -69,6 +69,9 @@ public class SocioService implements SocioServiceEspec {
             try {
                 cn.rollback();
             } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
             }
             String texto = "Error en el proceso crear socio. ";
             texto += e.getMessage();

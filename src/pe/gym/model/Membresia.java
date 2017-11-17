@@ -13,8 +13,11 @@ import java.sql.Date;
  */
 public class Membresia {
     
+    private String IdMembresia;
     private String IdSocio;
+    private String IdEmpleado;
     private String IdPlan;
+    private String IdPromociones;
     private String IdPago;
     private String F_Inicio;
     private String F_Fin;
@@ -23,6 +26,32 @@ public class Membresia {
     public Membresia(){
         
     }
+
+    public String getIdMembresia() {
+        return IdMembresia;
+    }
+
+    public void setIdMembresia(String IdMembresia) {
+        this.IdMembresia = IdMembresia;
+    }
+
+    public String getIdEmpleado() {
+        return IdEmpleado;
+    }
+
+    public void setIdEmpleado(String IdEmpleado) {
+        this.IdEmpleado = IdEmpleado;
+    }
+
+    public String getIdPromociones() {
+        return IdPromociones;
+    }
+
+    public void setIdPromociones(String IdPromociones) {
+        this.IdPromociones = IdPromociones;
+    }
+    
+    
 
     public String getIdSocio() {
         return IdSocio;

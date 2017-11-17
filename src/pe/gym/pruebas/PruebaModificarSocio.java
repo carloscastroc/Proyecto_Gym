@@ -21,10 +21,10 @@ public class PruebaModificarSocio {
         SocioServiceEspec service = new SocioService();
         Socio bean = new Socio();
         
-        bean.setIdSocio("S00005");
-        bean.setDNI("01020102");
+        bean.setIdSocio("S00004");
         bean.setTelefono(12345678);
         bean.setEmail("cambiodeemail@loquesea.com");
+        bean.setEstado("Anulado");
         
         service.modificar(bean);
         
