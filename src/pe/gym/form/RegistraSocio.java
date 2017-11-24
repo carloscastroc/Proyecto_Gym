@@ -74,8 +74,10 @@ public class RegistraSocio extends javax.swing.JDialog {
 
         jLabel11.setText("Fecha Incripcion : ");
 
-        dateChooserCombo1.setCalendarPreferredSize(new java.awt.Dimension(320, 200));
+        dateChooserCombo1.setCalendarPreferredSize(new java.awt.Dimension(325, 200));
         dateChooserCombo1.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
+        dateChooserCombo1.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 10));
+        dateChooserCombo1.setNavigateFont(new java.awt.Font("Serif", java.awt.Font.PLAIN, 10));
 
         jLabel10.setText("E-mail : ");
 

@@ -20,7 +20,30 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOSOCIO`()
 begin
 declare cod char(6);
 set cod=(select  max(IdSocio) from socio);
-set cod=CONCAT('S',RIGHT(Concat('00000',right(IFNULL(cod,'00000'),5)+1 ),5));  -- Probar esto
+set cod=CONCAT('S',RIGHT(Concat('00000',right(IFNULL(cod,'00000'),5)+1 ),5));
+select cod;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOMEMBRESIA`()
+begin
+declare cod char(8);
+set cod=(select  max(IdMembresia) from membresia);
+set cod=CONCAT('ME',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));  -- Probar esto
+select cod;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOPAGO`()
+begin
+declare cod char(8);
+set cod=(select  max(IdPago) from pagos);
+set cod=CONCAT('PA',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));  -- Probar esto
 select cod;
 END$$
 DELIMITER ;
