@@ -22,3 +22,6 @@ de Cajero.
 
 254.24
 45.76
+
+Duda: Como importar los datos para la conexion de la base de datos, ¿al momento de la instalacion, o despues
+de esta?

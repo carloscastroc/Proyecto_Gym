@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.SocioController;
-import pe.gym.form.RegistraSocio;
+import pe.gym.form.RegistrarSocio;
 import pe.gym.model.Socio;
 
 /**
@@ -28,6 +28,7 @@ public class jifsocio extends javax.swing.JInternalFrame {
     public jifsocio() {
         initComponents();
         jPanel4.setSize(this.getWidth(), this.getWidth());
+        cargarDatos();
     }
 
     /**
@@ -192,20 +193,12 @@ public class jifsocio extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSocioActionPerformed
-        new RegistraSocio(new JFrame(), true).setVisible(true);
+        new RegistrarSocio(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnRegistrarSocioActionPerformed
 
     private void btnConsultarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSocioActionPerformed
         try {
 
-            // Datos
-            String dni = txtDni.getText();
-            
-            // Proceso
-            SocioController control = new SocioController();
-            lista = control.consultarxDNI(dni);
-
-            // Mostrar datos
             cargarDatos();
             
         } catch (Exception e) {
@@ -220,8 +213,8 @@ public class jifsocio extends javax.swing.JInternalFrame {
       return;
     }
         
-    RegistraSocio view;
-    view = new RegistraSocio(new JFrame(), true);
+    RegistrarSocio view;
+    view = new RegistrarSocio(new JFrame(), true);
     view.setRowData(lista.get(row));
     view.setVisible(true);
     }//GEN-LAST:event_btnModificarSocioActionPerformed
@@ -242,6 +235,14 @@ public class jifsocio extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
+        
+        // Datos
+            String dni = txtDni.getText();
+            
+            // Proceso
+            SocioController control = new SocioController();
+            lista = control.consultarxDNI(dni);
+
 
         // Acceso al objeto Table
         DefaultTableModel tabla;
