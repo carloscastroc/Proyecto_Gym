@@ -442,11 +442,11 @@ public class RegistrarSocio extends javax.swing.JDialog {
         jLabel2.setText(bean.getIdSocio());
          
         txtnombre.setText(bean.getNombre());
-        txtnombre.setEnabled(false);
+        txtnombre.setEditable(false);
         txtapellido.setText(bean.getApellido());
-        txtapellido.setEnabled(false);
+        txtapellido.setEditable(false);
         txtdni.setText(bean.getDNI());
-        txtdni.setEnabled(false);
+        txtdni.setEditable(false);
         txttelf.setText(String.valueOf(bean.getTelefono()));
         txtemail.setText(bean.getEmail());
         cboestado.setSelectedItem(bean.getEstado());

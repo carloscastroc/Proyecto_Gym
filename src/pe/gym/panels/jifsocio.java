@@ -7,6 +7,8 @@ package pe.gym.panels;
 
 import java.util.ArrayList;
 import java.util.List;
+import static javax.management.Query.gt;
+import static javax.management.Query.lt;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -69,12 +71,18 @@ public class jifsocio extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jtablesocio.setAltoHead(70);
         jtablesocio.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
         jtablesocio.setColorBordeHead(new java.awt.Color(38, 86, 186));
         jtablesocio.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
@@ -83,7 +91,7 @@ public class jifsocio extends javax.swing.JInternalFrame {
         jtablesocio.setColorSelBackgound(new java.awt.Color(102, 0, 0));
         jtablesocio.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jtablesocio.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtablesocio.setFuenteHead(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        jtablesocio.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jtablesocio.setRowHeight(20);
         jtablesocio.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jtablesocio);
@@ -105,6 +113,16 @@ public class jifsocio extends javax.swing.JInternalFrame {
         jLabel1.setText("DNI:");
 
         txtDni.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDniActionPerformed(evt);
+            }
+        });
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDniKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelImage7Layout = new javax.swing.GroupLayout(panelImage7);
         panelImage7.setLayout(panelImage7Layout);
@@ -218,6 +236,26 @@ public class jifsocio extends javax.swing.JInternalFrame {
     view.setRowData(lista.get(row));
     view.setVisible(true);
     }//GEN-LAST:event_btnModificarSocioActionPerformed
+
+    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
+//        try {
+//
+//            cargarDatos();
+//            
+//        } catch (Exception e) {
+//             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+//        }
+    }//GEN-LAST:event_txtDniActionPerformed
+
+    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+       try {
+
+            cargarDatos();
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+        }
+    }//GEN-LAST:event_txtDniKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
