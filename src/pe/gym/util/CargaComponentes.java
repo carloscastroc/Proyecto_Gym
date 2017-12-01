@@ -5,7 +5,9 @@
  */
 package pe.gym.util;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import pe.gym.model.Empleado;
 
 /**
@@ -26,6 +28,14 @@ public class CargaComponentes {
     public void cargaIdEmpleado(JLabel label){
         Empleado bean = (Empleado) Session.get("empleado");
         label.setText(bean.getIdEmpleado());
+    }
+    
+    public void cargaBotoneAdmi(JButton boton){
+        Empleado bean = (Empleado) Session.get("empleado");
+        if ("C0001".equals(bean.getIdCargo())) {
+             boton.setVisible(true);
+        }
+       
     }
     
 }

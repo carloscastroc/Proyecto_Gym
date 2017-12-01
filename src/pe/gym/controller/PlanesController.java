@@ -24,6 +24,10 @@ public class PlanesController {
         lista=service.consultar(nomplan);
         return lista;
     }
+     
+     public void crearPlan(Planes bean){
+         service.crear(bean);
+     }
    
     
     

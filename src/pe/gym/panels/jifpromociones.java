@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.PromocionesController;
 import pe.gym.model.Promociones;
+import pe.gym.util.CargaComponentes;
 
 /**
  *
@@ -24,6 +25,11 @@ public class jifpromociones extends javax.swing.JInternalFrame {
      */
     public jifpromociones() {
         initComponents();
+        btnRegistrarPromo.setVisible(false);
+        btnModificarPromo.setVisible(false);
+        CargaComponentes carga = new CargaComponentes();
+        carga.cargaBotoneAdmi(btnRegistrarPromo);
+        carga.cargaBotoneAdmi(btnModificarPromo);
     }
 
     /**
@@ -44,6 +50,8 @@ public class jifpromociones extends javax.swing.JInternalFrame {
         txtNombre = new app.bolivia.swing.JCTextField();
         btnConsultarPromo = new org.edisoncor.gui.button.ButtonAction();
         rSPanelImage1 = new rojerusan.RSPanelImage();
+        btnRegistrarPromo = new rojeru_san.RSButtonRiple();
+        btnModificarPromo = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -149,6 +157,26 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
+        btnRegistrarPromo.setBackground(new java.awt.Color(38, 86, 186));
+        btnRegistrarPromo.setText("NUEVO");
+        btnRegistrarPromo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnRegistrarPromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPromoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnRegistrarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
+
+        btnModificarPromo.setBackground(new java.awt.Color(38, 86, 186));
+        btnModificarPromo.setText("MODIFICAR");
+        btnModificarPromo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnModificarPromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPromoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnModificarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,9 +211,28 @@ public class jifpromociones extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnConsultarPromoActionPerformed
 
+    private void btnRegistrarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPromoActionPerformed
+        //        new RegistrarSocio(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_btnRegistrarPromoActionPerformed
+
+    private void btnModificarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPromoActionPerformed
+        //        int row = jtablesocio.getSelectedRow();
+        //
+        //        if (row == -1) {
+            //            return;
+            //        }
+        //
+        //        RegistrarSocio view;
+        //        view = new RegistrarSocio(new JFrame(), true);
+        //        view.setRowData(lista.get(row));
+        //        view.setVisible(true);
+    }//GEN-LAST:event_btnModificarPromoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultarPromo;
+    private rojeru_san.RSButtonRiple btnModificarPromo;
+    private rojeru_san.RSButtonRiple btnRegistrarPromo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;

@@ -5,6 +5,9 @@
  */
 package pe.gym.service.espec;
 
+import java.util.List;
+import java.util.Vector;
+import pe.gym.model.Cargo;
 import pe.gym.model.Empleado;
 
 /**
@@ -14,5 +17,7 @@ import pe.gym.model.Empleado;
 public interface EmpleadoServiceEspec extends CrudServiceSpec<Empleado>{
     
     Empleado validar(String usuario, String clave);
+    
+    List<Cargo> consultacombo();
     
 }

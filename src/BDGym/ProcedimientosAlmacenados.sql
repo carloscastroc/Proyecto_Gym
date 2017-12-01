@@ -47,3 +47,14 @@ set cod=CONCAT('PA',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));
 select cod;
 END$$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOPLAN`()
+begin
+declare cod char(5);
+set cod=(select  max(IdPlan) from planes);
+set cod=CONCAT('PLA',RIGHT(Concat('00',right(IFNULL(cod,'00'),2)+1 ),2));
+select cod;
+END$$
+DELIMITER ;

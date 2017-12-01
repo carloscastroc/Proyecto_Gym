@@ -5,17 +5,22 @@
  */
 package pe.gym.service.impl;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import pe.gym.db.conectaBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Vector;
+import pe.gym.model.Cargo;
 import pe.gym.model.Empleado;
+import pe.gym.model.Socio;
 import pe.gym.service.mapper.EmpleadoMapper;
 import pe.gym.service.espec.EmpleadoServiceEspec;
+import pe.gym.service.mapper.CargoMapper;
+import pe.gym.service.mapper.SocioMapper;
 
 /**
  *
@@ -155,6 +160,38 @@ public class EmpleadoService implements EmpleadoServiceEspec {
             }
         }
         return bean;
+    }
+
+    @Override
+    public List<Cargo> consultacombo() {
+                 List <Cargo> data = new Vector<Cargo>();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = " select IdCargo, Descripcion from cargo where IdCargo not like 'C0001'";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            
+            ResultSet rs = pstm.executeQuery();
+            CargoMapper mapper = new CargoMapper();
+            while (rs.next()) {
+                Cargo emp = mapper.mapRow(rs);
+                data.add(emp);
+            }
+            rs.close();
+            pstm.close();
+
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return data;
     }
 
 }

@@ -7,10 +7,14 @@ package pe.gym.panels;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.PlanesController;
+import pe.gym.form.RegistrarPlan;
 import pe.gym.model.Planes;
+import pe.gym.util.CargaComponentes;
+
 
 /**
  *
@@ -18,12 +22,21 @@ import pe.gym.model.Planes;
  */
 public class jifplanes extends javax.swing.JInternalFrame {
 
-    private List<Planes> lista= new ArrayList<>();
+    private List<Planes> lista = new ArrayList<>();
+
     /**
      * Creates new form jifplanes
      */
     public jifplanes() {
+
         initComponents();
+        btnRegistrarPlan.setVisible(false);
+        btnModificarPlan.setVisible(false);
+        CargaComponentes carga = new CargaComponentes();
+        carga.cargaBotoneAdmi(btnRegistrarPlan);
+        carga.cargaBotoneAdmi(btnModificarPlan);
+        cargarDatos();
+                
     }
 
     /**
@@ -44,6 +57,8 @@ public class jifplanes extends javax.swing.JInternalFrame {
         txtNombre = new app.bolivia.swing.JCTextField();
         btnConsultarPlanes = new org.edisoncor.gui.button.ButtonAction();
         rSPanelImage1 = new rojerusan.RSPanelImage();
+        btnRegistrarPlan = new rojeru_san.RSButtonRiple();
+        btnModificarPlan = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -149,6 +164,26 @@ public class jifplanes extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
+        btnRegistrarPlan.setBackground(new java.awt.Color(38, 86, 186));
+        btnRegistrarPlan.setText("NUEVO");
+        btnRegistrarPlan.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnRegistrarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPlanActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnRegistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
+
+        btnModificarPlan.setBackground(new java.awt.Color(38, 86, 186));
+        btnModificarPlan.setText("MODIFICAR");
+        btnModificarPlan.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnModificarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPlanActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnModificarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,26 +201,39 @@ public class jifplanes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanesActionPerformed
-         try {
+        try {
 
-            // Datos
-            String nomplan = txtNombre.getText();
-            
-            // Proceso
-             PlanesController control = new PlanesController();
-            lista = control.consultarxNombre(nomplan);
 
             // Mostrar datos
             cargarDatos();
-            
+
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
     }//GEN-LAST:event_btnConsultarPlanesActionPerformed
+
+    private void btnRegistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPlanActionPerformed
+        new RegistrarPlan(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_btnRegistrarPlanActionPerformed
+
+    private void btnModificarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPlanActionPerformed
+//        int row = jtablesocio.getSelectedRow();
+//
+//        if (row == -1) {
+//            return;
+//        }
+//
+//        RegistrarSocio view;
+//        view = new RegistrarSocio(new JFrame(), true);
+//        view.setRowData(lista.get(row));
+//        view.setVisible(true);
+    }//GEN-LAST:event_btnModificarPlanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultarPlanes;
+    private rojeru_san.RSButtonRiple btnModificarPlan;
+    private rojeru_san.RSButtonRiple btnRegistrarPlan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -197,6 +245,14 @@ public class jifplanes extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
+        
+                    // Datos
+            String nomplan = txtNombre.getText();
+
+            // Proceso
+            PlanesController control = new PlanesController();
+            lista = control.consultarxNombre(nomplan);
+
         // Acceso al objeto Table
         DefaultTableModel tabla;
         tabla = (DefaultTableModel) jtableplanes.getModel();
@@ -211,8 +267,7 @@ public class jifplanes extends javax.swing.JInternalFrame {
                 emp.getNombrePlan(),
                 emp.getNroMeses(),
                 emp.getImporte(),
-                emp.getEstado(),
-            };
+                emp.getEstado(),};
             tabla.addRow(rowData);
         }
     }

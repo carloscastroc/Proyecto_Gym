@@ -23,7 +23,55 @@ public class PlanesService implements PlanesServiceEspec{
 
     @Override
     public void crear(Planes bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            //Comprobar que no haya un registro existente del nuevo socio
+            //Pendiente
+
+            //Obtener id de Socio
+            String sql = "call GENERACODIGOPLAN()";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            String id = res.getString("cod");
+
+            // Registrar Socio
+            pstm = cn.prepareStatement("insert into planes (IdPlan, IdEmpleado, "
+                    + "NombrePlan, Nro_Meses, Importe, Estado) values "
+                    + "(?,?,?,?,?,?)");
+            pstm.setString(1, id);
+            pstm.setString(2, bean.getIdEmpleado());
+            pstm.setString(3, bean.getNombrePlan());
+            pstm.setInt(4, bean.getNroMeses());
+            pstm.setDouble(5, bean.getImporte());
+            pstm.setString(6, bean.getEstado());
+            pstm.executeUpdate();
+            pstm.close();
+            // Recuperar ID del socio
+            bean.setIdPlan(id);
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear socio. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

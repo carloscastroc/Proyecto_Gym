@@ -6,6 +6,7 @@
 package pe.gym.form;
 
 import javax.swing.JOptionPane;
+import static pe.gym.form.MainAsistente.escritorio;
 import pe.gym.panels.*;
 import pe.gym.util.CambiaPanel;
 import pe.gym.util.CargaComponentes;
@@ -48,7 +49,6 @@ public class MainAdministrador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnUsuarios = new principal.MaterialButtomRectangle();
         cerrarSesion = new principal.MaterialButtomRectangle();
         escritorio = new pe.gym.util.Escritorio();
 
@@ -105,6 +105,11 @@ public class MainAdministrador extends javax.swing.JFrame {
         btnGastos.setText("PROMOCIONES");
         btnGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGastos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnGastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGastosActionPerformed(evt);
+            }
+        });
 
         btnEmpleados.setBackground(new java.awt.Color(227, 125, 41));
         btnEmpleados.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,12 +134,6 @@ public class MainAdministrador extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("The 1One Fitness Club");
 
-        btnUsuarios.setBackground(new java.awt.Color(227, 125, 41));
-        btnUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuarios.setText("REPORTES");
-        btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUsuarios.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-
         cerrarSesion.setBackground(new java.awt.Color(163, 188, 58));
         cerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         cerrarSesion.setText("CERRAR SESIÓN");
@@ -157,7 +156,6 @@ public class MainAdministrador extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnGastos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                             .addComponent(btnPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEmpleados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,9 +173,7 @@ public class MainAdministrador extends javax.swing.JFrame {
                 .addComponent(btnPlanes, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -232,7 +228,7 @@ public class MainAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
-        new CambiaPanel(escritorio, new PruebaInternalFrame1());
+        new CambiaPanel(escritorio, new jifplanes());
     }//GEN-LAST:event_btnPlanesActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
@@ -243,6 +239,10 @@ public class MainAdministrador extends javax.swing.JFrame {
             new Login().setVisible(true);
         }
     }//GEN-LAST:event_cerrarSesionActionPerformed
+
+    private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
+        new CambiaPanel(escritorio, new jifpromociones());
+    }//GEN-LAST:event_btnGastosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +283,6 @@ public class MainAdministrador extends javax.swing.JFrame {
     private principal.MaterialButtomRectangle btnEmpleados;
     private principal.MaterialButtomRectangle btnGastos;
     private principal.MaterialButtomRectangle btnPlanes;
-    private principal.MaterialButtomRectangle btnUsuarios;
     private principal.MaterialButtomRectangle cerrarSesion;
     public static pe.gym.util.Escritorio escritorio;
     private javax.swing.JLabel jLabel1;
