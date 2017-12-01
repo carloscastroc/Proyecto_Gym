@@ -56,5 +56,98 @@ public class PromocionesService implements PromocionesServiceEspec{
         }
         return lista;
     }
+
+    @Override
+    public void crear(Promociones bean) {
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            //Comprobar que no haya un registro existente del nuevo socio
+            //Pendiente
+
+            //Obtener id de Socio
+            String sql = "call GENERACODIGOPROMO()";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            String id = res.getString("cod");
+
+            // Registrar Socio
+            pstm = cn.prepareStatement("insert into promociones (IdPromociones, IdEmpleado, "
+                    + "NombrePromocion, Importe, Descripcion) values "
+                    + "(?,?,?,?,?)");
+            pstm.setString(1, id);
+            pstm.setString(2, bean.getIdEmpleado());
+            pstm.setString(3, bean.getNombrePromocion());
+            pstm.setDouble(4, bean.getImporte());
+            pstm.setString(5, bean.getDescripcion());
+            pstm.executeUpdate();
+            pstm.close();
+            // Recuperar ID del socio
+            bean.setIdPromociones(id);
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear promocion. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    @Override
+    public void modificar(Promociones bean) {
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+
+            //Actualizar
+            PreparedStatement pstm = cn.prepareStatement("UPDATE promociones set Importe=?, Descripcion=? WHERE IdPromociones=?");
+            pstm.setDouble(1, bean.getImporte());
+            pstm.setString(2, bean.getDescripcion());
+            pstm.setString(3, bean.getIdPromociones());
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso actualizar promocion. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+
+
+    @Override
+    public Promociones leerPorId(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

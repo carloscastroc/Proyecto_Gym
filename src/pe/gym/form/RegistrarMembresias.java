@@ -5,23 +5,27 @@
  */
 package pe.gym.form;
 
+import java.util.Calendar;
 import javax.swing.JOptionPane;
-import pe.gym.controller.PlanesController;
+import pe.gym.controller.MembresiaController;
+import pe.gym.controller.SocioController;
+import pe.gym.model.Membresia;
 import pe.gym.model.Planes;
+import pe.gym.model.Socio;
 import pe.gym.util.CargaComponentes;
-
+import static pe.gym.util.Herramientas.ObtenerFecha;
 
 
 /**
  *
  * @author Carlos
  */
-public class RegistrarPlan extends javax.swing.JDialog {
+public class RegistrarMembresias extends javax.swing.JDialog {
 
     /**
      * Creates new form RegistraSocio
      */
-    public RegistrarPlan(java.awt.Frame parent, boolean modal) {
+    public RegistrarMembresias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         jLabel2.setVisible(false);
@@ -41,10 +45,10 @@ public class RegistrarPlan extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        txtimporte = new javax.swing.JTextField();
-        txtnmeses = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        dateffin = new datechooser.beans.DateChooserCombo();
         cboestado = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
@@ -56,6 +60,10 @@ public class RegistrarPlan extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         jLabel1 = new org.edisoncor.gui.label.LabelHeader();
+        jLabel13 = new javax.swing.JLabel();
+        datefini = new datechooser.beans.DateChooserCombo();
+        jComboBoxPlanes1 = new pe.gym.combos.JComboBoxPlanes();
+        jComboBoxPromociones1 = new pe.gym.combos.JComboBoxPromociones();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -64,22 +72,6 @@ public class RegistrarPlan extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("IdEmpleado");
 
-        txtimporte.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtimporte.setForeground(new java.awt.Color(153, 153, 153));
-        txtimporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtimporteActionPerformed(evt);
-            }
-        });
-
-        txtnmeses.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtnmeses.setForeground(new java.awt.Color(153, 153, 153));
-        txtnmeses.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnmesesActionPerformed(evt);
-            }
-        });
-
         txtnombre.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         txtnombre.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -87,13 +79,22 @@ public class RegistrarPlan extends javax.swing.JDialog {
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Estado : ");
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Fecha Fin : ");
+
+        dateffin.setCalendarBackground(new java.awt.Color(255, 255, 255));
+        dateffin.setCalendarPreferredSize(new java.awt.Dimension(320, 200));
+        dateffin.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
+        dateffin.setFieldFont(new java.awt.Font("Segoe UI Black", java.awt.Font.PLAIN, 16));
+
         cboestado.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         cboestado.setForeground(new java.awt.Color(153, 153, 153));
         cboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Anulado" }));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Importe : ");
+        jLabel8.setText("Promocion:");
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnLimpiar.setForeground(new java.awt.Color(102, 0, 0));
@@ -106,11 +107,11 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Numero Meses:");
+        jLabel7.setText("Plan:");
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(102, 0, 0));
-        btnRegistrar.setText("REGISTRAR PLAN");
+        btnRegistrar.setText("REGISTRAR MEMBRESIA");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -119,7 +120,7 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Nombre : ");
+        jLabel6.setText("Socio:");
 
         btnSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(102, 0, 0));
@@ -136,16 +137,31 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
         btnModificar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(102, 0, 0));
-        btnModificar.setText("MODIFICAR PLAN");
+        btnModificar.setText("MODIFICAR MEMBRESIA");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("REGISTRAR PLAN");
+        jLabel1.setText("REGISTRAR MEMBRESIA");
         jLabel1.setColorDeSombra(new java.awt.Color(0, 112, 192));
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setText("Fecha Inicio:");
+
+        datefini.setCalendarBackground(new java.awt.Color(255, 255, 255));
+        datefini.setCalendarPreferredSize(new java.awt.Dimension(320, 200));
+        datefini.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
+        datefini.setFieldFont(new java.awt.Font("Segoe UI Black", java.awt.Font.PLAIN, 16));
+
+        jComboBoxPlanes1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPlanes1ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,23 +189,39 @@ public class RegistrarPlan extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtimporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                                .addComponent(txtnmeses)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(84, 84, 84)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxPlanes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(84, 84, 84)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dateffin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(datefini, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(41, 41, 41)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -209,17 +241,25 @@ public class RegistrarPlan extends javax.swing.JDialog {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnmeses, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jComboBoxPlanes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                    .addComponent(jComboBoxPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(datefini, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateffin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,7 +267,7 @@ public class RegistrarPlan extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addGap(155, 155, 155))
         );
 
         pack();
@@ -235,26 +275,31 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtnombre.setText("");
-        txtnmeses.setText("");
-        txtimporte.setText("");
+
+
         cboestado.setSelectedIndex(-1);
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
-            PlanesController control = new PlanesController();
-            Planes bean = new Planes();
+            MembresiaController control = new MembresiaController();
+            Membresia bean = new Membresia();
             bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setNombrePlan(txtnombre.getText());
-            bean.setNroMeses(Integer.parseInt(txtnmeses.getText()));
-            bean.setImporte(Double.parseDouble(txtimporte.getText()));
+            bean.setIdSocio(txtnombre.getText());
+            bean.setIdPlan("");
+            bean.setIdPromociones("");
+            bean.setIdPago("");
+            String fechaini = ObtenerFecha(datefini.getSelectedDate());
+            bean.setF_Inicio(fechaini);
+            String fechafin = ObtenerFecha(dateffin.getSelectedDate());
+            bean.setF_Fin(fechafin);
             bean.setEstado(cboestado.getSelectedItem().toString());
 
-            control.crearPlan(bean);
+            control.RegistrarMembresia(bean);
 
-            JOptionPane.showMessageDialog(null, "Plan creado Correctamente, su id es: "
-                    + bean.getIdPlan());
+            JOptionPane.showMessageDialog(null, "Membresia  creado Correctamente, su id es: "
+                    + bean.getIdMembresia());
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
@@ -268,19 +313,22 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         try {
-            PlanesController control = new PlanesController();
-            Planes bean = new Planes();
-            bean.setIdPlan(jLabel2.getText());
+            SocioController control = new SocioController();
+            Socio bean = new Socio();
+            bean.setIdSocio(jLabel2.getText());
             bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setNombrePlan(txtnombre.getText());
-            bean.setNroMeses(Integer.parseInt(txtnmeses.getText()));
-            bean.setImporte(Double.parseDouble(txtimporte.getText()));
+            bean.setNombre(txtnombre.getText());
+//            bean.setApellido(txtapellido.getText());
+//            bean.setDNI(txtdni.getText());
+
+            String fecha = ObtenerFecha(dateffin.getSelectedDate());
+            bean.setF_inscripcion(fecha);
             bean.setEstado(cboestado.getSelectedItem().toString());
 
-            control.modificarPlan(bean);
+            control.modificarSocio(bean);
 
-            JOptionPane.showMessageDialog(null, "Plan modificado Correctamente, su id es: "
-                    + bean.getIdPlan());
+            JOptionPane.showMessageDialog(null, "Socio modificado Correctamente, su id es: "
+                    + bean.getIdSocio());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -288,13 +336,11 @@ public class RegistrarPlan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtimporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtimporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtimporteActionPerformed
-
-    private void txtnmesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmesesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnmesesActionPerformed
+    private void jComboBoxPlanes1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPlanes1ItemStateChanged
+        Planes plan = (Planes)jComboBoxPlanes1.getSelectedItem();
+        
+        
+    }//GEN-LAST:event_jComboBoxPlanes1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -344,37 +390,44 @@ public class RegistrarPlan extends javax.swing.JDialog {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cboestado;
+    private datechooser.beans.DateChooserCombo dateffin;
+    private datechooser.beans.DateChooserCombo datefini;
+    private pe.gym.combos.JComboBoxPlanes jComboBoxPlanes1;
+    private pe.gym.combos.JComboBoxPromociones jComboBoxPromociones1;
     private org.edisoncor.gui.label.LabelHeader jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jlblnomemp;
-    private javax.swing.JTextField txtimporte;
-    private javax.swing.JTextField txtnmeses;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 
-    public void setRowData(Planes bean) {
-                jLabel1.setText("Modificar Plan");
+     public void setRowData(Socio bean) {
+
+//         CargaComponentes carga= new CargaComponentes();
+//         carga.cargaIdEmpleado(jlblnomemp);
+//        this.setTitle("ModificaSocio");
+        jLabel1.setText("Modificar Membresia");
         jLabel2.setVisible(true);
         btnModificar.setVisible(true);
         btnRegistrar.setVisible(false);
         btnLimpiar.setVisible(false);
-        jLabel2.setText(bean.getIdPlan());
+        jLabel2.setText(bean.getIdSocio());
          
-        txtnombre.setText(bean.getNombrePlan());
+        txtnombre.setText(bean.getNombre());
         txtnombre.setEditable(false);
-        txtnmeses.setText(String.valueOf(bean.getNroMeses()));
-        txtimporte.setText(String.valueOf(bean.getImporte()));
-        
+//        txtapellido.setText(bean.getApellido());
+//        txtapellido.setEditable(false);
+//        txtdni.setText(bean.getDNI());
+//        txtdni.setEditable(false);
 
         cboestado.setSelectedItem(bean.getEstado());
 
     }
-
-    
 
 }

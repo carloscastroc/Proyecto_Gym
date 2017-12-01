@@ -58,3 +58,14 @@ set cod=CONCAT('PLA',RIGHT(Concat('00',right(IFNULL(cod,'00'),2)+1 ),2));
 select cod;
 END$$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOPROMO`()
+begin
+declare cod char(5);
+set cod=(select  max(IdPromociones) from promociones);
+set cod=CONCAT('P',RIGHT(Concat('0000',right(IFNULL(cod,'0000'),4)+1 ),4));
+select cod;
+END$$
+DELIMITER ;

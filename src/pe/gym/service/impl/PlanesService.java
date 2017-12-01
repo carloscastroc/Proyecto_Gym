@@ -76,7 +76,37 @@ public class PlanesService implements PlanesServiceEspec{
 
     @Override
     public void modificar(Planes bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+
+            //Actualizar
+            PreparedStatement pstm = cn.prepareStatement("UPDATE planes set Nro_Meses=?, Importe=?, Estado=? WHERE IdPlan=?");
+            pstm.setInt(1, bean.getNroMeses());
+            pstm.setDouble(2, bean.getImporte());
+            pstm.setString(3, bean.getEstado());
+            pstm.setString(4, bean.getIdPlan());
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso actualizar plan. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

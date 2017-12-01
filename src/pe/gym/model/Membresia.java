@@ -5,7 +5,7 @@
  */
 package pe.gym.model;
 
-import java.sql.Date;
+
 
 /**
  *
@@ -22,6 +22,10 @@ public class Membresia {
     private String F_Inicio;
     private String F_Fin;
     private String Estado;
+    private String DNI;
+    private String Nombre;
+    private String Apellido;
+    
     
     public Membresia(){
         
@@ -101,6 +105,30 @@ public class Membresia {
 
     public void setEstado(String Estado) {
         this.Estado = Estado;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
     }
     
     

@@ -29,6 +29,9 @@ public class PlanesController {
          service.crear(bean);
      }
    
+     public void modificarPlan(Planes bean){
+         service.modificar(bean);
+     }
     
     
     

@@ -8,6 +8,7 @@ package pe.gym.pruebas;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import pe.gym.controller.SocioController;
 import pe.gym.model.Socio;
 import pe.gym.service.espec.SocioServiceEspec;
 import pe.gym.service.impl.SocioService;
@@ -23,7 +24,7 @@ public class PruebaConsultaSociosxDNI {
 
         List<Socio> lista = new ArrayList<>();
         String ap = "";
-        SocioServiceEspec service = new SocioService();
+        SocioController service = new SocioController();
         lista = service.consultarxape(ap);
 
         for (Socio r : lista) {

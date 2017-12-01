@@ -10,25 +10,27 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pe.gym.controller.SocioController;
-import pe.gym.form.RegistrarSocio;
-import pe.gym.model.Socio;
+import pe.gym.controller.MembresiaController;
+import pe.gym.form.RegistrarMembresias;
+import pe.gym.model.Membresia;
+
 
 /**
  *
  * @author Carlos
  */
-public class jifsocio extends javax.swing.JInternalFrame {
+public class jifmembresia extends javax.swing.JInternalFrame {
 
+    private List<Membresia> lista = new ArrayList<>();
     /**
-     * Creates new form jifsocio
+     * Creates new form jifmembresia
      */
-    private List<Socio> lista = new ArrayList<>();
+    
 
-    public jifsocio() {
+    public jifmembresia() {
         initComponents();
         jPanel4.setSize(this.getWidth(), this.getWidth());
-        cargarDatos();
+        cargarDatosM();
     }
 
     /**
@@ -42,15 +44,15 @@ public class jifsocio extends javax.swing.JInternalFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jtablesocio = new rojerusan.RSTableMetro();
+        jtablemembresia = new rojerusan.RSTableMetro();
         panelImage7 = new org.edisoncor.gui.panel.PanelImage();
         panelImage8 = new org.edisoncor.gui.panel.PanelImage();
         jLabel1 = new javax.swing.JLabel();
-        txtDni = new app.bolivia.swing.JCTextField();
-        btnConsultarSocio = new org.edisoncor.gui.button.ButtonAction();
-        btnModificarSocio = new rojeru_san.RSButtonRiple();
+        txtdni = new app.bolivia.swing.JCTextField();
+        btnConsultarMembresia = new org.edisoncor.gui.button.ButtonAction();
+        btnModificarMembresia = new rojeru_san.RSButtonRiple();
         rSPanelImage1 = new rojerusan.RSPanelImage();
-        btnRegistrarSocio = new rojeru_san.RSButtonRiple();
+        btnRegistrarMembresia = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -58,19 +60,19 @@ public class jifsocio extends javax.swing.JInternalFrame {
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jtablesocio.setModel(new javax.swing.table.DefaultTableModel(
+        jtablemembresia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IdSocios", "Nombres", "Apellidos", "DNI", "Telefono", "Email", "Fecha de Inscripción"
+                "IdMembresia", "IdSocio", "DNI", "Nombre", "Apellido", "IdPlan", "IdPromociones", "F_Inicio", "F_Fin", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -81,18 +83,18 @@ public class jifsocio extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtablesocio.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        jtablesocio.setColorBordeHead(new java.awt.Color(38, 86, 186));
-        jtablesocio.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
-        jtablesocio.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        jtablesocio.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        jtablesocio.setColorSelBackgound(new java.awt.Color(102, 0, 0));
-        jtablesocio.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtablesocio.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtablesocio.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jtablesocio.setRowHeight(20);
-        jtablesocio.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jtablesocio);
+        jtablemembresia.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        jtablemembresia.setColorBordeHead(new java.awt.Color(38, 86, 186));
+        jtablemembresia.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
+        jtablemembresia.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        jtablemembresia.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        jtablemembresia.setColorSelBackgound(new java.awt.Color(102, 0, 0));
+        jtablemembresia.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtablemembresia.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jtablemembresia.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jtablemembresia.setRowHeight(20);
+        jtablemembresia.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(jtablemembresia);
 
         jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1000, 662));
 
@@ -110,15 +112,15 @@ public class jifsocio extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel1.setText("DNI:");
 
-        txtDni.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        txtDni.addActionListener(new java.awt.event.ActionListener() {
+        txtdni.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtdni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDniActionPerformed(evt);
+                txtdniActionPerformed(evt);
             }
         });
-        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtdni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDniKeyPressed(evt);
+                txtdniKeyPressed(evt);
             }
         });
 
@@ -128,7 +130,7 @@ public class jifsocio extends javax.swing.JInternalFrame {
             panelImage7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelImage7Layout.createSequentialGroup()
                 .addGroup(panelImage7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelImage7Layout.createSequentialGroup()
                         .addGroup(panelImage7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelImage8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,31 +145,31 @@ public class jifsocio extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelImage7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelImage8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel4.add(panelImage7, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 35, -1, -1));
 
-        btnConsultarSocio.setText("CONSULTAR SOCIO");
-        btnConsultarSocio.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnConsultarSocio.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarMembresia.setText("CONSULTAR MEMBRESIA");
+        btnConsultarMembresia.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnConsultarMembresia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarSocioActionPerformed(evt);
+                btnConsultarMembresiaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnConsultarSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 72, 193, 82));
+        jPanel4.add(btnConsultarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 72, 250, 82));
 
-        btnModificarSocio.setBackground(new java.awt.Color(38, 86, 186));
-        btnModificarSocio.setText("MODIFICAR");
-        btnModificarSocio.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnModificarSocio.addActionListener(new java.awt.event.ActionListener() {
+        btnModificarMembresia.setBackground(new java.awt.Color(38, 86, 186));
+        btnModificarMembresia.setText("MODIFICAR");
+        btnModificarMembresia.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnModificarMembresia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarSocioActionPerformed(evt);
+                btnModificarMembresiaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnModificarSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
+        jPanel4.add(btnModificarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
 
         javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
         rSPanelImage1.setLayout(rSPanelImage1Layout);
@@ -182,15 +184,15 @@ public class jifsocio extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
-        btnRegistrarSocio.setBackground(new java.awt.Color(38, 86, 186));
-        btnRegistrarSocio.setText("NUEVO");
-        btnRegistrarSocio.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnRegistrarSocio.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarMembresia.setBackground(new java.awt.Color(38, 86, 186));
+        btnRegistrarMembresia.setText("NUEVO");
+        btnRegistrarMembresia.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnRegistrarMembresia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarSocioActionPerformed(evt);
+                btnRegistrarMembresiaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnRegistrarSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
+        jPanel4.add(btnRegistrarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,34 +210,34 @@ public class jifsocio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSocioActionPerformed
-        new RegistrarSocio(new JFrame(), true).setVisible(true);
-    }//GEN-LAST:event_btnRegistrarSocioActionPerformed
+    private void btnRegistrarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMembresiaActionPerformed
+        new RegistrarMembresias(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_btnRegistrarMembresiaActionPerformed
 
-    private void btnConsultarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSocioActionPerformed
+    private void btnConsultarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMembresiaActionPerformed
         try {
 
-            cargarDatos();
+            cargarDatosM();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
-    }//GEN-LAST:event_btnConsultarSocioActionPerformed
+    }//GEN-LAST:event_btnConsultarMembresiaActionPerformed
 
-    private void btnModificarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarSocioActionPerformed
-        int row = jtablesocio.getSelectedRow();
+    private void btnModificarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMembresiaActionPerformed
+//        int row = jtablesocio.getSelectedRow();
+//    
+//    if( row == -1){
+//      return;
+//    }
+//        
+//    RegistrarSocio view;
+//    view = new RegistrarSocio(new JFrame(), true);
+//    view.setRowData(lista.get(row));
+//    view.setVisible(true);
+    }//GEN-LAST:event_btnModificarMembresiaActionPerformed
 
-        if (row == -1) {
-            return;
-        }
-
-        RegistrarSocio view;
-        view = new RegistrarSocio(new JFrame(), true);
-        view.setRowData(lista.get(row));
-        view.setVisible(true);
-    }//GEN-LAST:event_btnModificarSocioActionPerformed
-
-    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
+    private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
 //        try {
 //
 //            cargarDatos();
@@ -243,59 +245,57 @@ public class jifsocio extends javax.swing.JInternalFrame {
 //        } catch (Exception e) {
 //             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
 //        }
-    }//GEN-LAST:event_txtDniActionPerformed
+    }//GEN-LAST:event_txtdniActionPerformed
 
-    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+    private void txtdniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyPressed
         try {
 
-            cargarDatos();
+            cargarDatosM();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
-    }//GEN-LAST:event_txtDniKeyPressed
+    }//GEN-LAST:event_txtdniKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.edisoncor.gui.button.ButtonAction btnConsultarSocio;
-    private rojeru_san.RSButtonRiple btnModificarSocio;
-    private rojeru_san.RSButtonRiple btnRegistrarSocio;
+    private org.edisoncor.gui.button.ButtonAction btnConsultarMembresia;
+    private rojeru_san.RSButtonRiple btnModificarMembresia;
+    private rojeru_san.RSButtonRiple btnRegistrarMembresia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
-    private rojerusan.RSTableMetro jtablesocio;
+    private rojerusan.RSTableMetro jtablemembresia;
     private org.edisoncor.gui.panel.PanelImage panelImage7;
     private org.edisoncor.gui.panel.PanelImage panelImage8;
     private rojerusan.RSPanelImage rSPanelImage1;
-    private app.bolivia.swing.JCTextField txtDni;
+    private app.bolivia.swing.JCTextField txtdni;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarDatos() {
+    private void cargarDatosM() {
 
         // Datos
-        String dni = txtDni.getText();
+        String dni = txtdni.getText();
 
         // Proceso
-        SocioController control = new SocioController();
-        lista = control.consultarxDNI(dni);
+        MembresiaController control = new MembresiaController();
+        lista = control.consultarMembresiaxDNI(dni);
 
         // Acceso al objeto Table
         DefaultTableModel tabla;
-        tabla = (DefaultTableModel) jtablesocio.getModel();
+        tabla = (DefaultTableModel) jtablemembresia.getModel();
 
         // Eliminar  todas las filas
         tabla.setRowCount(0);
 
         // Cargar Datos
-        for (Socio emp : lista) {
+        for (Membresia men : lista) {
             Object[] rowData = {
-                emp.getIdSocio(),
-                emp.getNombre(),
-                emp.getApellido(),
-                emp.getDNI(),
-                emp.getTelefono(),
-                emp.getEmail(),
-                emp.getF_inscripcion()
+                men.getIdPromociones(),
+                men.getIdEmpleado(),
+                men.getApellido(),
+                men.getDNI(),
+                men.getF_Fin(),
             };
             tabla.addRow(rowData);
         }

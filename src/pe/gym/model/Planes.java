@@ -22,6 +22,17 @@ public class Planes {
         
     }
 
+    public Planes(String IdPlan, String IdEmpleado, String NombrePlan, int NroMeses, double importe, String estado) {
+        this.IdPlan = IdPlan;
+        this.IdEmpleado = IdEmpleado;
+        this.NombrePlan = NombrePlan;
+        this.NroMeses = NroMeses;
+        this.importe = importe;
+        this.estado = estado;
+    }
+    
+    
+
     public String getIdPlan() {
         return IdPlan;
     }
@@ -70,6 +81,10 @@ public class Planes {
         this.estado = estado;
     }
     
+        @Override
+    public String toString() {
+        return NombrePlan;
+    }
     
     
 }

@@ -7,7 +7,9 @@ package pe.gym.form;
 
 import javax.swing.JOptionPane;
 import pe.gym.controller.PlanesController;
+import pe.gym.controller.PromocionesController;
 import pe.gym.model.Planes;
+import pe.gym.model.Promociones;
 import pe.gym.util.CargaComponentes;
 
 
@@ -16,12 +18,12 @@ import pe.gym.util.CargaComponentes;
  *
  * @author Carlos
  */
-public class RegistrarPlan extends javax.swing.JDialog {
+public class RegistrarPromocion extends javax.swing.JDialog {
 
     /**
      * Creates new form RegistraSocio
      */
-    public RegistrarPlan(java.awt.Frame parent, boolean modal) {
+    public RegistrarPromocion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         jLabel2.setVisible(false);
@@ -41,11 +43,9 @@ public class RegistrarPlan extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
+        txtdesc = new javax.swing.JTextField();
         txtimporte = new javax.swing.JTextField();
-        txtnmeses = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        cboestado = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -64,6 +64,14 @@ public class RegistrarPlan extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("IdEmpleado");
 
+        txtdesc.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        txtdesc.setForeground(new java.awt.Color(153, 153, 153));
+        txtdesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdescActionPerformed(evt);
+            }
+        });
+
         txtimporte.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         txtimporte.setForeground(new java.awt.Color(153, 153, 153));
         txtimporte.addActionListener(new java.awt.event.ActionListener() {
@@ -72,28 +80,12 @@ public class RegistrarPlan extends javax.swing.JDialog {
             }
         });
 
-        txtnmeses.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtnmeses.setForeground(new java.awt.Color(153, 153, 153));
-        txtnmeses.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnmesesActionPerformed(evt);
-            }
-        });
-
         txtnombre.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         txtnombre.setForeground(new java.awt.Color(153, 153, 153));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel12.setText("Estado : ");
-
-        cboestado.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        cboestado.setForeground(new java.awt.Color(153, 153, 153));
-        cboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Anulado" }));
-
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Importe : ");
+        jLabel8.setText("Descripcion:");
 
         btnLimpiar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnLimpiar.setForeground(new java.awt.Color(102, 0, 0));
@@ -106,11 +98,11 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Numero Meses:");
+        jLabel7.setText("Importe:");
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(102, 0, 0));
-        btnRegistrar.setText("REGISTRAR PLAN");
+        btnRegistrar.setText("REGISTRAR PROMOCION");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -136,14 +128,14 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
         btnModificar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(102, 0, 0));
-        btnModificar.setText("MODIFICAR PLAN");
+        btnModificar.setText("MODIFICAR PROMOCION");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("REGISTRAR PLAN");
+        jLabel1.setText("REGISTRAR PROMOCION");
         jLabel1.setColorDeSombra(new java.awt.Color(0, 112, 192));
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
 
@@ -156,9 +148,6 @@ public class RegistrarPlan extends javax.swing.JDialog {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel8))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(76, 76, 76)
@@ -167,30 +156,32 @@ public class RegistrarPlan extends javax.swing.JDialog {
                                         .addComponent(jLabel4)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel6)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtimporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                                .addComponent(txtnmeses)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtdesc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                                .addComponent(txtimporte)
+                                .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,25 +200,21 @@ public class RegistrarPlan extends javax.swing.JDialog {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnmeses, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                    .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -235,26 +222,26 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtnombre.setText("");
-        txtnmeses.setText("");
         txtimporte.setText("");
-        cboestado.setSelectedIndex(-1);
+        txtdesc.setText("");
+        
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
-            PlanesController control = new PlanesController();
-            Planes bean = new Planes();
+            PromocionesController control = new PromocionesController();
+            Promociones bean = new Promociones();
             bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setNombrePlan(txtnombre.getText());
-            bean.setNroMeses(Integer.parseInt(txtnmeses.getText()));
+            bean.setNombrePromocion(txtnombre.getText());
             bean.setImporte(Double.parseDouble(txtimporte.getText()));
-            bean.setEstado(cboestado.getSelectedItem().toString());
+            bean.setDescripcion(txtdesc.getText());
+            
 
-            control.crearPlan(bean);
+            control.crearPromocion(bean);
 
-            JOptionPane.showMessageDialog(null, "Plan creado Correctamente, su id es: "
-                    + bean.getIdPlan());
+            JOptionPane.showMessageDialog(null, "Promocion creado Correctamente, su id es: "
+                    + bean.getIdPromociones());
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
@@ -268,19 +255,19 @@ public class RegistrarPlan extends javax.swing.JDialog {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         try {
-            PlanesController control = new PlanesController();
-            Planes bean = new Planes();
-            bean.setIdPlan(jLabel2.getText());
+            PromocionesController control = new PromocionesController();
+            Promociones bean = new Promociones();
+            bean.setIdPromociones(jLabel2.getText());
             bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setNombrePlan(txtnombre.getText());
-            bean.setNroMeses(Integer.parseInt(txtnmeses.getText()));
+            bean.setNombrePromocion(txtnombre.getText());
             bean.setImporte(Double.parseDouble(txtimporte.getText()));
-            bean.setEstado(cboestado.getSelectedItem().toString());
+            bean.setDescripcion(txtdesc.getText());
+            
 
-            control.modificarPlan(bean);
+            control.modificarPromo(bean);
 
-            JOptionPane.showMessageDialog(null, "Plan modificado Correctamente, su id es: "
-                    + bean.getIdPlan());
+            JOptionPane.showMessageDialog(null, "Promocion modificado Correctamente, su id es: "
+                    + bean.getIdPromociones());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -288,13 +275,13 @@ public class RegistrarPlan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void txtdescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdescActionPerformed
+
     private void txtimporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtimporteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtimporteActionPerformed
-
-    private void txtnmesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmesesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnmesesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,35 +330,31 @@ public class RegistrarPlan extends javax.swing.JDialog {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cboestado;
     private org.edisoncor.gui.label.LabelHeader jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jlblnomemp;
+    private javax.swing.JTextField txtdesc;
     private javax.swing.JTextField txtimporte;
-    private javax.swing.JTextField txtnmeses;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 
-    public void setRowData(Planes bean) {
-                jLabel1.setText("Modificar Plan");
+    public void setRowData(Promociones bean) {
+        jLabel1.setText("Modificar Promocion");
         jLabel2.setVisible(true);
         btnModificar.setVisible(true);
         btnRegistrar.setVisible(false);
         btnLimpiar.setVisible(false);
-        jLabel2.setText(bean.getIdPlan());
+        jLabel2.setText(bean.getIdPromociones());
          
-        txtnombre.setText(bean.getNombrePlan());
+        txtnombre.setText(bean.getNombrePromocion());
         txtnombre.setEditable(false);
-        txtnmeses.setText(String.valueOf(bean.getNroMeses()));
         txtimporte.setText(String.valueOf(bean.getImporte()));
+        txtdesc.setText(bean.getDescripcion());
         
-
-        cboestado.setSelectedItem(bean.getEstado());
 
     }
 

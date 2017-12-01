@@ -12,6 +12,6 @@ import pe.gym.model.Promociones;
  *
  * @author Alumno
  */
-public interface PromocionesServiceEspec {
+public interface PromocionesServiceEspec extends CrudServiceSpec<Promociones>{
     List<Promociones> consultar(String nompromocion);
 }

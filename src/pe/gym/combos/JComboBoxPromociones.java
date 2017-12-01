@@ -5,7 +5,12 @@
  */
 package pe.gym.combos;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
+import pe.gym.model.Promociones;
+import pe.gym.service.espec.PromocionesServiceEspec;
+import pe.gym.service.impl.PromocionesService;
 
 /**
  *
@@ -13,6 +18,21 @@ import javax.swing.JComboBox;
  */
 public class JComboBoxPromociones extends JComboBox{
     
+    List<Promociones> lista = new ArrayList<>();
 
+    public JComboBoxPromociones() {
+        super();
+        
+        PromocionesServiceEspec service = new PromocionesService();
+        lista=service.consultar("");
+        
+         for (Promociones emp : lista) {
+
+             this.addItem(emp);
+
+        }
+        
+        
+    }
     
 }

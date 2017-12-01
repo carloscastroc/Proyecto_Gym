@@ -217,16 +217,16 @@ public class jifplanes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarPlanActionPerformed
 
     private void btnModificarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPlanActionPerformed
-//        int row = jtablesocio.getSelectedRow();
-//
-//        if (row == -1) {
-//            return;
-//        }
-//
-//        RegistrarSocio view;
-//        view = new RegistrarSocio(new JFrame(), true);
-//        view.setRowData(lista.get(row));
-//        view.setVisible(true);
+        int row = jtableplanes.getSelectedRow();
+
+        if (row == -1) {
+            return;
+        }
+
+        RegistrarPlan view;
+        view = new RegistrarPlan(new JFrame(), true);
+        view.setRowData(lista.get(row));
+        view.setVisible(true);
     }//GEN-LAST:event_btnModificarPlanActionPerformed
 
 

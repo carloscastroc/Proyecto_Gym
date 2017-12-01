@@ -8,9 +8,12 @@ package pe.gym.service.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import pe.gym.db.conectaBD;
 import pe.gym.model.Membresia;
 import pe.gym.service.espec.MembresiaServiceEspec;
+import pe.gym.service.mapper.MembresiaMapper;
 
 /**
  *
@@ -76,12 +79,81 @@ public class MembresiaService implements MembresiaServiceEspec{
 
     @Override
     public void modificar(Membresia bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+
+            //Actualizar
+            PreparedStatement pstm = cn.prepareStatement("UPDATE membresia set F_Inicio=?, F_Fin=?, Estado=? WHERE IdMembresia=?");
+            pstm.setString(1, bean.getF_Inicio());
+            pstm.setString(2, bean.getF_Fin());
+            pstm.setString(3, bean.getEstado());
+            pstm.setString(4, bean.getIdMembresia());
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso actualizar socio. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override
     public Membresia leerPorId(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Membresia> consultaMembresia(String dni) {
+        List<Membresia> lista = new ArrayList<>();
+        Membresia bean = new Membresia();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "SELECT m.IdMembresia, m.IdEmpleado, m.IdSocio, s.DNI, s.Nombre, "
+                    + "s.Apellido, m.IdPlan, m.IdPromociones, m.IdPago, m.F_Inicio, "
+                    + "m.F_Fin, m.Estado from membresia m inner join "
+                    + "socio s on m.IdSocio=s.IdSocio where s.DNI like concat('%',?,'%') ";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            pstm.setString(1, dni);
+            ResultSet rs = pstm.executeQuery();
+            MembresiaMapper mapper = new MembresiaMapper();
+            while (rs.next()) {
+                Membresia emp = mapper.mapRow(rs);
+                lista.add(emp);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+//            e.printStackTrace();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return lista;
     }
     
 }

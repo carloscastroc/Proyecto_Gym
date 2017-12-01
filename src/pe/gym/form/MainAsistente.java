@@ -95,6 +95,11 @@ public class MainAsistente extends javax.swing.JFrame {
         btnMembresia.setText("MEMBRESIA");
         btnMembresia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMembresia.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnMembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMembresiaActionPerformed(evt);
+            }
+        });
 
         btnPlanes.setBackground(new java.awt.Color(227, 125, 41));
         btnPlanes.setForeground(new java.awt.Color(255, 255, 255));
@@ -266,6 +271,10 @@ public class MainAsistente extends javax.swing.JFrame {
     private void btnPromocionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromocionesActionPerformed
        new CambiaPanel(escritorio, new jifpromociones());
     }//GEN-LAST:event_btnPromocionesActionPerformed
+
+    private void btnMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMembresiaActionPerformed
+        new CambiaPanel(escritorio, new jifmembresia());
+    }//GEN-LAST:event_btnMembresiaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -19,6 +19,16 @@ public class Promociones {
       public Promociones(){
       }
 
+    public Promociones(String IdPromociones, String IdEmpleado, String NombrePromocion, double Importe, String Descripcion) {
+        this.IdPromociones = IdPromociones;
+        this.IdEmpleado = IdEmpleado;
+        this.NombrePromocion = NombrePromocion;
+        this.Importe = Importe;
+        this.Descripcion = Descripcion;
+    }
+
+      
+      
     public String getIdPromociones() {
         return IdPromociones;
     }
@@ -60,6 +70,9 @@ public class Promociones {
     }
      
       
-      
+          @Override
+    public String toString() {
+        return NombrePromocion;
+    }
       
      }

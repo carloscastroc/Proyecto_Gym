@@ -10,29 +10,34 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pe.gym.controller.PromocionesController;
+import pe.gym.controller.MembresiaController;
+import pe.gym.controller.PlanesController;
 import pe.gym.form.RegistrarPlan;
-import pe.gym.form.RegistrarPromocion;
-import pe.gym.model.Promociones;
+import pe.gym.model.Membresia;
+import pe.gym.model.Planes;
 import pe.gym.util.CargaComponentes;
 
 /**
  *
  * @author Alumno
  */
-public class jifpromociones extends javax.swing.JInternalFrame {
+public class jifmembresias extends javax.swing.JInternalFrame {
 
-    private List<Promociones> lista= new ArrayList<>();
+    private List<Membresia> lista = new ArrayList<>();
+
     /**
      * Creates new form jifplanes
      */
-    public jifpromociones() {
+    public jifmembresias() {
+
         initComponents();
-        btnRegistrarPromo.setVisible(false);
-        btnModificarPromo.setVisible(false);
+        btnRegistrarPlan.setVisible(false);
+        btnModificarPlan.setVisible(false);
         CargaComponentes carga = new CargaComponentes();
-        carga.cargaBotoneAdmi(btnRegistrarPromo);
-        carga.cargaBotoneAdmi(btnModificarPromo);
+        carga.cargaBotoneAdmi(btnRegistrarPlan);
+        carga.cargaBotoneAdmi(btnModificarPlan);
+        cargarDatos();
+
     }
 
     /**
@@ -46,15 +51,15 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jtablepromociones = new rojerusan.RSTableMetro();
+        jtableplanes = new rojerusan.RSTableMetro();
         panelImage7 = new org.edisoncor.gui.panel.PanelImage();
         panelImage8 = new org.edisoncor.gui.panel.PanelImage();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new app.bolivia.swing.JCTextField();
-        btnConsultarPromo = new org.edisoncor.gui.button.ButtonAction();
+        btnConsultarPlanes = new org.edisoncor.gui.button.ButtonAction();
         rSPanelImage1 = new rojerusan.RSPanelImage();
-        btnRegistrarPromo = new rojeru_san.RSButtonRiple();
-        btnModificarPromo = new rojeru_san.RSButtonRiple();
+        btnRegistrarPlan = new rojeru_san.RSButtonRiple();
+        btnModificarPlan = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -62,35 +67,35 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jtablepromociones.setModel(new javax.swing.table.DefaultTableModel(
+        jtableplanes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID_Promociones", "ID-Empleado", "Nombre Promociones", "Importe", "Descripcion"
+                "ID-Plan", "Nombre Plan", "Nro de Meses", "Importe", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jtablepromociones.setAltoHead(70);
-        jtablepromociones.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        jtablepromociones.setColorBordeHead(new java.awt.Color(38, 86, 186));
-        jtablepromociones.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
-        jtablepromociones.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        jtablepromociones.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        jtablepromociones.setColorSelBackgound(new java.awt.Color(102, 0, 0));
-        jtablepromociones.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtablepromociones.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtablepromociones.setFuenteHead(new java.awt.Font("Roboto", 1, 20)); // NOI18N
-        jtablepromociones.setRowHeight(20);
-        jtablepromociones.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jtablepromociones);
+        jtableplanes.setAltoHead(70);
+        jtableplanes.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        jtableplanes.setColorBordeHead(new java.awt.Color(38, 86, 186));
+        jtableplanes.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
+        jtableplanes.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        jtableplanes.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        jtableplanes.setColorSelBackgound(new java.awt.Color(102, 0, 0));
+        jtableplanes.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtableplanes.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jtableplanes.setFuenteHead(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        jtableplanes.setRowHeight(20);
+        jtableplanes.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(jtableplanes);
 
         jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1000, 662));
 
@@ -138,14 +143,14 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jPanel4.add(panelImage7, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 35, -1, -1));
 
-        btnConsultarPromo.setText("CONSULTAR PROMOCIONES");
-        btnConsultarPromo.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnConsultarPromo.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarPlanes.setText("CONSULTAR PLANES");
+        btnConsultarPlanes.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnConsultarPlanes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarPromoActionPerformed(evt);
+                btnConsultarPlanesActionPerformed(evt);
             }
         });
-        jPanel4.add(btnConsultarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 72, 270, 82));
+        jPanel4.add(btnConsultarPlanes, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 72, 210, 82));
 
         javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
         rSPanelImage1.setLayout(rSPanelImage1Layout);
@@ -160,25 +165,25 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
-        btnRegistrarPromo.setBackground(new java.awt.Color(38, 86, 186));
-        btnRegistrarPromo.setText("NUEVO");
-        btnRegistrarPromo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnRegistrarPromo.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarPlan.setBackground(new java.awt.Color(38, 86, 186));
+        btnRegistrarPlan.setText("NUEVO");
+        btnRegistrarPlan.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnRegistrarPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarPromoActionPerformed(evt);
+                btnRegistrarPlanActionPerformed(evt);
             }
         });
-        jPanel4.add(btnRegistrarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
+        jPanel4.add(btnRegistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
-        btnModificarPromo.setBackground(new java.awt.Color(38, 86, 186));
-        btnModificarPromo.setText("MODIFICAR");
-        btnModificarPromo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnModificarPromo.addActionListener(new java.awt.event.ActionListener() {
+        btnModificarPlan.setBackground(new java.awt.Color(38, 86, 186));
+        btnModificarPlan.setText("MODIFICAR");
+        btnModificarPlan.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnModificarPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarPromoActionPerformed(evt);
+                btnModificarPlanActionPerformed(evt);
             }
         });
-        jPanel4.add(btnModificarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
+        jPanel4.add(btnModificarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,50 +201,43 @@ public class jifpromociones extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConsultarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPromoActionPerformed
-         try {
-
-            // Datos
-            String nompromocion = txtNombre.getText();
-            
-            // Proceso
-             PromocionesController control = new PromocionesController();
-            lista = control.consultarxNombrep(nompromocion);
+    private void btnConsultarPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanesActionPerformed
+        try {
 
             // Mostrar datos
             cargarDatos();
-            
+
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
-    }//GEN-LAST:event_btnConsultarPromoActionPerformed
+    }//GEN-LAST:event_btnConsultarPlanesActionPerformed
 
-    private void btnRegistrarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPromoActionPerformed
-                new RegistrarPromocion(new JFrame(), true).setVisible(true);
-    }//GEN-LAST:event_btnRegistrarPromoActionPerformed
+    private void btnRegistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPlanActionPerformed
+        new RegistrarPlan(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_btnRegistrarPlanActionPerformed
 
-    private void btnModificarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPromoActionPerformed
-                int row = jtablepromociones.getSelectedRow();
-        
-                if (row == -1) {
-                        return;
-                   }
-        
-                RegistrarPromocion view;
-                view = new RegistrarPromocion(new JFrame(), true);
-                view.setRowData(lista.get(row));
-                view.setVisible(true);
-    }//GEN-LAST:event_btnModificarPromoActionPerformed
+    private void btnModificarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPlanActionPerformed
+        int row = jtableplanes.getSelectedRow();
+
+        if (row == -1) {
+            return;
+        }
+
+        RegistrarPlan view;
+        view = new RegistrarPlan(new JFrame(), true);
+
+        view.setVisible(true);
+    }//GEN-LAST:event_btnModificarPlanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.edisoncor.gui.button.ButtonAction btnConsultarPromo;
-    private rojeru_san.RSButtonRiple btnModificarPromo;
-    private rojeru_san.RSButtonRiple btnRegistrarPromo;
+    private org.edisoncor.gui.button.ButtonAction btnConsultarPlanes;
+    private rojeru_san.RSButtonRiple btnModificarPlan;
+    private rojeru_san.RSButtonRiple btnRegistrarPlan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
-    private rojerusan.RSTableMetro jtablepromociones;
+    private rojerusan.RSTableMetro jtableplanes;
     private org.edisoncor.gui.panel.PanelImage panelImage7;
     private org.edisoncor.gui.panel.PanelImage panelImage8;
     private rojerusan.RSPanelImage rSPanelImage1;
@@ -247,23 +245,36 @@ public class jifpromociones extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
-        // Acceso al objeto Table
-        DefaultTableModel tabla;
-        tabla = (DefaultTableModel) jtablepromociones.getModel();
+        try {
+            // Datos
+            String nomplan = txtNombre.getText();
 
-        // Eliminar  todas las filas
-        tabla.setRowCount(0);
+            // Proceso
+            MembresiaController control = new MembresiaController();
+            lista = control.consultarMembresiaxDNI(nomplan);
 
-        // Cargar Datos
-        for (Promociones emp : lista) {
-            Object[] rowData = {
-                emp.getIdPromociones(),
-                emp.getIdEmpleado(),
-                emp.getNombrePromocion(),
-                emp.getImporte(),
-                emp.getDescripcion(),
-            };
-            tabla.addRow(rowData);
+            // Acceso al objeto Table
+            DefaultTableModel tabla;
+            tabla = (DefaultTableModel) jtableplanes.getModel();
+
+            // Eliminar  todas las filas
+            tabla.setRowCount(0);
+
+// Cargar Datos
+            for (Membresia emp : lista) {
+                Object[] rowData = {
+                    emp.getIdPlan(),
+                    emp.getEstado(),
+                    emp.getIdMembresia(),
+                    emp.getIdPago(),
+                    emp.getEstado(),};
+                System.out.println(emp.getIdMembresia());
+                tabla.addRow(rowData);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 }

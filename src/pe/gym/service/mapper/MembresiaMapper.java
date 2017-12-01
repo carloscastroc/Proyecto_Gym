@@ -19,15 +19,18 @@ public class MembresiaMapper implements  RowMapper<Membresia>{
     @Override
     public Membresia mapRow(ResultSet rs) throws SQLException {
         Membresia bean = new Membresia();
-        bean.setIdMembresia(rs.getString("IdPago"));
+        bean.setIdMembresia(rs.getString("IdMembresia"));
         bean.setIdSocio(rs.getString("IdSocio"));
-        bean.setIdEmpleado(rs.getString("Tipo_de_Pago"));
-        bean.setIdPlan(rs.getString("Importe"));
-        bean.setIdPromociones(rs.getString("Fecha"));
-        bean.setIdPago(rs.getString("IGV"));
-        bean.setF_Inicio(rs.getString("Subtotal"));
-        bean.setF_Fin(rs.getString("Total"));
+        bean.setIdEmpleado(rs.getString("IdEmpleado"));
+        bean.setIdPlan(rs.getString("IdPlan"));
+        bean.setIdPromociones(rs.getString("IdPromociones"));
+        bean.setIdPago(rs.getString("IdPago"));
+        bean.setF_Inicio(rs.getString("F_Inicio"));
+        bean.setF_Fin(rs.getString("F_Fin"));
         bean.setEstado(rs.getString("Estado"));
+        bean.setDNI(rs.getString("DNI"));
+        bean.setNombre(rs.getString("Nombre"));
+        bean.setApellido(rs.getString("Apellido"));
         return bean;
     }
     

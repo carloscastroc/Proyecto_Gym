@@ -16,12 +16,22 @@ import pe.gym.service.impl.PromocionesService;
  * @author Alumno
  */
 public class PromocionesController {
+
     PromocionesServiceEspec service = new PromocionesService();
     List<Promociones> lista = new ArrayList<>();
-    
 
-     public List<Promociones> consultarxNombrep(String nompromocion){
-        lista=service.consultar(nompromocion);
+    public List<Promociones> consultarxNombrep(String nompromocion) {
+        lista = service.consultar(nompromocion);
         return lista;
+
     }
+
+    public void crearPromocion(Promociones bean) {
+        service.crear(bean);
+    }
+    
+    public void modificarPromo(Promociones bean){
+        service.modificar(bean);
+    }
+    
 }

@@ -5,6 +5,7 @@
  */
 package pe.gym.service.espec;
 
+import java.util.List;
 import pe.gym.model.Membresia;
 
 /**
@@ -12,6 +13,8 @@ import pe.gym.model.Membresia;
  * @author Alumno
  */
 public interface MembresiaServiceEspec extends CrudServiceSpec<Membresia>{
+    
+    List<Membresia> consultaMembresia(String dni);
     
     
     
