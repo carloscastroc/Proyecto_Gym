@@ -7,8 +7,6 @@ package pe.gym.panels;
 
 import java.util.ArrayList;
 import java.util.List;
-import static javax.management.Query.gt;
-import static javax.management.Query.lt;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

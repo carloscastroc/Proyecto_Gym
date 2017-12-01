@@ -16,5 +16,6 @@ import pe.gym.model.Socio;
 public interface SocioServiceEspec extends CrudServiceSpec<Socio>{
     
     List<Socio> consultar(String DNI);
+    List<Socio> consultarxape(String ape);
     
 }

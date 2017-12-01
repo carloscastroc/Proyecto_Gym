@@ -22,9 +22,9 @@ public class PruebaConsultaSociosxDNI {
         Socio bean = new Socio();
 
         List<Socio> lista = new ArrayList<>();
-        String dni = "";
+        String ap = "";
         SocioServiceEspec service = new SocioService();
-        lista = service.consultar(dni);
+        lista = service.consultarxape(ap);
 
         for (Socio r : lista) {
             System.out.println(r.getIdSocio()

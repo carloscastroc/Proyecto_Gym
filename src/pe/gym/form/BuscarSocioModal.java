@@ -5,6 +5,13 @@
  */
 package pe.gym.form;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pe.gym.controller.SocioController;
+import pe.gym.model.Socio;
+
 /**
  *
  * @author Alumno
@@ -14,9 +21,13 @@ public class BuscarSocioModal extends javax.swing.JDialog {
     /**
      * Creates new form AsignarCarne
      */
+    
+    private List<Socio> lista = new ArrayList<>();
+    
     public BuscarSocioModal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cargarDatos();
     }
 
     /**
@@ -32,7 +43,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jtxtApellido = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jtablesocio = new rojerusan.RSTableMetro();
+        jtablesociomodal = new rojerusan.RSTableMetro();
         rSButtonMetro1 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,38 +57,50 @@ public class BuscarSocioModal extends javax.swing.JDialog {
 
         jtxtApellido.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jtxtApellido.setForeground(new java.awt.Color(153, 153, 153));
+        jtxtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtApellidoKeyPressed(evt);
+            }
+        });
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jtablesocio.setModel(new javax.swing.table.DefaultTableModel(
+        jtablesociomodal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id Socio", "Apellidos", "Nombres", "Estado"
+                "IdSocio", "Apellido", "Nombre", "Estado"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jtablesocio.setAltoHead(40);
-        jtablesocio.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        jtablesocio.setColorBordeHead(new java.awt.Color(38, 86, 186));
-        jtablesocio.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
-        jtablesocio.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        jtablesocio.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        jtablesocio.setColorSelBackgound(new java.awt.Color(102, 0, 0));
-        jtablesocio.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtablesocio.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtablesocio.setFuenteHead(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtablesocio.setRowHeight(20);
-        jtablesocio.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jtablesocio);
+        jtablesociomodal.setAltoHead(40);
+        jtablesociomodal.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        jtablesociomodal.setColorBordeHead(new java.awt.Color(38, 86, 186));
+        jtablesociomodal.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
+        jtablesociomodal.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        jtablesociomodal.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        jtablesociomodal.setColorSelBackgound(new java.awt.Color(102, 0, 0));
+        jtablesociomodal.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtablesociomodal.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtablesociomodal.setFuenteHead(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jtablesociomodal.setRowHeight(20);
+        jtablesociomodal.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(jtablesociomodal);
 
         rSButtonMetro1.setText("Seleccionar");
 
@@ -116,6 +139,16 @@ public class BuscarSocioModal extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtxtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtApellidoKeyPressed
+       try {
+
+            cargarDatos();
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+        }
+    }//GEN-LAST:event_jtxtApellidoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -159,13 +192,47 @@ public class BuscarSocioModal extends javax.swing.JDialog {
             }
         });
     }
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
     private javax.swing.JScrollPane jScrollPane5;
-    private rojerusan.RSTableMetro jtablesocio;
+    private rojerusan.RSTableMetro jtablesociomodal;
     private javax.swing.JTextField jtxtApellido;
     private org.edisoncor.gui.label.LabelHeader labelHeader1;
     private rojerusan.RSButtonMetro rSButtonMetro1;
     // End of variables declaration//GEN-END:variables
+
+        private void cargarDatos() {
+        
+               // Datos
+            String dni = jtxtApellido.getText();
+            
+            // Proceso
+            SocioController control = new SocioController();
+            lista = control.consultarxDNI(dni);
+
+
+        // Acceso al objeto Table
+        DefaultTableModel tabla;
+        tabla = (DefaultTableModel) jtablesociomodal.getModel();
+
+        // Eliminar  todas las filas
+        tabla.setRowCount(0);
+
+        // Cargar Datos
+        for (Socio emp : lista) {
+            Object[] rowData = {
+                emp.getIdSocio(),
+                emp.getNombre(),
+                emp.getApellido(),
+                emp.getEstado()
+            };
+            tabla.addRow(rowData);
+        }
+
+    }
+
 }
+

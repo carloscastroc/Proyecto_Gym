@@ -11,7 +11,7 @@ import java.util.List;
 import pe.gym.model.Socio;
 import pe.gym.service.espec.SocioServiceEspec;
 import pe.gym.service.impl.SocioService;
-import pe.gym.util.Session;
+
 
 /**
  *
@@ -37,4 +37,8 @@ public class SocioController {
         service.modificar(bean);
     }
     
+    public List<Socio> consultarxape(String ape){
+        service.consultarxape(ape);
+        return lista;
+    }
 }

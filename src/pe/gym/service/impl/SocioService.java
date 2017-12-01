@@ -159,4 +159,39 @@ public class SocioService implements SocioServiceEspec {
         return lista;
     }
 
+    @Override
+    public List<Socio> consultarxape(String ape) {
+         List<Socio> lista = new ArrayList<>();
+        Socio bean = new Socio();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = SQL_SELECT + " where Apellido like concat('%',?,'%') ";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            pstm.setString(1, ape);
+            ResultSet rs = pstm.executeQuery();
+            SocioMapper mapper = new SocioMapper();
+            while (rs.next()) {
+                Socio emp = mapper.mapRow(rs);
+                lista.add(emp);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return lista;
+    }
+
 }
