@@ -32,6 +32,9 @@ public class JComboBoxCargo extends JComboBox{
              this.addItem(emp);
 
         }
+
+        this.addItem("Selecciona");
+         
         
         
     }

@@ -33,12 +33,18 @@ public class SocioService implements SocioServiceEspec {
     @Override
     public void crear(Socio bean) {
         Connection cn = null;
+        List<Socio> lista= new ArrayList<>();
         try {
             // Obtener objeto Connection
             cn = conectaBD.obtener();
             // Inicio de Tx
             cn.setAutoCommit(false);
             //Comprobar que no haya un registro existente del nuevo socio
+//            lista=consultar(bean.getDNI());
+//            if(!lista.isEmpty()){
+//                throw new RuntimeException("Existe un usuario registrado con ese DNI.");
+//            }
+            
             //Pendiente
 
             //Obtener id de Socio

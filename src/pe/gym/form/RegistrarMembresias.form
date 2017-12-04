@@ -59,7 +59,7 @@
                               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jComboBoxPlanes1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtnombre" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                                  <Component id="txtidsociomodal" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                                   <Component id="jComboBoxPromociones1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -122,7 +122,7 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtnombre" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="txtidsociomodal" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -177,7 +177,7 @@
         <Property name="text" type="java.lang.String" value="IdEmpleado"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtnombre">
+    <Component class="javax.swing.JTextField" name="txtidsociomodal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI Black" size="18" style="0"/>
@@ -186,6 +186,13 @@
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtidsociomodalMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtidsociomodalActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>

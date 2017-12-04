@@ -7,9 +7,12 @@ package pe.gym.form;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.SocioController;
+import pe.gym.form.RegistrarMembresia;
+import pe.gym.model.Membresia;
 import pe.gym.model.Socio;
 
 /**
@@ -103,6 +106,11 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         jScrollPane5.setViewportView(jtablesociomodal);
 
         rSButtonMetro1.setText("Seleccionar");
+        rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonMetro1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +157,23 @@ public class BuscarSocioModal extends javax.swing.JDialog {
              JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
     }//GEN-LAST:event_jtxtApellidoKeyPressed
+
+    private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
+        int row = jtablesociomodal.getSelectedRow();
+
+        if (row == -1) {
+            return;
+             
+        }
+        
+        String codigo=this.jtablesociomodal.getValueAt(row, 0).toString();
+        
+        RegistrarMembresias.txtidsociomodal.setText(codigo);
+        
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,15 +6,19 @@
 package pe.gym.form;
 
 import java.util.Calendar;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import pe.gym.controller.MembresiaController;
+import pe.gym.controller.MembreController;
+
 import pe.gym.controller.SocioController;
 import pe.gym.model.Membresia;
 import pe.gym.model.Planes;
+import pe.gym.model.Promociones;
 import pe.gym.model.Socio;
 import pe.gym.util.CargaComponentes;
+import pe.gym.util.Herramientas;
+import static pe.gym.util.Herramientas.IngresarFechaModificada;
 import static pe.gym.util.Herramientas.ObtenerFecha;
-
 
 /**
  *
@@ -25,6 +29,8 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     /**
      * Creates new form RegistraSocio
      */
+    Membresia mem = new Membresia();
+
     public RegistrarMembresias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -45,7 +51,7 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        txtnombre = new javax.swing.JTextField();
+        txtidsociomodal = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         dateffin = new datechooser.beans.DateChooserCombo();
@@ -72,8 +78,18 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("IdEmpleado");
 
-        txtnombre.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtnombre.setForeground(new java.awt.Color(153, 153, 153));
+        txtidsociomodal.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        txtidsociomodal.setForeground(new java.awt.Color(153, 153, 153));
+        txtidsociomodal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtidsociomodalMouseClicked(evt);
+            }
+        });
+        txtidsociomodal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidsociomodalActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
@@ -193,7 +209,7 @@ public class RegistrarMembresias extends javax.swing.JDialog {
                                 .addGap(84, 84, 84)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBoxPlanes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtidsociomodal, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBoxPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +253,7 @@ public class RegistrarMembresias extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidsociomodal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -274,26 +290,37 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        txtnombre.setText("");
-
+        txtidsociomodal.setText("");
 
         cboestado.setSelectedIndex(-1);
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
+        Promociones promo = (Promociones) jComboBoxPromociones1.getSelectedItem();
+
+        if (jComboBoxPlanes1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un plan");
+            return;
+        }
+        if (jComboBoxPromociones1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione una promocion");
+            return;
+        }
         try {
-            MembresiaController control = new MembresiaController();
+            MembreController control = new MembreController();
             Membresia bean = new Membresia();
             bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setIdSocio(txtnombre.getText());
-            bean.setIdPlan("");
-            bean.setIdPromociones("");
-            bean.setIdPago("");
+            bean.setIdSocio(txtidsociomodal.getText());
+            bean.setIdPlan(plan.getIdPlan());
+            bean.setIdPromociones(promo.getIdPromociones());
+            bean.setIdPago(null);
             String fechaini = ObtenerFecha(datefini.getSelectedDate());
             bean.setF_Inicio(fechaini);
             String fechafin = ObtenerFecha(dateffin.getSelectedDate());
             bean.setF_Fin(fechafin);
+
             bean.setEstado(cboestado.getSelectedItem().toString());
 
             control.RegistrarMembresia(bean);
@@ -312,14 +339,14 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
+
         try {
             SocioController control = new SocioController();
             Socio bean = new Socio();
             bean.setIdSocio(jLabel2.getText());
             bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setNombre(txtnombre.getText());
-//            bean.setApellido(txtapellido.getText());
-//            bean.setDNI(txtdni.getText());
+            bean.setNombre(txtidsociomodal.getText());
 
             String fecha = ObtenerFecha(dateffin.getSelectedDate());
             bean.setF_inscripcion(fecha);
@@ -337,10 +364,23 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void jComboBoxPlanes1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPlanes1ItemStateChanged
-        Planes plan = (Planes)jComboBoxPlanes1.getSelectedItem();
-        
-        
+        Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
+        int aumento = plan.getNroMeses();
+
+        dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), aumento));
+
     }//GEN-LAST:event_jComboBoxPlanes1ItemStateChanged
+
+    private void txtidsociomodalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidsociomodalActionPerformed
+
+    }//GEN-LAST:event_txtidsociomodalActionPerformed
+
+    private void txtidsociomodalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidsociomodalMouseClicked
+        BuscarSocioModal view;
+        view = new BuscarSocioModal(new JFrame(), true);
+        view.setVisible(true);
+        mem.getIdSocio();
+    }//GEN-LAST:event_txtidsociomodalMouseClicked
 
     /**
      * @param args the command line arguments
@@ -404,10 +444,10 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jlblnomemp;
-    private javax.swing.JTextField txtnombre;
+    public static javax.swing.JTextField txtidsociomodal;
     // End of variables declaration//GEN-END:variables
 
-     public void setRowData(Socio bean) {
+    public void setRowData(Socio bean) {
 
 //         CargaComponentes carga= new CargaComponentes();
 //         carga.cargaIdEmpleado(jlblnomemp);
@@ -418,9 +458,9 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         btnRegistrar.setVisible(false);
         btnLimpiar.setVisible(false);
         jLabel2.setText(bean.getIdSocio());
-         
-        txtnombre.setText(bean.getNombre());
-        txtnombre.setEditable(false);
+
+        txtidsociomodal.setText(bean.getNombre());
+        txtidsociomodal.setEditable(false);
 //        txtapellido.setText(bean.getApellido());
 //        txtapellido.setEditable(false);
 //        txtdni.setText(bean.getDNI());

@@ -29,7 +29,9 @@ public class MembresiaService implements MembresiaServiceEspec{
             cn = conectaBD.obtener();
             // Inicio de Tx
             cn.setAutoCommit(false);
-            //Comprobar que no haya un registro existente del nuevo socio
+            //Comprobar que no haya una membresia activa con el socio
+            
+            
             //Pendiente
 
             //Obtener id de Socio
@@ -124,13 +126,51 @@ public class MembresiaService implements MembresiaServiceEspec{
         Connection cn = null;
         try {
             cn = conectaBD.obtener();
-            String sql = "SELECT m.IdMembresia, m.IdEmpleado, m.IdSocio, s.DNI, s.Nombre, "
-                    + "s.Apellido, m.IdPlan, m.IdPromociones, m.IdPago, m.F_Inicio, "
-                    + "m.F_Fin, m.Estado from membresia m inner join "
-                    + "socio s on m.IdSocio=s.IdSocio where s.DNI like concat('%',?,'%') ";
+            String sql = "Select IdMembresia, IdEmpleado, IdSocio, DNI, Nombre, "
+                    + "Apellido, IdPlan, NombrePlan, IdPromociones, NombrePromocion, "
+                    + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where DNI like concat('%',?,'%') ";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);
             pstm.setString(1, dni);
+            ResultSet rs = pstm.executeQuery();
+            MembresiaMapper mapper = new MembresiaMapper();
+            while (rs.next()) {
+                Membresia emp = mapper.mapRow(rs);
+                lista.add(emp);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+//            e.printStackTrace();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Membresia> compruebaestado(String idsocio) {
+        List<Membresia> lista = new ArrayList<>();
+        Membresia bean = new Membresia();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "Select IdMembresia, IdEmpleado, IdSocio, DNI, Nombre, "
+                    + "Apellido, IdPlan, NombrePlan, IdPromociones, NombrePromocion, "
+                    + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where IdSocio=? "
+                    + "and Estado='Activo' ";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            pstm.setString(1, idsocio);
             ResultSet rs = pstm.executeQuery();
             MembresiaMapper mapper = new MembresiaMapper();
             while (rs.next()) {

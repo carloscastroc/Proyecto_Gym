@@ -26,6 +26,8 @@ public class JComboBoxPromociones extends JComboBox{
         PromocionesServiceEspec service = new PromocionesService();
         lista=service.consultar("");
         
+        this.addItem("Seleccione una promocion");
+        
          for (Promociones emp : lista) {
 
              this.addItem(emp);

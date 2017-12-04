@@ -22,8 +22,11 @@ public class SocioController {
     List<Socio> lista = new ArrayList<>();
     
     
-    public void crearSocio(Socio bean){
-        
+    public void crearSocio(Socio bean) throws Exception{
+        lista=service.consultar(bean.getDNI());
+        if(!lista.isEmpty()){
+            throw new Exception("El socio ya existe");
+        }
         service.crear(bean);
        
     }

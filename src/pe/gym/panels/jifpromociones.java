@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.PromocionesController;
-import pe.gym.form.RegistrarPlan;
 import pe.gym.form.RegistrarPromocion;
 import pe.gym.model.Promociones;
 import pe.gym.util.CargaComponentes;

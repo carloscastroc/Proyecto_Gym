@@ -23,24 +23,30 @@ import pe.gym.service.impl.SocioService;
 public class PruebaConsultaMembresia {
 
     public static void main(String[] args) {
-        Membresia bean = new Membresia();
+
 
         List<Membresia> lista = new ArrayList<>();
-        String ap = "4";
+        String ap = "S00005";
         MembresiaServiceEspec service = new MembresiaService();
-        lista = service.consultaMembresia(ap);
+        lista = service.compruebaestado(ap);
 
         for (Membresia r : lista) {
-            System.out.println(r.getIdSocio()
+            System.out.println(
+                    r.getIdMembresia()
                     + " - " + r.getIdEmpleado()
-                    + " - " + r.getIdMembresia()
+                    + " - " + r.getIdSocio()
                     + " - " + r.getDNI()
-                    + " - " + r.getIdMembresia()
+                    + " - " + r.getNombre()
+                    + " - " + r.getApellido()
                     + " - " + r.getIdPlan()
+                    + " - " + r.getNombrePlan()
+                    + " - " + r.getIdPromociones()
+                    + " - " + r.getNombrePromocion()
+                    + " - " + r.getIdPago()
+                    + " - " + r.getF_Inicio()
+                    + " - " + r.getF_Fin()
                     + " - " + r.getEstado());
         }
-        
-        
 
     }
 }

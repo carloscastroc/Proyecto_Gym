@@ -26,12 +26,15 @@ public class JComboBoxPlanes extends JComboBox{
         PlanesServiceEspec service = new PlanesService();
         lista=service.consultar("");
         
+        this.addItem("Seleccione un plan");
+        
          for (Planes emp : lista) {
 
              this.addItem(emp);
 
         }
         
+         
         
     }
     

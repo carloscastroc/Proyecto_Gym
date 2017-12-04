@@ -26,6 +26,10 @@ public class Herramientas {
         return fecha;
     }
             
+            public static Calendar IngresarFechaModificada (Calendar cal, int aumento){
+                cal.set(Calendar.MONTH, +aumento);
+                return cal;
+            }            
      
      
     

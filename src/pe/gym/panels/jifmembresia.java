@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pe.gym.controller.MembreController;
 import pe.gym.controller.MembresiaController;
 import pe.gym.form.RegistrarMembresias;
 import pe.gym.model.Membresia;
@@ -43,8 +44,6 @@ public class jifmembresia extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jtablemembresia = new rojerusan.RSTableMetro();
         panelImage7 = new org.edisoncor.gui.panel.PanelImage();
         panelImage8 = new org.edisoncor.gui.panel.PanelImage();
         jLabel1 = new javax.swing.JLabel();
@@ -53,50 +52,12 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         btnModificarMembresia = new rojeru_san.RSButtonRiple();
         rSPanelImage1 = new rojerusan.RSPanelImage();
         btnRegistrarMembresia = new rojeru_san.RSButtonRiple();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtmembresia = new rojerusan.RSTableMetro();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        jtablemembresia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "IdMembresia", "IdSocio", "DNI", "Nombre", "Apellido", "IdPlan", "IdPromociones", "F_Inicio", "F_Fin", "Estado"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtablemembresia.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        jtablemembresia.setColorBordeHead(new java.awt.Color(38, 86, 186));
-        jtablemembresia.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
-        jtablemembresia.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        jtablemembresia.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        jtablemembresia.setColorSelBackgound(new java.awt.Color(102, 0, 0));
-        jtablemembresia.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtablemembresia.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtablemembresia.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jtablemembresia.setRowHeight(20);
-        jtablemembresia.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jtablemembresia);
-
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1000, 662));
 
         javax.swing.GroupLayout panelImage8Layout = new javax.swing.GroupLayout(panelImage8);
         panelImage8.setLayout(panelImage8Layout);
@@ -194,6 +155,46 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         });
         jPanel4.add(btnRegistrarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
+        jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jtmembresia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IdMembresia", "IdSocios", "Apellidos", "Nombres", "DNI", "NombrePlan", "NombrePromocion", "IdPago", "F. Inicio", "F. Fin", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtmembresia.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        jtmembresia.setColorBordeHead(new java.awt.Color(38, 86, 186));
+        jtmembresia.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
+        jtmembresia.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        jtmembresia.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        jtmembresia.setColorSelBackgound(new java.awt.Color(102, 0, 0));
+        jtmembresia.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtmembresia.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jtmembresia.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jtmembresia.setRowHeight(20);
+        jtmembresia.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(jtmembresia);
+
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1000, 662));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,26 +226,11 @@ public class jifmembresia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConsultarMembresiaActionPerformed
 
     private void btnModificarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMembresiaActionPerformed
-//        int row = jtablesocio.getSelectedRow();
-//    
-//    if( row == -1){
-//      return;
-//    }
-//        
-//    RegistrarSocio view;
-//    view = new RegistrarSocio(new JFrame(), true);
-//    view.setRowData(lista.get(row));
-//    view.setVisible(true);
+
     }//GEN-LAST:event_btnModificarMembresiaActionPerformed
 
     private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
-//        try {
-//
-//            cargarDatos();
-//            
-//        } catch (Exception e) {
-//             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
-//        }
+
     }//GEN-LAST:event_txtdniActionPerformed
 
     private void txtdniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyPressed
@@ -265,7 +251,7 @@ public class jifmembresia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
-    private rojerusan.RSTableMetro jtablemembresia;
+    private rojerusan.RSTableMetro jtmembresia;
     private org.edisoncor.gui.panel.PanelImage panelImage7;
     private org.edisoncor.gui.panel.PanelImage panelImage8;
     private rojerusan.RSPanelImage rSPanelImage1;
@@ -276,14 +262,15 @@ public class jifmembresia extends javax.swing.JInternalFrame {
 
         // Datos
         String dni = txtdni.getText();
+        String sss="";
 
         // Proceso
-        MembresiaController control = new MembresiaController();
-        lista = control.consultarMembresiaxDNI(dni);
+        MembreController control = new MembreController();
+        lista = control.consultaxdni(dni);
 
         // Acceso al objeto Table
         DefaultTableModel tabla;
-        tabla = (DefaultTableModel) jtablemembresia.getModel();
+        tabla = (DefaultTableModel) jtmembresia.getModel();
 
         // Eliminar  todas las filas
         tabla.setRowCount(0);
@@ -291,11 +278,17 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         // Cargar Datos
         for (Membresia men : lista) {
             Object[] rowData = {
-                men.getIdPromociones(),
-                men.getIdEmpleado(),
+                men.getIdMembresia(),
+                men.getIdSocio(),
                 men.getApellido(),
+                men.getNombre(),
                 men.getDNI(),
+                men.getNombrePlan(),
+                men.getNombrePromocion(),
+                men.getIdPago(),
+                men.getF_Inicio(),
                 men.getF_Fin(),
+                men.getEstado()
             };
             tabla.addRow(rowData);
         }

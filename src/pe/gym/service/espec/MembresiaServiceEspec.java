@@ -15,7 +15,7 @@ import pe.gym.model.Membresia;
 public interface MembresiaServiceEspec extends CrudServiceSpec<Membresia>{
     
     List<Membresia> consultaMembresia(String dni);
-    
+    List<Membresia> compruebaestado(String idsocio);
     
     
 }

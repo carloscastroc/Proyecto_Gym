@@ -15,22 +15,27 @@ import pe.gym.service.impl.MembresiaService;
  *
  * @author Carlos
  */
-public class MembresiaController {
-
-    MembresiaServiceEspec service = new MembresiaService();
+public class MembreController {
+    
+    MembresiaServiceEspec service= new  MembresiaService();
     List<Membresia> lista = new ArrayList<>();
-
-    public List<Membresia> consultarMembresiaxDNI(String dni) {
-        service.consultaMembresia(dni);
+    
+    public List<Membresia> consultaxdni(String dni){
+        lista=service.consultaMembresia(dni);
         return lista;
     }
-
-    public void RegistrarMembresia(Membresia bean) {
+    
+    
+    public void RegistrarMembresia(Membresia bean) throws Exception {
+        lista=service.compruebaestado(bean.getIdSocio());
+        if(lista.size()>0){
+            throw new Exception("Socio con una membresia activa");
+        }
         service.crear(bean);
     }
 
     public void ModificaMembresia(Membresia bean) {
         service.modificar(bean);
     }
-
+    
 }

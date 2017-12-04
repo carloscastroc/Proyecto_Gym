@@ -5,6 +5,9 @@
  */
 package pe.gym.form;
 
+import javax.swing.JFrame;
+import pe.gym.model.Membresia;
+
 /**
  *
  * @author Alumno
@@ -14,6 +17,9 @@ public class RegistrarMembresia extends javax.swing.JDialog {
     /**
      * Creates new form RegistrarMembresia
      */
+    
+    Membresia mem= new Membresia();
+    
     public RegistrarMembresia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -49,7 +55,7 @@ public class RegistrarMembresia extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         txtImporte1 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jtxtIdSocio1 = new javax.swing.JTextField();
+        jtxtIdSociomodal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,10 +141,10 @@ public class RegistrarMembresia extends javax.swing.JDialog {
         jLabel19.setForeground(new java.awt.Color(102, 102, 102));
         jLabel19.setText("Nro de Meses:");
 
-        jtxtIdSocio1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jtxtIdSocio1.addActionListener(new java.awt.event.ActionListener() {
+        jtxtIdSociomodal.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jtxtIdSociomodal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtIdSocio1ActionPerformed(evt);
+                jtxtIdSociomodalActionPerformed(evt);
             }
         });
 
@@ -197,7 +203,7 @@ public class RegistrarMembresia extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtImporte1, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ss, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtIdSocio1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtxtIdSociomodal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(40, 40, 40)))
                 .addContainerGap())
@@ -220,7 +226,7 @@ public class RegistrarMembresia extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtIdSocio1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtIdSociomodal, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboTipoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,9 +271,12 @@ public class RegistrarMembresia extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_ssActionPerformed
 
-    private void jtxtIdSocio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtIdSocio1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtIdSocio1ActionPerformed
+    private void jtxtIdSociomodalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtIdSociomodalActionPerformed
+        BuscarSocioModal view;
+        view = new BuscarSocioModal(new JFrame(), true);
+        view.setVisible(true);
+        mem.getIdSocio();
+    }//GEN-LAST:event_jtxtIdSociomodalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,7 +339,7 @@ public class RegistrarMembresia extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jtxtIdSocio1;
+    public javax.swing.JTextField jtxtIdSociomodal;
     private org.edisoncor.gui.label.LabelHeader labelHeader1;
     private javax.swing.JTextField ss;
     private javax.swing.JTextField txtImporte1;
