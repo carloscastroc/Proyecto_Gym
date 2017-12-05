@@ -7,14 +7,13 @@ package pe.gym.pruebas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import pe.gym.controller.MembresiaController;
+
 import pe.gym.model.Membresia;
-import pe.gym.model.Socio;
+
 import pe.gym.service.espec.MembresiaServiceEspec;
-import pe.gym.service.espec.SocioServiceEspec;
+
 import pe.gym.service.impl.MembresiaService;
-import pe.gym.service.impl.SocioService;
+
 
 /**
  *

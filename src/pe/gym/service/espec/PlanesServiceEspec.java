@@ -16,4 +16,4 @@ public interface PlanesServiceEspec extends CrudServiceSpec<Planes>{
     
     List<Planes> consultar(String nomplan);
     
-}
+    }

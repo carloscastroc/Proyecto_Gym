@@ -19,7 +19,7 @@ import pe.gym.service.mapper.PlanesMapper;
  *
  * @author carlos
  */
-public class PlanesService implements PlanesServiceEspec{
+public class PlanesService implements PlanesServiceEspec {
 
     @Override
     public void crear(Planes bean) {
@@ -60,8 +60,8 @@ public class PlanesService implements PlanesServiceEspec{
                 cn.rollback();
             } catch (Exception e1) {
                 e1.printStackTrace();
-                String texto1= "Error en el Proceso ";
-                 texto1 += e1.getMessage();
+                String texto1 = "Error en el Proceso ";
+                texto1 += e1.getMessage();
             }
             String texto = "Error en el proceso crear socio. ";
             texto += e.getMessage();
@@ -111,17 +111,46 @@ public class PlanesService implements PlanesServiceEspec{
 
     @Override
     public Planes leerPorId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Planes> consultar(String nomplan) {
-       List<Planes> lista = new ArrayList<>();
         Planes bean = new Planes();
         Connection cn = null;
         try {
             cn = conectaBD.obtener();
-            String sql =  "select IdPlan, IdEmpleado, NombrePlan, Nro_Meses, "
+            String sql = "select IdPlan, IdEmpleado, NombrePlan, Nro_Meses, "
+                    + "Importe, Estado from Planes where IdPlan=? ";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+            PlanesMapper mapper = new PlanesMapper();
+            while (rs.next()) {
+                bean = mapper.mapRow(rs);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return bean;
+    }
+
+    @Override
+    public List<Planes> consultar(String nomplan) {
+        List<Planes> lista = new ArrayList<>();
+        Planes bean = new Planes();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "select IdPlan, IdEmpleado, NombrePlan, Nro_Meses, "
                     + "Importe, Estado from Planes where NombrePlan like concat('%',?,'%') ";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);
@@ -149,5 +178,7 @@ public class PlanesService implements PlanesServiceEspec{
         }
         return lista;
     }
-    
+
+
+
 }

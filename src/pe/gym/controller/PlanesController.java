@@ -18,6 +18,7 @@ import pe.gym.service.impl.PlanesService;
 public class PlanesController {
     PlanesServiceEspec service = new PlanesService();
     List<Planes> lista = new ArrayList<>();
+    Planes bean= new Planes();
     
 
      public List<Planes> consultarxNombre(String nomplan){
@@ -33,6 +34,9 @@ public class PlanesController {
          service.modificar(bean);
      }
     
-    
+    public Planes leerxid(String id){
+        bean=service.leerPorId(id);
+        return bean;
+    }
     
 }

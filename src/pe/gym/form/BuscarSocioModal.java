@@ -7,12 +7,11 @@ package pe.gym.form;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.SocioController;
-import pe.gym.form.RegistrarMembresia;
-import pe.gym.model.Membresia;
+
 import pe.gym.model.Socio;
 
 /**

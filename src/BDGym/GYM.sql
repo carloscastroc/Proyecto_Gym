@@ -110,6 +110,14 @@ foreign key (IdPlan) references Planes (IdPlan),
 foreign key (IdPromociones) references Promociones (IdPromociones),
 foreign key (IdPago) references Pagos (IdPago));
 
+
+create table Congelamiento(
+IdMembresia char(8) primary key,
+Fecha_FinC date,
+Estado varchar(10),
+foreign key(IdMembresia) references Membresia(IdMembresia));
+
+
 create table TipoEjercicio(
 IdTipo char(5) primary key,
 TipoEjercicio varchar(50));

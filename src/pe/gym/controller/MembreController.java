@@ -38,4 +38,8 @@ public class MembreController {
         service.modificar(bean);
     }
     
+    public void creaCongelamiento(String id, String fechafc, String estado){
+        service.congelarMembresia(id, fechafc, estado);
+    }
+    
 }

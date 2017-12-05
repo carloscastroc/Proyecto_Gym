@@ -5,20 +5,27 @@
  */
 package pe.gym.form;
 
+import java.awt.event.ItemEvent;
+import java.text.ParseException;
 import java.util.Calendar;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pe.gym.controller.MembreController;
+import pe.gym.controller.PlanesController;
+import pe.gym.controller.PromocionesController;
 
-import pe.gym.controller.SocioController;
 import pe.gym.model.Membresia;
 import pe.gym.model.Planes;
 import pe.gym.model.Promociones;
-import pe.gym.model.Socio;
 import pe.gym.util.CargaComponentes;
 import pe.gym.util.Herramientas;
+
 import static pe.gym.util.Herramientas.IngresarFechaModificada;
 import static pe.gym.util.Herramientas.ObtenerFecha;
+import static pe.gym.util.Herramientas.IngresarFecha;
+import static pe.gym.util.Herramientas.FechaActual;
+import static pe.gym.util.Herramientas.variableStatica;
 
 /**
  *
@@ -34,8 +41,11 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     public RegistrarMembresias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jLabel2.setVisible(false);
+        jtxtidmem.setVisible(false);
         btnModificar.setVisible(false);
+        jLabel14.setVisible(false);
+        cbocongelado.setVisible(false);
+
         this.setLocationRelativeTo(null);
         CargaComponentes carga = new CargaComponentes();
         carga.cargaIdEmpleado(jlblnomemp);
@@ -63,13 +73,15 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jlblnomemp = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jtxtidmem = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         jLabel1 = new org.edisoncor.gui.label.LabelHeader();
         jLabel13 = new javax.swing.JLabel();
         datefini = new datechooser.beans.DateChooserCombo();
         jComboBoxPlanes1 = new pe.gym.combos.JComboBoxPlanes();
         jComboBoxPromociones1 = new pe.gym.combos.JComboBoxPromociones();
+        jLabel14 = new javax.swing.JLabel();
+        cbocongelado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -107,6 +119,11 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         cboestado.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         cboestado.setForeground(new java.awt.Color(153, 153, 153));
         cboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Anulado" }));
+        cboestado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboestadoItemStateChanged(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
@@ -147,9 +164,8 @@ public class RegistrarMembresias extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel2.setText("jLabel2");
+        jtxtidmem.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jtxtidmem.setForeground(new java.awt.Color(153, 153, 153));
 
         btnModificar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(102, 0, 0));
@@ -172,10 +188,31 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         datefini.setCalendarPreferredSize(new java.awt.Dimension(320, 200));
         datefini.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
         datefini.setFieldFont(new java.awt.Font("Segoe UI Black", java.awt.Font.PLAIN, 16));
+        datefini.addSelectionChangedListener(new datechooser.events.SelectionChangedListener() {
+            public void onSelectionChange(datechooser.events.SelectionChangedEvent evt) {
+                datefiniOnSelectionChange(evt);
+            }
+        });
 
+        jComboBoxPlanes1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxPlanes1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxPlanes1ItemStateChanged(evt);
+            }
+        });
+
+        jComboBoxPromociones1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel14.setText("Nro Semanas Congelado: ");
+
+        cbocongelado.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        cbocongelado.setForeground(new java.awt.Color(153, 153, 153));
+        cbocongelado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4" }));
+        cbocongelado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbocongeladoItemStateChanged(evt);
             }
         });
 
@@ -187,58 +224,60 @@ public class RegistrarMembresias extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(76, 76, 76)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel4)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel4)
+                            .addComponent(jtxtidmem, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
+                                .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBoxPlanes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtidsociomodal, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dateffin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(datefini, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(41, 41, 41)))
+                                .addGap(51, 51, 51)
+                                .addComponent(txtidsociomodal, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateffin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(datefini, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbocongelado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(65, 65, 65))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,9 +288,9 @@ public class RegistrarMembresias extends javax.swing.JDialog {
                         .addGap(13, 13, 13)
                         .addComponent(jLabel4))
                     .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
+                .addComponent(jtxtidmem, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtidsociomodal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -263,7 +302,7 @@ public class RegistrarMembresias extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxPromociones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(datefini, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,15 +314,19 @@ public class RegistrarMembresias extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbocongelado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(155, 155, 155))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -292,23 +335,26 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtidsociomodal.setText("");
 
+        datefini.setSelectedDate(FechaActual());
+        dateffin.setSelectedDate(FechaActual());
         cboestado.setSelectedIndex(-1);
+
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
-        Promociones promo = (Promociones) jComboBoxPromociones1.getSelectedItem();
 
-        if (jComboBoxPlanes1.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Seleccione un plan");
-            return;
-        }
-        if (jComboBoxPromociones1.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Seleccione una promocion");
-            return;
-        }
         try {
+            if (jComboBoxPlanes1.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione un plan");
+                return;
+            }
+            if (jComboBoxPromociones1.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione una promocion");
+                return;
+            }
+            Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
+            Promociones promo = (Promociones) jComboBoxPromociones1.getSelectedItem();
             MembreController control = new MembreController();
             Membresia bean = new Membresia();
             bean.setIdEmpleado(jlblnomemp.getText());
@@ -339,23 +385,38 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
 
         try {
-            SocioController control = new SocioController();
-            Socio bean = new Socio();
-            bean.setIdSocio(jLabel2.getText());
-            bean.setIdEmpleado(jlblnomemp.getText());
-            bean.setNombre(txtidsociomodal.getText());
 
-            String fecha = ObtenerFecha(dateffin.getSelectedDate());
-            bean.setF_inscripcion(fecha);
+            MembreController control = new MembreController();
+
+            Membresia bean = new Membresia();
+            bean.setIdMembresia(jtxtidmem.getText());
+            String fechaini = ObtenerFecha(datefini.getSelectedDate());
+            bean.setF_Inicio(fechaini);
+            String fechafin = ObtenerFecha(dateffin.getSelectedDate());
+            bean.setF_Fin(fechafin);
             bean.setEstado(cboestado.getSelectedItem().toString());
 
-            control.modificarSocio(bean);
+            if (cboestado.getSelectedItem() == "Congelado") {
+                try {
+                    if (cbocongelado.getSelectedIndex() == 0) {
+                        JOptionPane.showMessageDialog(null, "Seleccione un numero");
+                        return;
+                    }
+                    int num = Integer.parseInt(cbocongelado.getSelectedItem().toString());
+                    control.creaCongelamiento(jtxtidmem.getText(), ObtenerFecha(IngresarFechaModificada(dateffin.getSelectedDate(), 0, -num)), "Congelado");
 
-            JOptionPane.showMessageDialog(null, "Socio modificado Correctamente, su id es: "
-                    + bean.getIdSocio());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+                }
+
+            }
+
+            control.ModificaMembresia(bean);
+
+            JOptionPane.showMessageDialog(null, "Membresia modificada Correctamente, su id es: "
+                    + bean.getIdMembresia());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -364,10 +425,26 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void jComboBoxPlanes1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPlanes1ItemStateChanged
-        Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
-        int aumento = plan.getNroMeses();
 
-        dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), aumento));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            try {
+                dateffin.setSelectedDate(datefini.getSelectedDate());
+                System.out.println(ObtenerFecha(datefini.getSelectedDate()));
+                int aumento = 0;
+                int aumento2 = 0;
+                if (jComboBoxPlanes1.getSelectedIndex() == 0) {
+                    return;
+                }
+                Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
+                aumento = plan.getNroMeses();
+                aumento2 = 0;
+                dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), aumento, aumento2));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
 
     }//GEN-LAST:event_jComboBoxPlanes1ItemStateChanged
 
@@ -381,6 +458,59 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         view.setVisible(true);
         mem.getIdSocio();
     }//GEN-LAST:event_txtidsociomodalMouseClicked
+
+    private void cboestadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboestadoItemStateChanged
+        if (cboestado.getSelectedItem() == "Congelado") {
+            jLabel14.setVisible(true);
+            cbocongelado.setVisible(true);
+        } else {
+
+            jLabel14.setVisible(false);
+            cbocongelado.setVisible(false);
+        }
+    }//GEN-LAST:event_cboestadoItemStateChanged
+
+    private void cbocongeladoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbocongeladoItemStateChanged
+
+        int numpas = 0;
+        numpas = Integer.parseInt(cbocongelado.getSelectedItem().toString());
+        Herramientas.setVariableStatica(numpas);
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+//            Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
+//            dateffin.setSelectedDate(datefini.getSelectedDate());
+            if (cbocongelado.getSelectedIndex() == 0) {
+                return;
+            }
+            String num = cbocongelado.getSelectedItem().toString();
+            int numero = Integer.parseInt(num);
+            dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), 0, numero));
+        }
+
+        if (evt.getStateChange() == ItemEvent.DESELECTED) {
+
+            dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), 0, -Herramientas.getVariableStatica()));
+        }
+
+
+    }//GEN-LAST:event_cbocongeladoItemStateChanged
+
+    private void datefiniOnSelectionChange(datechooser.events.SelectionChangedEvent evt) {//GEN-FIRST:event_datefiniOnSelectionChange
+
+        try {
+            if ("REGISTRAR MEMBRESIA".equals(jLabel1.getText())) {
+                Calendar cal = datefini.getSelectedDate();
+                dateffin.setSelectedDate(cal);
+                jComboBoxPlanes1.setSelectedIndex(0);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_datefiniOnSelectionChange
 
     /**
      * @param args the command line arguments
@@ -429,6 +559,7 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cbocongelado;
     private javax.swing.JComboBox<String> cboestado;
     private datechooser.beans.DateChooserCombo dateffin;
     private datechooser.beans.DateChooserCombo datefini;
@@ -438,33 +569,58 @@ public class RegistrarMembresias extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jlblnomemp;
+    private javax.swing.JLabel jtxtidmem;
     public static javax.swing.JTextField txtidsociomodal;
     // End of variables declaration//GEN-END:variables
 
-    public void setRowData(Socio bean) {
+    public void setRowData(Membresia bean) throws ParseException {
+
+        PlanesController planes = new PlanesController();
+        PromocionesController promos = new PromocionesController();
+        //Obteniendo el objeto a comparar con el combo planes
+        Planes plan;
+        plan = planes.leerxid(bean.getIdPlan());
+
+        //Obteniendo el objeto a comparar con el combo promociones
+        Promociones promo;
+        promo = promos.leerxid(bean.getIdPromociones());
 
 //         CargaComponentes carga= new CargaComponentes();
 //         carga.cargaIdEmpleado(jlblnomemp);
 //        this.setTitle("ModificaSocio");
         jLabel1.setText("Modificar Membresia");
-        jLabel2.setVisible(true);
+        jtxtidmem.setVisible(true);
         btnModificar.setVisible(true);
         btnRegistrar.setVisible(false);
         btnLimpiar.setVisible(false);
-        jLabel2.setText(bean.getIdSocio());
+        cboestado.addItem("Congelado");
 
-        txtidsociomodal.setText(bean.getNombre());
+        jtxtidmem.setText("IdMembresia: " + bean.getIdMembresia());
+
+        txtidsociomodal.setText(bean.getIdSocio());
         txtidsociomodal.setEditable(false);
-//        txtapellido.setText(bean.getApellido());
-//        txtapellido.setEditable(false);
-//        txtdni.setText(bean.getDNI());
-//        txtdni.setEditable(false);
+
+        jComboBoxPlanes1.getModel().setSelectedItem(plan);
+        jComboBoxPlanes1.setEnabled(false);
+        jComboBoxPromociones1.getModel().setSelectedItem(promo);
+        jComboBoxPromociones1.setEnabled(false);
+
+        datefini.setSelectedDate(IngresarFecha(bean.getF_Inicio()));
+        datefini.setEnabled(false);
+        dateffin.setSelectedDate(IngresarFecha(bean.getF_Fin()));
+
+        if ("Culminado".equals(bean.getEstado())) {
+            dateffin.setEnabled(false);
+            cboestado.setEnabled(false);
+            btnModificar.setEnabled(false);
+
+        }
 
         cboestado.setSelectedItem(bean.getEstado());
 

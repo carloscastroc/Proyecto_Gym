@@ -19,6 +19,7 @@ public class PromocionesController {
 
     PromocionesServiceEspec service = new PromocionesService();
     List<Promociones> lista = new ArrayList<>();
+    Promociones bean = new Promociones();
 
     public List<Promociones> consultarxNombrep(String nompromocion) {
         lista = service.consultar(nompromocion);
@@ -34,4 +35,8 @@ public class PromocionesController {
         service.modificar(bean);
     }
     
+    public Promociones leerxid(String id){
+        bean=service.leerPorId(id);
+        return bean;
+    }
 }

@@ -5,16 +5,18 @@
  */
 package pe.gym.panels;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.MembreController;
-import pe.gym.controller.MembresiaController;
+
 import pe.gym.form.RegistrarMembresias;
 import pe.gym.model.Membresia;
-
 
 /**
  *
@@ -23,10 +25,10 @@ import pe.gym.model.Membresia;
 public class jifmembresia extends javax.swing.JInternalFrame {
 
     private List<Membresia> lista = new ArrayList<>();
+
     /**
      * Creates new form jifmembresia
      */
-    
 
     public jifmembresia() {
         initComponents();
@@ -169,7 +171,7 @@ public class jifmembresia extends javax.swing.JInternalFrame {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,6 +229,22 @@ public class jifmembresia extends javax.swing.JInternalFrame {
 
     private void btnModificarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMembresiaActionPerformed
 
+        int row = jtmembresia.getSelectedRow();
+
+        if (row == -1) {
+            return;
+        }
+
+        RegistrarMembresias view;
+        view = new RegistrarMembresias(new JFrame(), true);
+        try {
+            view.setRowData(lista.get(row));
+        } catch (ParseException ex) {
+            Logger.getLogger(jifmembresia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        view.setVisible(true);
+
+
     }//GEN-LAST:event_btnModificarMembresiaActionPerformed
 
     private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
@@ -262,7 +280,7 @@ public class jifmembresia extends javax.swing.JInternalFrame {
 
         // Datos
         String dni = txtdni.getText();
-        String sss="";
+        String sss = "";
 
         // Proceso
         MembreController control = new MembreController();

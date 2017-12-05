@@ -5,6 +5,8 @@
  */
 package pe.gym.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Alumno
@@ -85,6 +87,23 @@ public class Planes {
     public String toString() {
         return NombrePlan;
     }
+    
+//    @Override
+//    public boolean equals(Object otro){
+//        return (this.IdPlan == null ? ((Planes) otro).IdPlan == null : this.IdPlan.equals(((Planes) otro).IdPlan));
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int hash = 7;
+//        hash = 37 * hash + Objects.hashCode(this.IdPlan);
+//        hash = 37 * hash + Objects.hashCode(this.IdEmpleado);
+//        hash = 37 * hash + Objects.hashCode(this.NombrePlan);
+//        hash = 37 * hash + this.NroMeses;
+//        hash = 37 * hash + (int) (Double.doubleToLongBits(this.importe) ^ (Double.doubleToLongBits(this.importe) >>> 32));
+//        hash = 37 * hash + Objects.hashCode(this.estado);
+//        return hash;
+//    }
     
     
 }

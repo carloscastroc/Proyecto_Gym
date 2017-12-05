@@ -128,7 +128,8 @@ public class MembresiaService implements MembresiaServiceEspec{
             cn = conectaBD.obtener();
             String sql = "Select IdMembresia, IdEmpleado, IdSocio, DNI, Nombre, "
                     + "Apellido, IdPlan, NombrePlan, IdPromociones, NombrePromocion, "
-                    + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where DNI like concat('%',?,'%') ";
+                    + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where DNI like concat('%',?,'%') "
+                    + "order by IdMembresia asc";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);
             pstm.setString(1, dni);
@@ -194,6 +195,50 @@ public class MembresiaService implements MembresiaServiceEspec{
             }
         }
         return lista;
+    }
+
+    @Override
+    public void congelarMembresia(String idmem, String ffinc, String estado) {
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+         
+           
+            PreparedStatement pstm;
+            // Registrar Congelamiento
+            pstm = cn.prepareStatement("insert into congelamiento(IdMembresia, Fecha_FinC, "
+            + "Estado) values (?,?,?) ");
+            pstm.setString(1, idmem);
+            pstm.setString(2, ffinc);
+            pstm.setString(3, estado);
+            
+
+            pstm.executeUpdate();
+            pstm.close();
+
+            
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear Congelamiento. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
     
 }

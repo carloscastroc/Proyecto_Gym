@@ -19,16 +19,16 @@ import pe.gym.service.mapper.PromocionesMapper;
  *
  * @author Alumno
  */
-public class PromocionesService implements PromocionesServiceEspec{
+public class PromocionesService implements PromocionesServiceEspec {
 
     @Override
     public List<Promociones> consultar(String nompromocion) {
-       List<Promociones> lista= new ArrayList<>();
-       Promociones bean = new Promociones();
-       Connection cn= null;
+        List<Promociones> lista = new ArrayList<>();
+        Promociones bean = new Promociones();
+        Connection cn = null;
         try {
             cn = conectaBD.obtener();
-            String sql =  "select IdPromociones, IdEmpleado, NombrePromocion, Importe,Descripcion "
+            String sql = "select IdPromociones, IdEmpleado, NombrePromocion, Importe,Descripcion "
                     + "from Promociones where NombrePromocion like concat('%',?,'%') ";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);
@@ -95,8 +95,8 @@ public class PromocionesService implements PromocionesServiceEspec{
                 cn.rollback();
             } catch (Exception e1) {
                 e1.printStackTrace();
-                String texto1= "Error en el Proceso ";
-                 texto1 += e1.getMessage();
+                String texto1 = "Error en el Proceso ";
+                texto1 += e1.getMessage();
             }
             String texto = "Error en el proceso crear promocion. ";
             texto += e.getMessage();
@@ -143,11 +143,38 @@ public class PromocionesService implements PromocionesServiceEspec{
         }
     }
 
-
-
     @Override
     public Promociones leerPorId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Promociones bean = new Promociones();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "select IdPromociones, IdEmpleado, NombrePromocion, Importe,Descripcion "
+                    + "from Promociones where IdPromociones=? ";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+            PromocionesMapper mapper = new PromocionesMapper();
+            while (rs.next()) {
+                bean = mapper.mapRow(rs);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return bean;
     }
-    
+
 }
