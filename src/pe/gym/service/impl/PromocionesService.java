@@ -28,7 +28,7 @@ public class PromocionesService implements PromocionesServiceEspec {
         Connection cn = null;
         try {
             cn = conectaBD.obtener();
-            String sql = "select IdPromociones, IdEmpleado, NombrePromocion, Importe,Descripcion "
+            String sql = "select IdPromociones, IdEmpleado, NombrePromocion, Descuento,Descripcion "
                     + "from Promociones where NombrePromocion like concat('%',?,'%') ";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);
@@ -77,12 +77,12 @@ public class PromocionesService implements PromocionesServiceEspec {
 
             // Registrar Socio
             pstm = cn.prepareStatement("insert into promociones (IdPromociones, IdEmpleado, "
-                    + "NombrePromocion, Importe, Descripcion) values "
+                    + "NombrePromocion, Descuento, Descripcion) values "
                     + "(?,?,?,?,?)");
             pstm.setString(1, id);
             pstm.setString(2, bean.getIdEmpleado());
             pstm.setString(3, bean.getNombrePromocion());
-            pstm.setDouble(4, bean.getImporte());
+            pstm.setDouble(4, bean.getDescuento());
             pstm.setString(5, bean.getDescripcion());
             pstm.executeUpdate();
             pstm.close();
@@ -119,8 +119,8 @@ public class PromocionesService implements PromocionesServiceEspec {
             cn.setAutoCommit(false);
 
             //Actualizar
-            PreparedStatement pstm = cn.prepareStatement("UPDATE promociones set Importe=?, Descripcion=? WHERE IdPromociones=?");
-            pstm.setDouble(1, bean.getImporte());
+            PreparedStatement pstm = cn.prepareStatement("UPDATE promociones set Descuento=?, Descripcion=? WHERE IdPromociones=?");
+            pstm.setDouble(1, bean.getDescuento());
             pstm.setString(2, bean.getDescripcion());
             pstm.setString(3, bean.getIdPromociones());
             pstm.executeUpdate();
@@ -149,7 +149,7 @@ public class PromocionesService implements PromocionesServiceEspec {
         Connection cn = null;
         try {
             cn = conectaBD.obtener();
-            String sql = "select IdPromociones, IdEmpleado, NombrePromocion, Importe,Descripcion "
+            String sql = "select IdPromociones, IdEmpleado, NombrePromocion, Descuento,Descripcion "
                     + "from Promociones where IdPromociones=? ";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);

@@ -69,11 +69,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
-                    <Column editable="false" title="ID_Promociones" type="java.lang.String"/>
-                    <Column editable="false" title="ID-Empleado" type="java.lang.String"/>
-                    <Column editable="false" title="Nombre Promociones" type="java.lang.String"/>
-                    <Column editable="false" title="Descuento" type="java.lang.Double"/>
-                    <Column editable="false" title="Descripcion" type="java.lang.String"/>
+                    <Column editable="true" title="ID_Promociones" type="java.lang.String"/>
+                    <Column editable="true" title="ID-Empleado" type="java.lang.String"/>
+                    <Column editable="true" title="Nombre Promociones" type="java.lang.String"/>
+                    <Column editable="true" title="Importe" type="java.lang.Double"/>
+                    <Column editable="true" title="Descripcion" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="altoHead" type="int" value="70"/>
@@ -215,7 +215,7 @@
         </Container>
         <Component class="org.edisoncor.gui.button.ButtonAction" name="btnConsultarPromo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CONSULTAR PROMOCIONES"/>
+            <Property name="text" type="java.lang.String" value="CONSULTAR PAGOS"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="18" style="1"/>
             </Property>
@@ -249,25 +249,6 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="rojeru_san.RSButtonRiple" name="btnRegistrarPromo">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ba" green="56" red="26" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="NUEVO"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Roboto Bold" size="18" style="1"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarPromoActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="668" y="72" width="179" height="82"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="rojeru_san.RSButtonRiple" name="btnModificarPromo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -283,7 +264,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="865" y="72" width="177" height="82"/>
+              <AbsoluteConstraints x="680" y="70" width="177" height="82"/>
             </Constraint>
           </Constraints>
         </Component>

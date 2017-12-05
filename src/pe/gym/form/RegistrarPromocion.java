@@ -44,7 +44,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
 
         jLabel4 = new javax.swing.JLabel();
         txtdesc = new javax.swing.JTextField();
-        txtimporte = new javax.swing.JTextField();
+        txtdescuento = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
@@ -56,6 +56,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         jLabel1 = new org.edisoncor.gui.label.LabelHeader();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -72,11 +73,11 @@ public class RegistrarPromocion extends javax.swing.JDialog {
             }
         });
 
-        txtimporte.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtimporte.setForeground(new java.awt.Color(153, 153, 153));
-        txtimporte.addActionListener(new java.awt.event.ActionListener() {
+        txtdescuento.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        txtdescuento.setForeground(new java.awt.Color(153, 153, 153));
+        txtdescuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtimporteActionPerformed(evt);
+                txtdescuentoActionPerformed(evt);
             }
         });
 
@@ -98,7 +99,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Importe:");
+        jLabel7.setText("Descuento:");
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(102, 0, 0));
@@ -139,39 +140,43 @@ public class RegistrarPromocion extends javax.swing.JDialog {
         jLabel1.setColorDeSombra(new java.awt.Color(0, 112, 192));
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel3.setText("%");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(76, 76, 76)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(76, 76, 76)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel4)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel6)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))))
-                        .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel6)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtdesc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                                .addComponent(txtimporte)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtdesc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                            .addComponent(txtdescuento)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)))
+                .addGap(0, 28, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addContainerGap(131, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,16 +186,15 @@ public class RegistrarPromocion extends javax.swing.JDialog {
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44))
+                .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel4))
+                    .addComponent(jLabel4)
                     .addComponent(jlblnomemp, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -200,13 +204,14 @@ public class RegistrarPromocion extends javax.swing.JDialog {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtdescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -214,7 +219,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -222,7 +227,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtnombre.setText("");
-        txtimporte.setText("");
+        txtdescuento.setText("");
         txtdesc.setText("");
         
 
@@ -234,7 +239,8 @@ public class RegistrarPromocion extends javax.swing.JDialog {
             Promociones bean = new Promociones();
             bean.setIdEmpleado(jlblnomemp.getText());
             bean.setNombrePromocion(txtnombre.getText());
-            bean.setImporte(Double.parseDouble(txtimporte.getText()));
+            double desc=Double.parseDouble(txtdesc.getText())/100;
+            bean.setDescuento(desc);
             bean.setDescripcion(txtdesc.getText());
             
 
@@ -260,7 +266,8 @@ public class RegistrarPromocion extends javax.swing.JDialog {
             bean.setIdPromociones(jLabel2.getText());
             bean.setIdEmpleado(jlblnomemp.getText());
             bean.setNombrePromocion(txtnombre.getText());
-            bean.setImporte(Double.parseDouble(txtimporte.getText()));
+            double desc=Double.parseDouble(txtdesc.getText())/100;
+            bean.setDescuento(desc);
             bean.setDescripcion(txtdesc.getText());
             
 
@@ -279,9 +286,9 @@ public class RegistrarPromocion extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdescActionPerformed
 
-    private void txtimporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtimporteActionPerformed
+    private void txtdescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescuentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtimporteActionPerformed
+    }//GEN-LAST:event_txtdescuentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,13 +339,14 @@ public class RegistrarPromocion extends javax.swing.JDialog {
     private javax.swing.JButton btnSalir;
     private org.edisoncor.gui.label.LabelHeader jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jlblnomemp;
     private javax.swing.JTextField txtdesc;
-    private javax.swing.JTextField txtimporte;
+    private javax.swing.JTextField txtdescuento;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 
@@ -352,7 +360,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
          
         txtnombre.setText(bean.getNombrePromocion());
         txtnombre.setEditable(false);
-        txtimporte.setText(String.valueOf(bean.getImporte()));
+        txtdescuento.setText(String.valueOf(bean.getDescuento()));
         txtdesc.setText(bean.getDescripcion());
         
 

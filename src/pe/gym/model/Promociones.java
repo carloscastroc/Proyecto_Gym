@@ -13,7 +13,7 @@ public class Promociones {
      private String IdPromociones ;
      private String IdEmpleado ;
      private String NombrePromocion ;
-     private double Importe ;
+     private double Descuento ;
      private String Descripcion ;
      
       public Promociones(){
@@ -23,7 +23,7 @@ public class Promociones {
         this.IdPromociones = IdPromociones;
         this.IdEmpleado = IdEmpleado;
         this.NombrePromocion = NombrePromocion;
-        this.Importe = Importe;
+        this.Descuento = Importe;
         this.Descripcion = Descripcion;
     }
 
@@ -53,12 +53,12 @@ public class Promociones {
         this.NombrePromocion = NombrePromocion;
     }
 
-    public double getImporte() {
-        return Importe;
+    public double getDescuento() {
+        return Descuento;
     }
 
-    public void setImporte(double Importe) {
-        this.Importe = Importe;
+    public void setDescuento(double Descuento) {
+        this.Descuento = Descuento;
     }
 
     public String getDescripcion() {

@@ -9,16 +9,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
  * @author Carlos
  */
 public class Herramientas {
-    
-    public static int variableStatica;
+
 
     public static String ObtenerFecha(Calendar cal) {
      
@@ -26,18 +24,6 @@ public class Herramientas {
         Date date=cal.getTime();
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
         String fecha=sdf.format(date);
-        
-        
-    
-        
-//        String fecha = "";
-//
-//        String dia = String.valueOf(cal.get(Calendar.DATE));
-//        String mes = String.valueOf(cal.get(Calendar.MONTH));
-//        String anio = String.valueOf(cal.get(Calendar.YEAR));
-//
-//        fecha = anio + "/" + mes + "/" + dia;
-
         return fecha;
     }
 
@@ -75,14 +61,7 @@ public class Herramientas {
         return null;
     }
 
-    public static int getVariableStatica() {
-        return variableStatica;
-    }
 
-    public static void setVariableStatica(int variableStatica) {
-        Herramientas.variableStatica = variableStatica;
-    }
-    
 
     
     

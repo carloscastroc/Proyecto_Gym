@@ -22,7 +22,7 @@ public class PromocionesMapper implements RowMapper<Promociones>{
         bean.setIdPromociones(rs.getString("IdPromociones"));
         bean.setIdEmpleado(rs.getString("IdEmpleado"));
         bean.setNombrePromocion(rs.getString("NombrePromocion"));
-        bean.setImporte(rs.getDouble("Importe"));
+        bean.setDescuento(rs.getDouble("Descuento"));
         bean.setDescripcion(rs.getString("Descripcion"));
         return bean;
     }

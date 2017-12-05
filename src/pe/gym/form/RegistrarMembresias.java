@@ -19,13 +19,12 @@ import pe.gym.model.Membresia;
 import pe.gym.model.Planes;
 import pe.gym.model.Promociones;
 import pe.gym.util.CargaComponentes;
-import pe.gym.util.Herramientas;
 
 import static pe.gym.util.Herramientas.IngresarFechaModificada;
 import static pe.gym.util.Herramientas.ObtenerFecha;
 import static pe.gym.util.Herramientas.IngresarFecha;
 import static pe.gym.util.Herramientas.FechaActual;
-import static pe.gym.util.Herramientas.variableStatica;
+
 
 /**
  *
@@ -37,6 +36,8 @@ public class RegistrarMembresias extends javax.swing.JDialog {
      * Creates new form RegistraSocio
      */
     Membresia mem = new Membresia();
+    
+    public static int resta=0;
 
     public RegistrarMembresias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -472,25 +473,23 @@ public class RegistrarMembresias extends javax.swing.JDialog {
 
     private void cbocongeladoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbocongeladoItemStateChanged
 
-        int numpas = 0;
-        numpas = Integer.parseInt(cbocongelado.getSelectedItem().toString());
-        Herramientas.setVariableStatica(numpas);
 
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
 //            Planes plan = (Planes) jComboBoxPlanes1.getSelectedItem();
 //            dateffin.setSelectedDate(datefini.getSelectedDate());
+            dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), 0, -resta));
             if (cbocongelado.getSelectedIndex() == 0) {
+                resta=0;
                 return;
             }
+            
+            
             String num = cbocongelado.getSelectedItem().toString();
             int numero = Integer.parseInt(num);
+            resta=numero;
             dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), 0, numero));
-        }
-
-        if (evt.getStateChange() == ItemEvent.DESELECTED) {
-
-            dateffin.setSelectedDate(IngresarFechaModificada(dateffin.getSelectedDate(), 0, -Herramientas.getVariableStatica()));
+            
         }
 
 

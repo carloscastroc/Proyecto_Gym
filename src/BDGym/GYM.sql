@@ -60,7 +60,7 @@ create table Promociones(
 IdPromociones char(5) primary key,
 IdEmpleado char(5),
 NombrePromocion varchar(50),
-Importe decimal(8,2),
+Descuento decimal(5,2),
 Descripcion varchar(50),
 foreign key (IdEmpleado) references Empleado (IdEmpleado));
 
@@ -203,9 +203,9 @@ insert into usuario (IdUsuario,IdEmpleado,user,pass) values ('U0005','E0005','ja
 
 -- Valores Promociones
 
-insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Importe,Descripcion) values ('P0001','E0001','Sin Promocion','0.00','Plan sin promocion.');
-insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Importe,Descripcion) values ('P0002','E0001','2x1','150.00','Pagando 2 meses pagas 1');
-insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Importe,Descripcion) values ('P0003','E0001','50% a socios antiguos','75.00','A socios que lleven mas de 3 meses pagaran mitad precio');
+insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Descuento,Descripcion) values ('P0001','E0001','Sin Promocion','0.00','Plan sin promocion.');
+insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Descuento,Descripcion) values ('P0002','E0001','Estudiantes','0.20','Promocion exclusiva de estudiantes');
+insert into Promociones (IdPromociones,IdEmpleado,NombrePromocion,Descuento,Descripcion) values ('P0003','E0001','30% a socios antiguos','0.30','A socios que lleven mas de 3 meses pagaran mitad precio');
 
 
 -- Valores Planes

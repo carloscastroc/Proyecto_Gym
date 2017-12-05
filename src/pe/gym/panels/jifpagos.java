@@ -19,19 +19,16 @@ import pe.gym.util.CargaComponentes;
  *
  * @author Alumno
  */
-public class jifpromociones extends javax.swing.JInternalFrame {
+public class jifpagos extends javax.swing.JInternalFrame {
 
-    private List<Promociones> lista= new ArrayList<>();
+    private List<Promociones> lista = new ArrayList<>();
+
     /**
      * Creates new form jifplanes
      */
-    public jifpromociones() {
+    public jifpagos() {
         initComponents();
-        btnRegistrarPromo.setVisible(false);
-        btnModificarPromo.setVisible(false);
-        CargaComponentes carga = new CargaComponentes();
-        carga.cargaBotoneAdmi(btnRegistrarPromo);
-        carga.cargaBotoneAdmi(btnModificarPromo);
+
     }
 
     /**
@@ -52,7 +49,6 @@ public class jifpromociones extends javax.swing.JInternalFrame {
         txtNombre = new app.bolivia.swing.JCTextField();
         btnConsultarPromo = new org.edisoncor.gui.button.ButtonAction();
         rSPanelImage1 = new rojerusan.RSPanelImage();
-        btnRegistrarPromo = new rojeru_san.RSButtonRiple();
         btnModificarPromo = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -66,22 +62,15 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID_Promociones", "ID-Empleado", "Nombre Promociones", "Descuento", "Descripcion"
+                "ID_Promociones", "ID-Empleado", "Nombre Promociones", "Importe", "Descripcion"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jtablepromociones.setAltoHead(70);
@@ -144,7 +133,7 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jPanel4.add(panelImage7, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 35, -1, -1));
 
-        btnConsultarPromo.setText("CONSULTAR PROMOCIONES");
+        btnConsultarPromo.setText("CONSULTAR PAGOS");
         btnConsultarPromo.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         btnConsultarPromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,16 +155,6 @@ public class jifpromociones extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
-        btnRegistrarPromo.setBackground(new java.awt.Color(38, 86, 186));
-        btnRegistrarPromo.setText("NUEVO");
-        btnRegistrarPromo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnRegistrarPromo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarPromoActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnRegistrarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
-
         btnModificarPromo.setBackground(new java.awt.Color(38, 86, 186));
         btnModificarPromo.setText("MODIFICAR");
         btnModificarPromo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
@@ -184,7 +163,7 @@ public class jifpromociones extends javax.swing.JInternalFrame {
                 btnModificarPromoActionPerformed(evt);
             }
         });
-        jPanel4.add(btnModificarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
+        jPanel4.add(btnModificarPromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 177, 82));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,45 +182,33 @@ public class jifpromociones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPromoActionPerformed
-         try {
-
-            // Datos
-            String nompromocion = txtNombre.getText();
-            
-            // Proceso
-             PromocionesController control = new PromocionesController();
-            lista = control.consultarxNombrep(nompromocion);
+        try {
 
             // Mostrar datos
             cargarDatos();
-            
+
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
     }//GEN-LAST:event_btnConsultarPromoActionPerformed
 
-    private void btnRegistrarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPromoActionPerformed
-                new RegistrarPromocion(new JFrame(), true).setVisible(true);
-    }//GEN-LAST:event_btnRegistrarPromoActionPerformed
-
     private void btnModificarPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPromoActionPerformed
-                int row = jtablepromociones.getSelectedRow();
-        
-                if (row == -1) {
-                        return;
-                   }
-        
-                RegistrarPromocion view;
-                view = new RegistrarPromocion(new JFrame(), true);
-                view.setRowData(lista.get(row));
-                view.setVisible(true);
+        int row = jtablepromociones.getSelectedRow();
+
+        if (row == -1) {
+            return;
+        }
+
+        RegistrarPromocion view;
+        view = new RegistrarPromocion(new JFrame(), true);
+        view.setRowData(lista.get(row));
+        view.setVisible(true);
     }//GEN-LAST:event_btnModificarPromoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultarPromo;
     private rojeru_san.RSButtonRiple btnModificarPromo;
-    private rojeru_san.RSButtonRiple btnRegistrarPromo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -253,6 +220,13 @@ public class jifpromociones extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
+
+        // Datos
+        String nompromocion = txtNombre.getText();
+
+        // Proceso
+        PromocionesController control = new PromocionesController();
+        lista = control.consultarxNombrep(nompromocion);
         // Acceso al objeto Table
         DefaultTableModel tabla;
         tabla = (DefaultTableModel) jtablepromociones.getModel();
@@ -266,9 +240,8 @@ public class jifpromociones extends javax.swing.JInternalFrame {
                 emp.getIdPromociones(),
                 emp.getIdEmpleado(),
                 emp.getNombrePromocion(),
-                emp.getDescuento()*100+"%",
-                emp.getDescripcion(),
-            };
+                emp.getDescuento(),
+                emp.getDescripcion(),};
             tabla.addRow(rowData);
         }
     }
