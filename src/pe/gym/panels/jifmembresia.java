@@ -32,8 +32,9 @@ public class jifmembresia extends javax.swing.JInternalFrame {
 
     public jifmembresia() {
         initComponents();
-        jPanel4.setSize(this.getWidth(), this.getWidth());
+        jPanel4.setSize(this.getWidth(), this.getHeight());
         cargarDatosM();
+        
     }
 
     /**
@@ -309,6 +310,7 @@ public class jifmembresia extends javax.swing.JInternalFrame {
                 men.getEstado()
             };
             tabla.addRow(rowData);
+            
         }
 
     }
