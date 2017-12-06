@@ -8,22 +8,23 @@ package pe.gym.form;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import pe.gym.controller.DetalleEvaluadorController;
+import pe.gym.controller.DetPagosController;
+import pe.gym.model.DetPagos;
 import pe.gym.model.DetalleEvaluador;
-import pe.gym.model.EvaluadorConsulta;
+import pe.gym.model.Pagos;
 
 /**
  *
  * @author Alumno
  */
-public class DetalleEvaluadorModal extends javax.swing.JDialog {
+public class DetallePagos extends javax.swing.JDialog {
 
     /**
      * Creates new form AsignarCarne
      */
-    private List<DetalleEvaluador> lista = new ArrayList<>();
+    private List<DetPagos> lista = new ArrayList<>();
 
-    public DetalleEvaluadorModal(java.awt.Frame parent, boolean modal) {
+    public DetallePagos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -41,11 +42,12 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
         labelHeader1 = new org.edisoncor.gui.label.LabelHeader();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jtableevaluador = new rojerusan.RSTableMetro();
+        jtabledetpagos = new rojerusan.RSTableMetro();
+        rSButtonMetro1 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelHeader1.setText("Detalle de Plan Entrenamiento");
+        labelHeader1.setText("DETALLE DE PAGOS");
         labelHeader1.setColorDeSombra(new java.awt.Color(0, 112, 192));
         labelHeader1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
 
@@ -53,16 +55,16 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jtableevaluador.setModel(new javax.swing.table.DefaultTableModel(
+        jtabledetpagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IdMembresia", "Ejercicio", "N_Maquina", "Serie", "Repeticiones"
+                "IdPago", "NroCuota", "Importe", "F. Ultima de pago", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -76,19 +78,21 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jtableevaluador.setAltoHead(40);
-        jtableevaluador.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        jtableevaluador.setColorBordeHead(new java.awt.Color(38, 86, 186));
-        jtableevaluador.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
-        jtableevaluador.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        jtableevaluador.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        jtableevaluador.setColorSelBackgound(new java.awt.Color(102, 0, 0));
-        jtableevaluador.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtableevaluador.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtableevaluador.setFuenteHead(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtableevaluador.setRowHeight(20);
-        jtableevaluador.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jtableevaluador);
+        jtabledetpagos.setAltoHead(40);
+        jtabledetpagos.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        jtabledetpagos.setColorBordeHead(new java.awt.Color(38, 86, 186));
+        jtabledetpagos.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
+        jtabledetpagos.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        jtabledetpagos.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        jtabledetpagos.setColorSelBackgound(new java.awt.Color(102, 0, 0));
+        jtabledetpagos.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtabledetpagos.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtabledetpagos.setFuenteHead(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jtabledetpagos.setRowHeight(20);
+        jtabledetpagos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(jtabledetpagos);
+
+        rSButtonMetro1.setText("Completar Pago");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,24 +100,32 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rSButtonMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(labelHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(rSButtonMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -136,14 +148,18 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetalleEvaluadorModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetallePagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetalleEvaluadorModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetallePagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetalleEvaluadorModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetallePagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetalleEvaluadorModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetallePagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -152,7 +168,7 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DetalleEvaluadorModal dialog = new DetalleEvaluadorModal(new javax.swing.JFrame(), true);
+                DetallePagos dialog = new DetallePagos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -168,14 +184,15 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
     private javax.swing.JScrollPane jScrollPane5;
-    private rojerusan.RSTableMetro jtableevaluador;
+    private rojerusan.RSTableMetro jtabledetpagos;
     private org.edisoncor.gui.label.LabelHeader labelHeader1;
+    private rojerusan.RSButtonMetro rSButtonMetro1;
     // End of variables declaration//GEN-END:variables
 
-    public void setRowData(EvaluadorConsulta bean) {
+    public void setRowData(Pagos bean) {
         jLabel10.setVisible(true);
 
-        jLabel10.setText(bean.getIdMembresia());
+        jLabel10.setText(bean.getIdPago());
         
         cargarDatos();
     }
@@ -184,27 +201,27 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
 
         try {
 
-            String idmem = jLabel10.getText();
+            String idpa = jLabel10.getText();
 
             // Proceso
-            DetalleEvaluadorController control = new DetalleEvaluadorController();
-            lista = control.Detalle(idmem);
+            DetPagosController control = new DetPagosController();
+            lista = control.consultaDetPagosxid(idpa);
 
             // Acceso al objeto Table
             DefaultTableModel tabla;
-            tabla = (DefaultTableModel) jtableevaluador.getModel();
+            tabla = (DefaultTableModel) jtabledetpagos.getModel();
 
             // Eliminar  todas las filas
             tabla.setRowCount(0);
 
             // Cargar Datos
-            for (DetalleEvaluador emp : lista) {
+            for (DetPagos det : lista) {
                 Object[] rowData = {
-                    emp.getIdMembresia(),
-                    emp.getEjercicio(),
-                    emp.getN_Maquina(),
-                    emp.getSerie(),
-                    emp.getRepeticiones()
+                    det.getIdPago(),
+                    det.getNroCuota(),
+                    det.getImporte(),
+                    det.getF_UPago(),
+                    det.getEstado()
                 };
                 tabla.addRow(rowData);
             }

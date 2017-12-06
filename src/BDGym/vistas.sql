@@ -30,3 +30,12 @@ on d.IdPlanEntrenamiento=p.IdPlanEntrenamiento
 inner join ejercicio e
 on e.IdPlanE=d.IdPlanE
 
+CREATE VIEW V_PAGOS(
+IdPago, IdMembresia, IdSocio, Nombre, Apellido, DNI,
+Tipo_de_Pago, IGV, Subtotal, Total, NroCuotas, Estado
+) AS
+SELECT p.IdPago, m.IdMembresia, p.IdSocio, s.Nombre, s.Apellido, s.DNI, 
+p.Tipo_de_Pago, p.IGV, p.Subtotal, p.Total, p.NroCuotas, p.Estado 
+from membresia m INNER join pagos p on m.IdPago=p.IdPago inner join 
+socio s on p.IdSocio=s.IdSocio
+

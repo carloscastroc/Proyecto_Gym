@@ -280,7 +280,7 @@ public class jifmembresia extends javax.swing.JInternalFrame {
 
         // Datos
         String dni = txtdni.getText();
-        String sss = "";
+        
 
         // Proceso
         MembreController control = new MembreController();

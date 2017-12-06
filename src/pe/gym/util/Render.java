@@ -7,7 +7,6 @@ package pe.gym.util;
 
 import java.awt.Component;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -31,11 +30,7 @@ public class Render extends DefaultTableCellRenderer{
         }
         
         
-        if(value instanceof JCheckBox){
-            JCheckBox ch = (JCheckBox)value;
-            return ch;
-        }
-        
+       
         return super.getTableCellRendererComponent(tablas1, value, isSelected, 
                 hasFocus, row, column); //To change body of generated methods, choose Tools | Templates.
     }

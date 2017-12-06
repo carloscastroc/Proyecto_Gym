@@ -42,9 +42,9 @@ public class MainCajera extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnPlanes = new principal.MaterialButtomRectangle();
-        btnGastos = new principal.MaterialButtomRectangle();
         btnPagos = new principal.MaterialButtomRectangle();
+        btnGastos = new principal.MaterialButtomRectangle();
+        btnGenPagos = new principal.MaterialButtomRectangle();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -88,11 +88,16 @@ public class MainCajera extends javax.swing.JFrame {
         dropShadowBorder1.setShowTopShadow(true);
         jPanel3.setBorder(dropShadowBorder1);
 
-        btnPlanes.setBackground(new java.awt.Color(227, 125, 41));
-        btnPlanes.setForeground(new java.awt.Color(255, 255, 255));
-        btnPlanes.setText("PAGOS");
-        btnPlanes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPlanes.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnPagos.setBackground(new java.awt.Color(227, 125, 41));
+        btnPagos.setForeground(new java.awt.Color(255, 255, 255));
+        btnPagos.setText("PAGOS");
+        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPagos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagosActionPerformed(evt);
+            }
+        });
 
         btnGastos.setBackground(new java.awt.Color(227, 125, 41));
         btnGastos.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,14 +110,14 @@ public class MainCajera extends javax.swing.JFrame {
             }
         });
 
-        btnPagos.setBackground(new java.awt.Color(227, 125, 41));
-        btnPagos.setForeground(new java.awt.Color(255, 255, 255));
-        btnPagos.setText("GENERAR PAGO");
-        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPagos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        btnPagos.addActionListener(new java.awt.event.ActionListener() {
+        btnGenPagos.setBackground(new java.awt.Color(227, 125, 41));
+        btnGenPagos.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenPagos.setText("GENERAR PAGO");
+        btnGenPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenPagos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnGenPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagosActionPerformed(evt);
+                btnGenPagosActionPerformed(evt);
             }
         });
 
@@ -148,9 +153,9 @@ public class MainCajera extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                    .addComponent(btnPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGenPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +168,9 @@ public class MainCajera extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGenPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPlanes, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
@@ -234,8 +239,12 @@ public class MainCajera extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cerrarSesionActionPerformed
 
-    private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
+    private void btnGenPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenPagosActionPerformed
         
+    }//GEN-LAST:event_btnGenPagosActionPerformed
+
+    private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
+        new CambiaPanel(escritorio, new jifpagos());
     }//GEN-LAST:event_btnPagosActionPerformed
 
     /**
@@ -278,8 +287,8 @@ public class MainCajera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnGastos;
+    private principal.MaterialButtomRectangle btnGenPagos;
     private principal.MaterialButtomRectangle btnPagos;
-    private principal.MaterialButtomRectangle btnPlanes;
     private principal.MaterialButtomRectangle cerrarSesion;
     public static pe.gym.util.Escritorio escritorio;
     private javax.swing.JLabel jLabel1;

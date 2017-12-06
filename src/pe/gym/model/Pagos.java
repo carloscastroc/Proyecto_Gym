@@ -12,17 +12,22 @@ import java.sql.Date;
  * @author Carlos
  */
 public class Pagos {
+
     private String IdPago;
+    private String IdMembresia;
     private String IdSocio;
+    private String Nombre;
+    private String Apellido;
+    private String DNI;
     private String Tipo_de_Pago;
     private double IGV;
     private double Subtotal;
     private double Total;
     private int NroCuotas;
     private String Estado;
-    
-    public Pagos(){
-        
+
+    public Pagos() {
+
     }
 
     public String getIdPago() {
@@ -33,12 +38,44 @@ public class Pagos {
         this.IdPago = IdPago;
     }
 
+    public String getIdMembresia() {
+        return IdMembresia;
+    }
+
+    public void setIdMembresia(String IdMembresia) {
+        this.IdMembresia = IdMembresia;
+    }
+
     public String getIdSocio() {
         return IdSocio;
     }
 
     public void setIdSocio(String IdSocio) {
         this.IdSocio = IdSocio;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
 
     public String getTipo_de_Pago() {
@@ -88,7 +125,5 @@ public class Pagos {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
-    
-    
+
 }

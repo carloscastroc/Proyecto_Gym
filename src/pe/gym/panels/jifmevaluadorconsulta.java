@@ -13,10 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.EvaluadorConsultaController;
-import pe.gym.controller.SocioController;
 import pe.gym.form.DetalleEvaluadorModal;
 import pe.gym.model.EvaluadorConsulta;
-import pe.gym.util.CargaComponentes;
 import pe.gym.util.Render;
 
 /**
@@ -247,7 +245,7 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
             Object value = tabla.getValueAt(row, column);
             if (value instanceof JButton) {
                 ((JButton) value).doClick();
-                JButton boton = (JButton) value;
+//                JButton boton = (JButton) value;
 
                 int rows = tabla.getSelectedRow();
                 if (rows == -1) {
@@ -256,6 +254,7 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
                 DetalleEvaluadorModal view;
                 view = new DetalleEvaluadorModal(new JFrame(), true);
                 view.setRowData(lista.get(row));
+                view.setLocationRelativeTo(null);
                 view.setVisible(true);
 
             }

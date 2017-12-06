@@ -13,7 +13,7 @@ import pe.gym.service.impl.PlanesService;
 
 /**
  *
- * @author Alumno
+ * @author Carlos
  */
 public class PlanesController {
     PlanesServiceEspec service = new PlanesService();

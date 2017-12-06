@@ -20,7 +20,11 @@ public class PagosMapper implements RowMapper<Pagos> {
     public Pagos mapRow(ResultSet rs) throws SQLException {
         Pagos bean = new Pagos();
         bean.setIdPago(rs.getString("IdPago"));
+        bean.setIdMembresia(rs.getString("IdMembresia"));
         bean.setIdSocio(rs.getString("IdSocio"));
+        bean.setNombre(rs.getString("Nombre"));
+        bean.setApellido(rs.getString("Apellido"));
+        bean.setDNI(rs.getString("DNI"));
         bean.setTipo_de_Pago(rs.getString("Tipo_de_Pago"));
         bean.setIGV(rs.getDouble("IGV"));
         bean.setSubtotal(rs.getDouble("Subtotal"));

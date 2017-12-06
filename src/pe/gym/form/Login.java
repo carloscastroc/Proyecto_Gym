@@ -18,8 +18,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        AWTUtilities.setOpaque(this, false);
         this.setLocationRelativeTo(null);
+        AWTUtilities.setOpaque(this, false);
+        
     }
 
     /**

@@ -1,5 +1,10 @@
 -Importante: Aun faltan todos los procedimientos Almacenados
 
+Eventos:
+-Pendiente evento que elimine las membresias no pagadas la inicio
+-Pendiente el evento que cambie la fecha de congelamiento por medio de una comparativa
+----
+
 
 
 

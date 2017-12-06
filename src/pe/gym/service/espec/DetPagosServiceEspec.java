@@ -5,12 +5,16 @@
  */
 package pe.gym.service.espec;
 
+import java.util.List;
 import pe.gym.model.DetPagos;
+
 
 /**
  *
  * @author Carlos
  */
 public interface DetPagosServiceEspec extends CrudServiceSpec<DetPagos>{
+    
+    List<DetPagos> consultarDetPagos(String id);
     
 }

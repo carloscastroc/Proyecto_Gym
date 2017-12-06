@@ -143,9 +143,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel4" alignment="0" pref="215" max="32767" attributes="0"/>
-                          <Component id="btnPlanes" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnGastos" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnPagos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnGastos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnGenPagos" alignment="0" max="32767" attributes="0"/>
                           <Component id="cerrarSesion" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -163,9 +163,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="btnPagos" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="btnGenPagos" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnPlanes" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="btnPagos" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnGastos" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace pref="294" max="32767" attributes="0"/>
@@ -187,7 +187,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="principal.MaterialButtomRectangle" name="btnPlanes">
+            <Component class="principal.MaterialButtomRectangle" name="btnPagos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="29" green="7d" red="e3" type="rgb"/>
@@ -203,6 +203,9 @@
                   <Font name="Roboto Medium" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPagosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnGastos">
               <Properties>
@@ -224,7 +227,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGastosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="principal.MaterialButtomRectangle" name="btnPagos">
+            <Component class="principal.MaterialButtomRectangle" name="btnGenPagos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="29" green="7d" red="e3" type="rgb"/>
@@ -241,7 +244,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPagosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenPagosActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">

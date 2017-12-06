@@ -5,6 +5,7 @@
  */
 package pe.gym.service.espec;
 
+import java.util.List;
 import pe.gym.model.Pagos;
 
 
@@ -13,5 +14,7 @@ import pe.gym.model.Pagos;
  * @author Alumno
  */
 public interface PagosServiceEspec extends CrudServiceSpec<Pagos>{
+    
+    List<Pagos> consultarPagoxDNI(String dni);
     
 }

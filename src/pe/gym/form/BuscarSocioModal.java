@@ -28,6 +28,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
     
     public BuscarSocioModal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setLocationRelativeTo(null);
         initComponents();
         cargarDatos();
     }

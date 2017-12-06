@@ -27,6 +27,7 @@ public class jifpromociones extends javax.swing.JInternalFrame {
      */
     public jifpromociones() {
         initComponents();
+        cargarDatos();
         btnRegistrarPromo.setVisible(false);
         btnModificarPromo.setVisible(false);
         CargaComponentes carga = new CargaComponentes();

@@ -75,9 +75,6 @@ public class EvaluadorConsultaService implements EvaluadorConsultaEspec{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Object visualizar_ProductoVO(EvaluadorConsulta eva) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+
     
 }
