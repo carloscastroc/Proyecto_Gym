@@ -21,3 +21,12 @@ inner join membresia m
 on s.IdSocio=m.IdSocio
 inner join planentrenamiento p on p.IdMembresia=m.IdMembresia
 
+create view ConsultarDetalle(IdMembresia,Ejercicio,N_Maquina,Serie,Repeticiones) as
+select m.IdMembresia,e.Ejercicio,d.N_Maquina,d.Serie,d.Repeticiones from membresia m 
+inner join planentrenamiento p
+on m.IdMembresia=p.IdMembresia
+inner join detplanentrenamiento d
+on d.IdPlanEntrenamiento=p.IdPlanEntrenamiento
+inner join ejercicio e
+on e.IdPlanE=d.IdPlanE
+
