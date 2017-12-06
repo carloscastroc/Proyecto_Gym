@@ -235,7 +235,7 @@ public class MainCajera extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarSesionActionPerformed
 
     private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
-        new CambiaPanel(escritorio, new jifpagos());
+        
     }//GEN-LAST:event_btnPagosActionPerformed
 
     /**

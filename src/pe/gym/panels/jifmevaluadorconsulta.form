@@ -26,7 +26,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-              <Component id="jPanel4" pref="852" max="32767" attributes="0"/>
+              <Component id="jPanel4" pref="856" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,15 +65,17 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="rojerusan.RSTableMetro" name="jtablepromociones">
+            <Component class="rojerusan.RSTableMetro" name="tabla">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="ID_Promociones" type="java.lang.String"/>
-                    <Column editable="true" title="ID-Empleado" type="java.lang.String"/>
-                    <Column editable="true" title="Nombre Promociones" type="java.lang.String"/>
-                    <Column editable="true" title="Importe" type="java.lang.Double"/>
-                    <Column editable="true" title="Descripcion" type="java.lang.String"/>
+                  <Table columnCount="7" rowCount="0">
+                    <Column editable="false" title="IdSocio" type="java.lang.String"/>
+                    <Column editable="false" title="IdPlanEntrenamiento" type="java.lang.String"/>
+                    <Column editable="false" title="IdMembresia" type="java.lang.String"/>
+                    <Column editable="false" title="DNI" type="java.lang.String"/>
+                    <Column editable="false" title="Nombre" type="java.lang.String"/>
+                    <Column editable="false" title="Apellido" type="java.lang.String"/>
+                    <Column editable="false" title="" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="altoHead" type="int" value="70"/>
@@ -122,6 +124,16 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                   </TableColumnModel>
                 </Property>
                 <Property name="fuenteFilas" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -138,6 +150,12 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaMouseClicked"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="jifmevaluadorconsulta_jtableevaluadorconsulta"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -153,7 +171,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtdni" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="138" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -172,7 +190,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNombre" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="txtdni" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
                           <Component id="panelImage8" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -201,10 +219,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="NOMBRE:"/>
+                <Property name="text" type="java.lang.String" value="DNI :"/>
               </Properties>
             </Component>
-            <Component class="app.bolivia.swing.JCTextField" name="txtNombre">
+            <Component class="app.bolivia.swing.JCTextField" name="txtdni">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto" size="18" style="1"/>
@@ -213,19 +231,19 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="btnConsultarPromo">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="btnConsultar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CONSULTAR PAGOS"/>
+            <Property name="text" type="java.lang.String" value="CONSULTAR "/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="18" style="1"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarPromoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="387" y="72" width="270" height="82"/>
+              <AbsoluteConstraints x="477" y="72" width="180" height="82"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -249,7 +267,26 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="rojeru_san.RSButtonRiple" name="btnModificarPromo">
+        <Component class="rojeru_san.RSButtonRiple" name="btnNuevo">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ba" green="56" red="26" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="NUEVO"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto Bold" size="18" style="1"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="668" y="72" width="179" height="82"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="rojeru_san.RSButtonRiple" name="btnModificar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ba" green="56" red="26" type="rgb"/>
@@ -260,11 +297,11 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarPromoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="680" y="70" width="177" height="82"/>
+              <AbsoluteConstraints x="865" y="72" width="177" height="82"/>
             </Constraint>
           </Constraints>
         </Component>

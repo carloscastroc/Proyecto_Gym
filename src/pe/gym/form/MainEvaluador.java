@@ -89,15 +89,25 @@ public class MainEvaluador extends javax.swing.JFrame {
 
         btnPlanes.setBackground(new java.awt.Color(227, 125, 41));
         btnPlanes.setForeground(new java.awt.Color(255, 255, 255));
-        btnPlanes.setText("DET ENTRENAMIENTO");
+        btnPlanes.setText("EJERCICIOS");
         btnPlanes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPlanes.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanesActionPerformed(evt);
+            }
+        });
 
         btnEmpleados.setBackground(new java.awt.Color(227, 125, 41));
         btnEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmpleados.setText("P. ENTRENAMIENTO");
+        btnEmpleados.setText("CONSULTAS");
         btnEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEmpleados.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpleadosActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,7 +143,7 @@ public class MainEvaluador extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -209,6 +219,14 @@ public class MainEvaluador extends javax.swing.JFrame {
             new Login().setVisible(true);
         }
     }//GEN-LAST:event_cerrarSesionActionPerformed
+
+    private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
+        new CambiaPanel(escritorio, new jifmevaluadorconsulta());
+    }//GEN-LAST:event_btnEmpleadosActionPerformed
+
+    private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
+        
+    }//GEN-LAST:event_btnPlanesActionPerformed
 
     /**
      * @param args the command line arguments

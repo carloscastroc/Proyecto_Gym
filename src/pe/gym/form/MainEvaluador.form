@@ -145,7 +145,7 @@
                           <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnPlanes" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnEmpleados" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cerrarSesion" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cerrarSesion" alignment="0" pref="215" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -192,7 +192,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DET ENTRENAMIENTO"/>
+                <Property name="text" type="java.lang.String" value="EJERCICIOS"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
@@ -200,6 +200,9 @@
                   <Font name="Roboto Medium" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnEmpleados">
               <Properties>
@@ -209,7 +212,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="P. ENTRENAMIENTO"/>
+                <Property name="text" type="java.lang.String" value="CONSULTAS"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
@@ -217,6 +220,9 @@
                   <Font name="Roboto Medium" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmpleadosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
