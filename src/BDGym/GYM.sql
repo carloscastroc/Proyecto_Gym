@@ -128,22 +128,6 @@ IdTipo char(5),
 Ejercicio varchar(50),
 foreign key(IdTipo) references TipoEjercicio(IdTipo));
 
-create table PlanEntrenamiento(
-IdPlanEntrenamiento char(8) primary key,
-IdEmpleado char(5),
-IdInfNutricional char(8) unique,
-foreign key (IdEmpleado) references Empleado (IdEmpleado),
-foreign key (IdInfNutricional) references infnutricional (IdInfNutricional));
-
-create table DetPlanEntrenamiento(
-IdPlanEntrenamiento char(8),
-IdPlanE char(5),
-N_Maquina int,
-Serie int,
-Repeticiones int,
-foreign key (IdPlanEntrenamiento) references PlanEntrenamiento (IdPlanEntrenamiento),
-foreign key (IdPlanE) references Ejercicio (IdPlanE));
-
 create table InfNutricional(
 IdInfNutricional char(8) primary key,
 IdEmpleado char(5),
@@ -167,6 +151,24 @@ Gluteos decimal(3,2),
 Muslo decimal(3,2),
 Pantorrillas decimal(3,2),
 foreign key (IdInfNutricional) references InfNutricional (IdInfNutricional));
+
+create table PlanEntrenamiento(
+IdPlanEntrenamiento char(8) primary key,
+IdEmpleado char(5),
+IdInfNutricional char(8) unique,
+foreign key (IdEmpleado) references Empleado (IdEmpleado),
+foreign key (IdInfNutricional) references infnutricional (IdInfNutricional));
+
+create table DetPlanEntrenamiento(
+IdPlanEntrenamiento char(8),
+IdPlanE char(5),
+N_Maquina int,
+Serie int,
+Repeticiones int,
+foreign key (IdPlanEntrenamiento) references PlanEntrenamiento (IdPlanEntrenamiento),
+foreign key (IdPlanE) references Ejercicio (IdPlanE));
+
+
 
 
 
@@ -250,6 +252,14 @@ insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ003','TEJ03','Planc
 insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ004','TEJ04','Barras');
 insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ005','TEJ05','Trotar');
 
+-- Valores InfNutricional
+
+insert into InfNutricional(IdInfNutricional,IdEmpleado,IdSocio) values ('IN000001','E0004','S00001');
+
+-- Valores DetNutricional
+
+insert into DetNutricional (IdInfNutricional,Fecha,Peso,IMC,Masa_Grasa,Cuello,Hombros,Brazos_Antebrazos,Pecho_Busto,Cintura,CaderaAlta,Gluteos,Muslo,Pantorrillas) values ('IN000001','2017/09/11','80.50','12.2','30.45','42.00','240.00','50.00','300.00','120.00','126.00','140.00','80.00','60.00');
+
 -- Valores PlanEntrenamiento
 
 insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdInfNutricional) values ('PE000001','E0005','IN000001');
@@ -262,10 +272,4 @@ insert into DetPlanEntrenamiento (IdPlanEntrenamiento,IdPlanE,N_Maquina,Serie,Re
 insert into DetPlanEntrenamiento (IdPlanEntrenamiento,IdPlanE,N_Maquina,Serie,Repeticiones) values ('PE000001','EJ004','13','12','5');
 insert into DetPlanEntrenamiento (IdPlanEntrenamiento,IdPlanE,N_Maquina,Serie,Repeticiones) values ('PE000001','EJ005','14','15','2');
 
--- Valores InfNutricional
 
-insert into InfNutricional(IdInfNutricional,IdEmpleado,IdSocio) values ('IN000001','E0004','S00001');
-
--- Valores DetNutricional
-
-insert into DetNutricional (IdInfNutricional,Fecha,Peso,IMC,Masa_Grasa,Cuello,Hombros,Brazos_Antebrazos,Pecho_Busto,Cintura,CaderaAlta,Gluteos,Muslo,Pantorrillas) values ('IN000001','2017/09/11','80.50','12.2','30.45','42.00','240.00','50.00','300.00','120.00','126.00','140.00','80.00','60.00');
