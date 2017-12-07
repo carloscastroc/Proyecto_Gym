@@ -58,11 +58,11 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
 
             },
             new String [] {
-                "IdMembresia", "Ejercicio", "N_Maquina", "Serie", "Repeticiones"
+                "IdPlanEntrenamiento", "Ejercicio", "N_Maquina", "Serie", "Repeticiones"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -175,7 +175,7 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
     public void setRowData(EvaluadorConsulta bean) {
         jLabel10.setVisible(true);
 
-        jLabel10.setText(bean.getIdMembresia());
+        jLabel10.setText(bean.getIdPlanEntrenamiento());
         
         cargarDatos();
     }
@@ -200,7 +200,7 @@ public class DetalleEvaluadorModal extends javax.swing.JDialog {
             // Cargar Datos
             for (DetalleEvaluador emp : lista) {
                 Object[] rowData = {
-                    emp.getIdMembresia(),
+                    emp.getIdPlanEntrenamiento(),
                     emp.getEjercicio(),
                     emp.getN_Maquina(),
                     emp.getSerie(),

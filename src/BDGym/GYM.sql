@@ -131,9 +131,9 @@ foreign key(IdTipo) references TipoEjercicio(IdTipo));
 create table PlanEntrenamiento(
 IdPlanEntrenamiento char(8) primary key,
 IdEmpleado char(5),
-IdMembresia char(8),
+IdInfNutricional char(8) unique,
 foreign key (IdEmpleado) references Empleado (IdEmpleado),
-foreign key (IdMembresia) references Membresia (IdMembresia));
+foreign key (IdInfNutricional) references infnutricional (IdInfNutricional));
 
 create table DetPlanEntrenamiento(
 IdPlanEntrenamiento char(8),
@@ -239,6 +239,8 @@ insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ02','Piernas');
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ03','Triceps');
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ04','Biceps');
 insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ05','Calentamiento');
+insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ06','Espalda');
+insert into TipoEjercicio (IdTipo,TipoEjercicio) values ('TEJ07','Hombros/Trapecios');
 
 -- Valores Ejercicio
 
@@ -250,7 +252,7 @@ insert into Ejercicio (IdPlanE,IdTipo, Ejercicio) values ('EJ005','TEJ05','Trota
 
 -- Valores PlanEntrenamiento
 
-insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdMembresia) values ('PE000001','E0005','ME000001');
+insert into PlanEntrenamiento (IdPlanEntrenamiento,IdEmpleado,IdInfNutricional) values ('PE000001','E0005','IN000001');
 
 -- Valores DetPlanEntrenamiento
 

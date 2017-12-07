@@ -28,12 +28,12 @@ public class PruebaDetalleEvaluador {
         try {
             DetalleEvaluador bean = new DetalleEvaluador();
         List<DetalleEvaluador> lista = new ArrayList<>();
-        String d="ME000001";
+        String d="PE000001";
         DetalleEvaluadorEspec service = new DetalleEvaluadorService();
         lista= service.Detalle(d);
         
         for(DetalleEvaluador r: lista){
-            System.out.println(r.getIdMembresia()
+            System.out.println(r.getIdPlanEntrenamiento()
                     + " - "+ r.getEjercicio()
                     + " - "+ r.getN_Maquina()
                     + " - "+ r.getSerie()

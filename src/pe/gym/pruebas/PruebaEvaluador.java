@@ -24,14 +24,14 @@ public class PruebaEvaluador {
     public static void main(String[] args) {
         EvaluadorConsulta bean = new EvaluadorConsulta();
         List<EvaluadorConsulta> lista = new ArrayList<>();
-        String d="369";
+        String d="";
         EvaluadorConsultaEspec service = new EvaluadorConsultaService();
         lista= service.consultar(d);
         
         for(EvaluadorConsulta r: lista){
             System.out.println(r.getIdSocio()
                     + " - "+ r.getIdPlanEntrenamiento()
-                    + " - "+ r.getIdMembresia()
+                    + " - "+ r.getIdInfNutricional()
                     + " - "+ r.getDNI()
                     + " - "+ r.getNombre()
                     + " - "+ r.getApellido());

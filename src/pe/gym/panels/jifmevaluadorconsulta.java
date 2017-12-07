@@ -71,7 +71,7 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "IdSocio", "IdPlanEntrenamiento", "IdMembresia", "DNI", "Nombre", "Apellido", ""
+                "IdPlanEntrenamiento", "IdSocio", "IdInfNutricional", "DNI", "Nombre", "Apellido", "Detalles"
             }
         ) {
             Class[] types = new Class [] {
@@ -298,9 +298,9 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
         // Cargar Datos
         for (EvaluadorConsulta eva : lista) {
             Object[] rowData = {
-                eva.getIdSocio(),
                 eva.getIdPlanEntrenamiento(),
-                eva.getIdMembresia(),
+                eva.getIdSocio(),
+                eva.getIdInfNutricional(),
                 eva.getDNI(),
                 eva.getNombre(),
                 eva.getApellido(),

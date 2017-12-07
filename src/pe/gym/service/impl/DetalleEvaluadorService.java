@@ -20,7 +20,7 @@ import pe.gym.service.mapper.DetalleEvaluadorMapper;
  * @author JORGE LUIS
  */
 public class DetalleEvaluadorService implements DetalleEvaluadorEspec{
-private final String SQL_SELECT = "select IdMembresia,Ejercicio,N_Maquina,Serie,Repeticiones from consultardetalle";
+private final String SQL_SELECT = "select IdPlanEntrenamiento,Ejercicio,N_Maquina,Serie,Repeticiones from v_detplanentrenamiento";
     
     
     @Override
@@ -30,7 +30,7 @@ private final String SQL_SELECT = "select IdMembresia,Ejercicio,N_Maquina,Serie,
         Connection cn=null;
         try {
             cn=conectaBD.obtener();
-            String sql=SQL_SELECT + " where IdMembresia = ? ";
+            String sql=SQL_SELECT + " where IdPlanEntrenamiento = ? ";
             PreparedStatement pstm;
             pstm=cn.prepareStatement(sql);
             pstm.setString(1, idmem);

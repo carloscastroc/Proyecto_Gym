@@ -19,7 +19,7 @@ public class DetalleEvaluadorMapper implements RowMapper<DetalleEvaluador>{
     @Override
     public DetalleEvaluador mapRow(ResultSet rs) throws SQLException {
        DetalleEvaluador bean = new DetalleEvaluador();
-        bean.setIdMembresia(rs.getString("IdMembresia"));
+        bean.setIdPlanEntrenamiento(rs.getString("IdPlanEntrenamiento"));
         bean.setEjercicio(rs.getString("Ejercicio"));
         bean.setN_Maquina(rs.getInt("N_Maquina"));
         bean.setSerie(rs.getInt("Serie"));

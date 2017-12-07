@@ -11,23 +11,15 @@ package pe.gym.model;
  */
 
 public class EvaluadorConsulta {
-    private String IdSocio;
     private String IdPlanEntrenamiento;
-    private String IdMembresia;
+    private String IdSocio;
+    private String IdInfNutricional;
     private String DNI;
     private String Nombre;
     private String Apellido;
     
     
     public EvaluadorConsulta(){
-    }
-
-    public String getIdSocio() {
-        return IdSocio;
-    }
-
-    public void setIdSocio(String IdSocio) {
-        this.IdSocio = IdSocio;
     }
 
     public String getIdPlanEntrenamiento() {
@@ -38,12 +30,20 @@ public class EvaluadorConsulta {
         this.IdPlanEntrenamiento = IdPlanEntrenamiento;
     }
 
-    public String getIdMembresia() {
-        return IdMembresia;
+    public String getIdSocio() {
+        return IdSocio;
     }
 
-    public void setIdMembresia(String IdMembresia) {
-        this.IdMembresia = IdMembresia;
+    public void setIdSocio(String IdSocio) {
+        this.IdSocio = IdSocio;
+    }
+
+    public String getIdInfNutricional() {
+        return IdInfNutricional;
+    }
+
+    public void setIdInfNutricional(String IdInfNutricional) {
+        this.IdInfNutricional = IdInfNutricional;
     }
 
     public String getDNI() {
@@ -69,4 +69,7 @@ public class EvaluadorConsulta {
     public void setApellido(String Apellido) {
         this.Apellido = Apellido;
     }
+
+    
+    
 } 

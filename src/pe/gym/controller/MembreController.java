@@ -30,7 +30,7 @@ public class MembreController {
     public void RegistrarMembresia(Membresia bean) throws Exception {
         lista=service.compruebaestado(bean.getIdSocio());
         if(lista.size()>0){
-            throw new Exception("Socio con una membresia activa");
+            throw new Exception("Socio con una membresia activa o congelada");
         }
         service.crear(bean);
     }

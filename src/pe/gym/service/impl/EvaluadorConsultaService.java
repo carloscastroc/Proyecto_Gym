@@ -21,8 +21,8 @@ import pe.gym.service.mapper.EvaluadorConsultaMapper;
  */
 public class EvaluadorConsultaService implements EvaluadorConsultaEspec{
 
-    private final String SQL_SELECT = "select IdSocio,IdPlanEntrenamiento,"
-            + "IdMembresia,DNI,Nombre,Apellido from consultarev";
+    private final String SQL_SELECT = "select IdPlanEntrenamiento,IdSocio,"
+            + "IdInfNutricional,DNI,Nombre,Apellido from v_planentrenamiento";
     
     
     @Override

@@ -7,12 +7,16 @@ package pe.gym.panels;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import pe.gym.controller.SocioController;
-import pe.gym.form.RegistrarSocio;
-import pe.gym.model.Socio;
+import pe.gym.controller.NutricionistaController;
+
+import pe.gym.form.DetalleNutricional;
+import pe.gym.model.Nutricionista;
+import pe.gym.util.Render;
 
 /**
  *
@@ -20,15 +24,15 @@ import pe.gym.model.Socio;
  */
 public class jifinfnutricional extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form jifsocio
-     */
-    private List<Socio> lista = new ArrayList<>();
+    private List<Nutricionista> lista = new ArrayList<>();
 
     public jifinfnutricional() {
         initComponents();
-        jPanel4.setSize(this.getWidth(), this.getWidth());
-        cargarDatos();
+        
+        cargaDatosI();
+
+
+
     }
 
     /**
@@ -42,15 +46,14 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jtablesocio = new rojerusan.RSTableMetro();
+        jtableinfnu = new rojerusan.RSTableMetro();
         panelImage7 = new org.edisoncor.gui.panel.PanelImage();
         panelImage8 = new org.edisoncor.gui.panel.PanelImage();
         jLabel1 = new javax.swing.JLabel();
         txtDni = new app.bolivia.swing.JCTextField();
         btnConsultarSocio = new org.edisoncor.gui.button.ButtonAction();
-        btnModificarSocio = new rojeru_san.RSButtonRiple();
         rSPanelImage1 = new rojerusan.RSPanelImage();
-        btnRegistrarSocio = new rojeru_san.RSButtonRiple();
+        btnRegistrarPlan2 = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -58,16 +61,16 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jtablesocio.setModel(new javax.swing.table.DefaultTableModel(
+        jtableinfnu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IdSocio", "Nombres", "Apellidos", "DNI", "Telefono", "Email", "Fecha de Inscripción"
+                "IdInfNutricional", "IdSocio", "IdMembresia", "Nombre", "DNI", "Fecha", "Detalles"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -81,18 +84,23 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtablesocio.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        jtablesocio.setColorBordeHead(new java.awt.Color(38, 86, 186));
-        jtablesocio.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
-        jtablesocio.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        jtablesocio.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        jtablesocio.setColorSelBackgound(new java.awt.Color(102, 0, 0));
-        jtablesocio.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jtablesocio.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtablesocio.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jtablesocio.setRowHeight(20);
-        jtablesocio.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jtablesocio);
+        jtableinfnu.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        jtableinfnu.setColorBordeHead(new java.awt.Color(38, 86, 186));
+        jtableinfnu.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));
+        jtableinfnu.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        jtableinfnu.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        jtableinfnu.setColorSelBackgound(new java.awt.Color(102, 0, 0));
+        jtableinfnu.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtableinfnu.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jtableinfnu.setFuenteHead(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jtableinfnu.setRowHeight(20);
+        jtableinfnu.getTableHeader().setReorderingAllowed(false);
+        jtableinfnu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableinfnuMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jtableinfnu);
 
         jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1000, 662));
 
@@ -159,16 +167,6 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
         });
         jPanel4.add(btnConsultarSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 72, 193, 82));
 
-        btnModificarSocio.setBackground(new java.awt.Color(38, 86, 186));
-        btnModificarSocio.setText("MODIFICAR");
-        btnModificarSocio.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnModificarSocio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarSocioActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnModificarSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
-
         javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
         rSPanelImage1.setLayout(rSPanelImage1Layout);
         rSPanelImage1Layout.setHorizontalGroup(
@@ -182,15 +180,10 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
-        btnRegistrarSocio.setBackground(new java.awt.Color(38, 86, 186));
-        btnRegistrarSocio.setText("NUEVO");
-        btnRegistrarSocio.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnRegistrarSocio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarSocioActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnRegistrarSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
+        btnRegistrarPlan2.setBackground(new java.awt.Color(38, 86, 186));
+        btnRegistrarPlan2.setText("NUEVO");
+        btnRegistrarPlan2.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        jPanel4.add(btnRegistrarPlan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,101 +201,106 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSocioActionPerformed
-        new RegistrarSocio(new JFrame(), true).setVisible(true);
-    }//GEN-LAST:event_btnRegistrarSocioActionPerformed
-
     private void btnConsultarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSocioActionPerformed
-        try {
-
-            cargarDatos();
+        try{
             
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+                    
+            cargaDatosI();
+            
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error" +  e.getMessage());
         }
+       
     }//GEN-LAST:event_btnConsultarSocioActionPerformed
 
-    private void btnModificarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarSocioActionPerformed
-        int row = jtablesocio.getSelectedRow();
-    
-    if( row == -1){
-      return;
-    }
-        
-    RegistrarSocio view;
-    view = new RegistrarSocio(new JFrame(), true);
-    view.setRowData(lista.get(row));
-    view.setVisible(true);
-    }//GEN-LAST:event_btnModificarSocioActionPerformed
-
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
-//        try {
-//
-//            cargarDatos();
-//            
-//        } catch (Exception e) {
-//             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
-//        }
+
     }//GEN-LAST:event_txtDniActionPerformed
 
     private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
-       try {
-
-            cargarDatos();
-            
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
-        }
+     
     }//GEN-LAST:event_txtDniKeyPressed
 
+    private void jtableinfnuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableinfnuMouseClicked
+        int column = jtableinfnu.getColumnModel().getColumnIndexAtX(evt.getX());
+            int row = evt.getY() / jtableinfnu.getRowHeight();
+            if (row < jtableinfnu.getRowCount() && row >= 0 && column < jtableinfnu.getColumnCount() && column >=0){
+               Object value = jtableinfnu.getValueAt(row, column);
+               if (value instanceof JButton){
+                   ((JButton) value).doClick();
+                   JButton boton = (JButton) value;
+                   
+                   int rows = jtableinfnu.getSelectedRow();
+                   if(rows == -1){
+                       return;
+                   }
+                   
+                DetalleNutricional view;
+                view = new DetalleNutricional(new JFrame(), true);
+                view.setRowData(lista.get(row));
+                view.setLocationRelativeTo(null);
+                view.setVisible(true);
+               }
+            }
+    }//GEN-LAST:event_jtableinfnuMouseClicked
+
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultarSocio;
-    private rojeru_san.RSButtonRiple btnModificarSocio;
-    private rojeru_san.RSButtonRiple btnRegistrarSocio;
+    private rojeru_san.RSButtonRiple btnRegistrarPlan;
+    private rojeru_san.RSButtonRiple btnRegistrarPlan1;
+    private rojeru_san.RSButtonRiple btnRegistrarPlan2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
-    private rojerusan.RSTableMetro jtablesocio;
+    private rojerusan.RSTableMetro jtableinfnu;
     private org.edisoncor.gui.panel.PanelImage panelImage7;
     private org.edisoncor.gui.panel.PanelImage panelImage8;
     private rojerusan.RSPanelImage rSPanelImage1;
     private app.bolivia.swing.JCTextField txtDni;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarDatos() {
+    public void cargaDatosI(){
         
+        jtableinfnu.setDefaultRenderer(Object.class, new Render());
+        JButton btn1 = new JButton("Detalle");
         // Datos
-            String dni = txtDni.getText();
-            
-            // Proceso
-            SocioController control = new SocioController();
-            lista = control.consultarxDNI(dni);
+        String dni = txtDni.getText();
 
+        try {
+            // Proceso
+            NutricionistaController control = new NutricionistaController();
+            lista = control.consultarxDNI(dni);
+            if (lista.isEmpty()) {
+                throw new Exception("Error");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Acceso al objeto Table
         DefaultTableModel tabla;
-        tabla = (DefaultTableModel) jtablesocio.getModel();
+        tabla = (DefaultTableModel) jtableinfnu.getModel();
 
         // Eliminar  todas las filas
         tabla.setRowCount(0);
 
         // Cargar Datos
-        for (Socio emp : lista) {
+        for (Nutricionista men : lista) {
             Object[] rowData = {
-                emp.getIdSocio(),
-                emp.getNombre(),
-                emp.getApellido(),
-                emp.getDNI(),
-                emp.getTelefono(),
-                emp.getEmail(),
-                emp.getF_inscripcion()
+                men.getIdInfNutricional(),
+                men.getIdSocio(),
+                men.getIdMembresia(),
+                men.getNombre(),
+                men.getDNI(),
+                men.getFecha(),
+                btn1
             };
             tabla.addRow(rowData);
         }
 
     }
-    
-
 
 }

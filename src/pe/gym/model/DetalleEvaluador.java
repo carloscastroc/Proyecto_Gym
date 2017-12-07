@@ -11,7 +11,7 @@ package pe.gym.model;
  */
 public class DetalleEvaluador {
 
-    private String IdMembresia;
+    private String IdPlanEntrenamiento;
     private String Ejercicio;
     private Integer N_Maquina;
     private Integer Serie;
@@ -20,12 +20,12 @@ public class DetalleEvaluador {
     public DetalleEvaluador() {
     }
 
-    public String getIdMembresia() {
-        return IdMembresia;
+    public String getIdPlanEntrenamiento() {
+        return IdPlanEntrenamiento;
     }
 
-    public void setIdMembresia(String IdMembresia) {
-        this.IdMembresia = IdMembresia;
+    public void setIdPlanEntrenamiento(String IdPlanEntrenamiento) {
+        this.IdPlanEntrenamiento = IdPlanEntrenamiento;
     }
 
     public String getEjercicio() {

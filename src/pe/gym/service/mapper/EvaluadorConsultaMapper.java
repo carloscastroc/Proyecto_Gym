@@ -19,9 +19,9 @@ public class EvaluadorConsultaMapper implements RowMapper<EvaluadorConsulta>{
     @Override
     public EvaluadorConsulta mapRow(ResultSet rs) throws SQLException {
         EvaluadorConsulta bean= new EvaluadorConsulta();
-        bean.setIdSocio(rs.getString("IdSocio"));
         bean.setIdPlanEntrenamiento(rs.getString("IdPlanEntrenamiento"));
-        bean.setIdMembresia(rs.getString("IdMembresia"));
+        bean.setIdSocio(rs.getString("IdSocio"));
+        bean.setIdInfNutricional(rs.getString("IdInfNutricional"));
         bean.setDNI(rs.getString("DNI"));
         bean.setNombre(rs.getString("Nombre"));
         bean.setApellido(rs.getString("Apellido"));

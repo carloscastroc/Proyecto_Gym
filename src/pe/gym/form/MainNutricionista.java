@@ -43,8 +43,6 @@ public class MainNutricionista extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnPlanes = new principal.MaterialButtomRectangle();
-        btnGastos = new principal.MaterialButtomRectangle();
-        btnEmpleados = new principal.MaterialButtomRectangle();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -93,23 +91,11 @@ public class MainNutricionista extends javax.swing.JFrame {
         btnPlanes.setText("INF. NUTRICIONAL");
         btnPlanes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPlanes.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-
-        btnGastos.setBackground(new java.awt.Color(227, 125, 41));
-        btnGastos.setForeground(new java.awt.Color(255, 255, 255));
-        btnGastos.setText("MEDIDAS");
-        btnGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGastos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        btnGastos.addActionListener(new java.awt.event.ActionListener() {
+        btnPlanes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGastosActionPerformed(evt);
+                btnPlanesActionPerformed(evt);
             }
         });
-
-        btnEmpleados.setBackground(new java.awt.Color(227, 125, 41));
-        btnEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmpleados.setText("SOCIOS");
-        btnEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEmpleados.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -144,8 +130,6 @@ public class MainNutricionista extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                     .addComponent(btnPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,13 +141,9 @@ public class MainNutricionista extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addComponent(btnPlanes, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -225,9 +205,9 @@ public class MainNutricionista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cerrarSesionActionPerformed
 
-    private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGastosActionPerformed
+    private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
+       new CambiaPanel(escritorio, new jifinfnutricional());
+    }//GEN-LAST:event_btnPlanesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,8 +252,6 @@ public class MainNutricionista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButtomRectangle btnEmpleados;
-    private principal.MaterialButtomRectangle btnGastos;
     private principal.MaterialButtomRectangle btnPlanes;
     private principal.MaterialButtomRectangle cerrarSesion;
     public static pe.gym.util.Escritorio escritorio;

@@ -168,7 +168,7 @@ public class PruebaCombos1 extends javax.swing.JFrame {
             return;
         }
         Ejercicio ejer = (Ejercicio) jComboBoxEjercicio1.getSelectedItem();
-        JOptionPane.showMessageDialog(null, "Codigo: " + ejer.getIdTipo());
+        JOptionPane.showMessageDialog(null, "Codigo: " + ejer.getIdPlanE());
     }//GEN-LAST:event_btnejercicioActionPerformed
 
     private void jComboBoxTipoEjercicio1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoEjercicio1ItemStateChanged
