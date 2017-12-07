@@ -17,12 +17,17 @@ import pe.gym.service.impl.PagosService;
  */
 public class PagosController {
     
-    PagosServiceEspec service = new PagosService();
+    PagosServiceEspec servicepagos = new PagosService();
     List<Pagos> lista = new ArrayList<>();
     
     public List<Pagos> consultaxPagodni(String dni){
-        lista=service.consultarPagoxDNI(dni);
+        lista=servicepagos.consultarPagoxDNI(dni);
         return lista;
+    }
+    
+    public void crear (Pagos bean){
+        
+        servicepagos.crear(bean);
     }
     
 }

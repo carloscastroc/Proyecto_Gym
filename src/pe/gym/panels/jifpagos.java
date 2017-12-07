@@ -56,8 +56,6 @@ public class jifpagos extends javax.swing.JInternalFrame {
         txtdni = new app.bolivia.swing.JCTextField();
         btnConsultar = new org.edisoncor.gui.button.ButtonAction();
         rSPanelImage1 = new rojerusan.RSPanelImage();
-        btnNuevo = new rojeru_san.RSButtonRiple();
-        btnModificar = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -70,14 +68,14 @@ public class jifpagos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "IdPago", "IdMembresia", "IdSocio", "Nombre", "Apellido", "DNI", "Tipo de Pago", "IGV", "Subtotal", "Total", "Nro Cuotas", "Estado", ""
+                "IdPago", "IdMembresia", "IdSocio", "Socio", "DNI", "Tipo de Pago", "IGV", "Subtotal", "Total", "Nro Cuotas", "Estado", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -97,7 +95,7 @@ public class jifpagos extends javax.swing.JInternalFrame {
         jtpagos.setColorSelBackgound(new java.awt.Color(102, 0, 0));
         jtpagos.setFuenteFilas(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jtpagos.setFuenteFilasSelect(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jtpagos.setFuenteHead(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        jtpagos.setFuenteHead(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jtpagos.setRowHeight(20);
         jtpagos.getTableHeader().setReorderingAllowed(false);
         jtpagos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,26 +173,6 @@ public class jifpagos extends javax.swing.JInternalFrame {
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
 
-        btnNuevo.setBackground(new java.awt.Color(38, 86, 186));
-        btnNuevo.setText("NUEVO");
-        btnNuevo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
-
-        btnModificar.setBackground(new java.awt.Color(38, 86, 186));
-        btnModificar.setText("MODIFICAR");
-        btnModificar.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,19 +217,9 @@ public class jifpagos extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-
-    }//GEN-LAST:event_btnModificarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultar;
-    private rojeru_san.RSButtonRiple btnModificar;
-    private rojeru_san.RSButtonRiple btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -293,8 +261,7 @@ public class jifpagos extends javax.swing.JInternalFrame {
                 men.getIdPago(),
                 men.getIdMembresia(),
                 men.getIdSocio(),
-                men.getApellido(),
-                men.getNombre(),
+                (men.getApellido()+" "+men.getNombre()),
                 men.getDNI(),
                 men.getTipo_de_Pago(),
                 men.getIGV(),

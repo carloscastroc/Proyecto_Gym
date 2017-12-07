@@ -7,6 +7,7 @@ package pe.gym.form;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.DetPagosController;
 import pe.gym.model.DetPagos;
@@ -23,11 +24,12 @@ public class DetallePagos extends javax.swing.JDialog {
      * Creates new form AsignarCarne
      */
     private List<DetPagos> lista = new ArrayList<>();
+    DetPagos detpagos= new DetPagos();
 
     public DetallePagos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
 
     /**
@@ -93,6 +95,11 @@ public class DetallePagos extends javax.swing.JDialog {
         jScrollPane5.setViewportView(jtabledetpagos);
 
         rSButtonMetro1.setText("Completar Pago");
+        rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonMetro1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +137,38 @@ public class DetallePagos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
+        DetPagosController control = new DetPagosController();
+        try {
+            int row = jtabledetpagos.getSelectedRow();
+
+            if (row == -1) {
+                return;
+            }
+
+            String idpago = jtabledetpagos.getValueAt(row, 0).toString();
+            int nrocuota = Integer.parseInt(jtabledetpagos.getValueAt(row, 1).toString());
+            
+            detpagos=control.consultadetpago(idpago, nrocuota);
+            if ("Cancelado".equals(detpagos.getEstado())) {
+                JOptionPane.showMessageDialog(null, "Cuota ya cancelada");
+                return;
+            }
+
+            int resp = JOptionPane.showConfirmDialog(null, "¿Confirma que se realizo el pago para "
+                    + "el cambio de estado?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+            if (resp == JOptionPane.YES_OPTION) {
+                control.cambiaestadodetpago(idpago, nrocuota);
+                JOptionPane.showMessageDialog(null, "Estado cambiado correctamente");
+                cargarDatos();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +232,7 @@ public class DetallePagos extends javax.swing.JDialog {
         jLabel10.setVisible(true);
 
         jLabel10.setText(bean.getIdPago());
-        
+
         cargarDatos();
     }
 

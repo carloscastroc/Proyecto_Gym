@@ -44,7 +44,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
 
         labelHeader1 = new org.edisoncor.gui.label.LabelHeader();
         jLabel10 = new javax.swing.JLabel();
-        jtxtApellido = new javax.swing.JTextField();
+        jtxtDNI = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtablesociomodal = new rojerusan.RSTableMetro();
         rSButtonMetro1 = new rojerusan.RSButtonMetro();
@@ -56,13 +56,13 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         labelHeader1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel10.setText("Apellido:");
+        jLabel10.setText("DNI:");
 
-        jtxtApellido.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jtxtApellido.setForeground(new java.awt.Color(153, 153, 153));
-        jtxtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtxtDNI.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jtxtDNI.setForeground(new java.awt.Color(153, 153, 153));
+        jtxtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtxtApellidoKeyPressed(evt);
+                jtxtDNIKeyPressed(evt);
             }
         });
 
@@ -73,14 +73,14 @@ public class BuscarSocioModal extends javax.swing.JDialog {
 
             },
             new String [] {
-                "IdSocio", "Apellido", "Nombre", "Estado"
+                "IdSocio", "Apellido", "Nombre", "DNI", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -121,7 +121,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rSButtonMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
@@ -138,7 +138,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(rSButtonMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,7 +148,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtxtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtApellidoKeyPressed
+    private void jtxtDNIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtDNIKeyPressed
        try {
 
             cargarDatos();
@@ -156,7 +156,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
         }
-    }//GEN-LAST:event_jtxtApellidoKeyPressed
+    }//GEN-LAST:event_jtxtDNIKeyPressed
 
     private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
         int row = jtablesociomodal.getSelectedRow();
@@ -224,7 +224,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JScrollPane jScrollPane5;
     private rojerusan.RSTableMetro jtablesociomodal;
-    private javax.swing.JTextField jtxtApellido;
+    private javax.swing.JTextField jtxtDNI;
     private org.edisoncor.gui.label.LabelHeader labelHeader1;
     private rojerusan.RSButtonMetro rSButtonMetro1;
     // End of variables declaration//GEN-END:variables
@@ -232,7 +232,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         private void cargarDatos() {
         
                // Datos
-            String dni = jtxtApellido.getText();
+            String dni = jtxtDNI.getText();
             
             // Proceso
             SocioController control = new SocioController();
@@ -252,6 +252,7 @@ public class BuscarSocioModal extends javax.swing.JDialog {
                 emp.getIdSocio(),
                 emp.getNombre(),
                 emp.getApellido(),
+                emp.getDNI(),
                 emp.getEstado()
             };
             tabla.addRow(rowData);

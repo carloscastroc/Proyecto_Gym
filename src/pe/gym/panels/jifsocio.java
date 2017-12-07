@@ -81,6 +81,7 @@ public class jifsocio extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtablesocio.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         jtablesocio.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
         jtablesocio.setColorBordeHead(new java.awt.Color(38, 86, 186));
         jtablesocio.setColorFilasBackgound2(new java.awt.Color(0, 0, 0));

@@ -78,6 +78,7 @@
                     <Column editable="false" title="Fecha de Inscripci&#xf3;n" type="java.lang.String"/>
                   </Table>
                 </Property>
+                <Property name="autoResizeMode" type="int" value="1"/>
                 <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ba" green="56" red="26" type="rgb"/>
                 </Property>

@@ -23,7 +23,55 @@ public class PagosService implements PagosServiceEspec {
 
     @Override
     public void crear(Pagos bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            
+            //Obtener id de Socio
+            String sql = "call GENERACODIGOPAGO()";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            String id = res.getString("cod");
+
+            // Registrar Socio
+            pstm = cn.prepareStatement("insert into pagos (IdPago, IdSocio, "
+                    + "Tipo_de_Pago, IGV, Subtotal, Total, NroCuotas, Estado) "
+                    + "values (?,?,?,?,?,?,?,?)");
+            pstm.setString(1, id);
+            pstm.setString(2, bean.getIdSocio());
+            pstm.setString(3, bean.getTipo_de_Pago());
+            pstm.setDouble(4, bean.getIGV());
+            pstm.setDouble(5, bean.getSubtotal());
+            pstm.setDouble(6, bean.getTotal());
+            pstm.setInt(7, bean.getNroCuotas());
+            pstm.setString(8, bean.getEstado());
+            pstm.executeUpdate();
+            pstm.close();
+            // Recuperar ID del socio
+            bean.setIdPago(id);
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear pago. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

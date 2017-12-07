@@ -33,9 +33,9 @@ public class DetPagosService implements DetPagosServiceEspec {
             
             // Registrar DetPagos
             PreparedStatement pstm;
-            pstm = cn.prepareStatement("insert into membresia(IdMembresia, IdSocio, "
-            + "IdEmpleado, IdPlan, IdPromociones, IdPago, F_Inicio, F_Fin, Estado)"
-            + " values (?,?,?,?,?,?,?,?,?) ");
+            pstm = cn.prepareStatement("insert into detpagos(IdPago, IdEmpleado, "
+            + "NroCuota, Importe, F_UPago, Estado)"
+            + " values (?,?,?,?,?,?) ");
             pstm.setString(1, bean.getIdPago());
             pstm.setString(2, bean.getIdEmpleado());
             pstm.setInt(3, bean.getNroCuota());
@@ -54,7 +54,7 @@ public class DetPagosService implements DetPagosServiceEspec {
                 String texto1= "Error en el Proceso ";
                  texto1 += e1.getMessage();
             }
-            String texto = "Error en el proceso crear Membresia. ";
+            String texto = "Error en el proceso crear DetPagos. ";
             texto += e.getMessage();
             throw new RuntimeException(texto);
         } finally {
@@ -109,6 +109,75 @@ public class DetPagosService implements DetPagosServiceEspec {
             }
         }
         return lista;
+    }
+
+    @Override
+    public void CambiaEstado(String idPago, int nro) {
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+
+            //Actualizar
+            PreparedStatement pstm = cn.prepareStatement("UPDATE detpagos set "
+                    + "Estado='Cancelado' WHERE IdPago=? and NroCuota=? ");
+            pstm.setString(1, idPago);
+            pstm.setInt(2, nro);
+
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    @Override
+    public DetPagos compruebaEstado(String id, int nro) {
+        DetPagos bean = null;
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "select IdPago, IdEmpleado, NroCuota, Importe, F_UPago, Estado "
+                    + "from detpagos where IdPago = ? and NroCuota= ?";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setString(1, id);
+            pstm.setInt(2, nro);
+            ResultSet rs = pstm.executeQuery();
+            DetPagosMapper mapper = new DetPagosMapper();
+            if (rs.next()) {
+                bean = mapper.mapRow(rs);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return bean;
     }
     
 }

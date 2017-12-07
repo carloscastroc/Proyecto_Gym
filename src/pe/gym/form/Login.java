@@ -238,7 +238,7 @@ public class Login extends javax.swing.JFrame {
                     MainAsistente.main(null);
                     break;
                 case "C0003":
-                    MainCajera.main(null);
+                    MainCajero.main(null);
                     break;
                 case "C0004":
                     MainNutricionista.main(null);

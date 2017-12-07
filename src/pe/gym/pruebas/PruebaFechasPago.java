@@ -21,14 +21,15 @@ public class PruebaFechasPago {
             
             
             String fecha = "2017-12-01";
-            int cuotas = 1;
+            int cuotas = 4;
 
             List lista = new ArrayList();
 
             lista = Herramientas.fechasdepago(fecha, cuotas);
 
             for (int i = 0; i < lista.size(); i++) {
-                System.out.println("Imprime: " + lista.get(i));
+                System.out.println(lista.get(i));
+                System.out.println("Cuota: "+(i+1));
 
             }
             

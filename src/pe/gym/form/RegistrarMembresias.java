@@ -46,6 +46,7 @@ public class RegistrarMembresias extends javax.swing.JDialog {
         btnModificar.setVisible(false);
         jLabel14.setVisible(false);
         cbocongelado.setVisible(false);
+        txtidsociomodal.setEditable(false);
 
         this.setLocationRelativeTo(null);
         CargaComponentes carga = new CargaComponentes();

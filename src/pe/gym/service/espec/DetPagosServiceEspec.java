@@ -17,4 +17,8 @@ public interface DetPagosServiceEspec extends CrudServiceSpec<DetPagos>{
     
     List<DetPagos> consultarDetPagos(String id);
     
+    void CambiaEstado(String idPago, int nro);
+   
+    DetPagos compruebaEstado(String id, int nro);
+    
 }

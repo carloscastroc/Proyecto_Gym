@@ -19,21 +19,19 @@ import pe.gym.service.mapper.MembresiaMapper;
  *
  * @author Alumno
  */
-public class MembresiaService implements MembresiaServiceEspec{
+public class MembresiaService implements MembresiaServiceEspec {
 
     @Override
     public void crear(Membresia bean) {
-         Connection cn = null;
+        Connection cn = null;
         try {
             // Obtener objeto Connection
             cn = conectaBD.obtener();
             // Inicio de Tx
             cn.setAutoCommit(false);
             //Comprobar que no haya una membresia activa con el socio
-            
-            
-            //Pendiente
 
+            //Pendiente
             //Obtener id de Socio
             String sql = "call GENERACODIGOMEMBRESIA()";
             PreparedStatement pstm = cn.prepareStatement(sql);
@@ -43,8 +41,8 @@ public class MembresiaService implements MembresiaServiceEspec{
 
             // Registrar Socio
             pstm = cn.prepareStatement("insert into membresia(IdMembresia, IdSocio, "
-            + "IdEmpleado, IdPlan, IdPromociones, IdPago, F_Inicio, F_Fin, Estado)"
-            + " values (?,?,?,?,?,?,?,?,?) ");
+                    + "IdEmpleado, IdPlan, IdPromociones, IdPago, F_Inicio, F_Fin, Estado)"
+                    + " values (?,?,?,?,?,?,?,?,?) ");
             pstm.setString(1, id);
             pstm.setString(2, bean.getIdSocio());
             pstm.setString(3, bean.getIdEmpleado());
@@ -65,8 +63,8 @@ public class MembresiaService implements MembresiaServiceEspec{
                 cn.rollback();
             } catch (Exception e1) {
                 e1.printStackTrace();
-                String texto1= "Error en el Proceso ";
-                 texto1 += e1.getMessage();
+                String texto1 = "Error en el Proceso ";
+                texto1 += e1.getMessage();
             }
             String texto = "Error en el proceso crear Membresia. ";
             texto += e.getMessage();
@@ -116,7 +114,36 @@ public class MembresiaService implements MembresiaServiceEspec{
 
     @Override
     public Membresia leerPorId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Membresia bean = null;
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "Select IdMembresia, IdEmpleado, IdSocio, DNI, Nombre, "
+                    + "Apellido, IdPlan, NombrePlan, IdPromociones, NombrePromocion, "
+                    + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where IdMembresia = ?";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+            MembresiaMapper mapper = new MembresiaMapper();
+            if (rs.next()) {
+                bean = mapper.mapRow(rs);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return bean;
     }
 
     @Override
@@ -168,10 +195,11 @@ public class MembresiaService implements MembresiaServiceEspec{
             String sql = "Select IdMembresia, IdEmpleado, IdSocio, DNI, Nombre, "
                     + "Apellido, IdPlan, NombrePlan, IdPromociones, NombrePromocion, "
                     + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where IdSocio=? "
-                    + "and Estado='Activo' ";
+                    + "and Estado='Activo' or IdSocio=? and Estado='Congelado' ";
             PreparedStatement pstm;
             pstm = cn.prepareStatement(sql);
             pstm.setString(1, idsocio);
+            pstm.setString(2, idsocio);
             ResultSet rs = pstm.executeQuery();
             MembresiaMapper mapper = new MembresiaMapper();
             while (rs.next()) {
@@ -205,21 +233,18 @@ public class MembresiaService implements MembresiaServiceEspec{
             cn = conectaBD.obtener();
             // Inicio de Tx
             cn.setAutoCommit(false);
-         
-           
+
             PreparedStatement pstm;
             // Registrar Congelamiento
             pstm = cn.prepareStatement("insert into congelamiento(IdMembresia, Fecha_FinC, "
-            + "Estado) values (?,?,?) ");
+                    + "Estado) values (?,?,?) ");
             pstm.setString(1, idmem);
             pstm.setString(2, ffinc);
             pstm.setString(3, estado);
-            
 
             pstm.executeUpdate();
             pstm.close();
 
-            
             // Confirmar Tx
             cn.commit();
         } catch (Exception e) {
@@ -227,8 +252,8 @@ public class MembresiaService implements MembresiaServiceEspec{
                 cn.rollback();
             } catch (Exception e1) {
                 e1.printStackTrace();
-                String texto1= "Error en el Proceso ";
-                 texto1 += e1.getMessage();
+                String texto1 = "Error en el Proceso ";
+                texto1 += e1.getMessage();
             }
             String texto = "Error en el proceso crear Congelamiento. ";
             texto += e.getMessage();
@@ -240,5 +265,107 @@ public class MembresiaService implements MembresiaServiceEspec{
             }
         }
     }
-    
+
+    @Override
+    public void insertaPago(String idp, String idpago) {
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+
+            //Actualizar
+            PreparedStatement pstm = cn.prepareStatement("UPDATE membresia set IdPago=? WHERE IdMembresia=?");
+            pstm.setString(1, idpago);
+            pstm.setString(2, idp);
+
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso inserta pago. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    @Override
+    public List<Membresia> compruebaestadopago(String idmem) {
+        List<Membresia> lista = new ArrayList<>();
+        Membresia bean = new Membresia();
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "Select IdMembresia, IdEmpleado, IdSocio, DNI, Nombre, "
+                    + "Apellido, IdPlan, NombrePlan, IdPromociones, NombrePromocion, "
+                    + "IdPago, F_Inicio, F_Fin, Estado from v_membresia where IdMembresia=?"
+                    + " and IdPago='No generado'";
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement(sql);
+            pstm.setString(1, idmem);
+            ResultSet rs = pstm.executeQuery();
+            MembresiaMapper mapper = new MembresiaMapper();
+            while (rs.next()) {
+                Membresia emp = mapper.mapRow(rs);
+                lista.add(emp);
+            }
+            rs.close();
+            pstm.close();
+            if (bean == null) {
+                throw new Exception("Id no existe.");
+            }
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+//            e.printStackTrace();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return lista;
+    }
+
+    @Override
+    public int congelamiento(String id) {
+        int cont = 0;
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "Select IdMembresia, Fecha_FinC, Estado from congelamiento where IdMembresia=?";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                cont++;
+            }
+
+            rs.close();
+            pstm.close();
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return cont;
+    }
+
 }
