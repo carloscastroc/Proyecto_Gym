@@ -176,7 +176,7 @@ public class BuscarInfNutricional extends javax.swing.JDialog {
 
         String codigo = this.jtableinfnutmodal.getValueAt(row, 0).toString();
         
-       
+       RegistrarPlanEntrenamiento.txtidinfnutricional.setText(codigo);
  
         this.dispose();
 

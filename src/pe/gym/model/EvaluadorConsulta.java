@@ -17,7 +17,7 @@ public class EvaluadorConsulta {
     private String DNI;
     private String Nombre;
     private String Apellido;
-    
+    private String IdEmpleado;
     
     public EvaluadorConsulta(){
     }
@@ -68,6 +68,14 @@ public class EvaluadorConsulta {
 
     public void setApellido(String Apellido) {
         this.Apellido = Apellido;
+    }
+
+    public String getIdEmpleado() {
+        return IdEmpleado;
+    }
+
+    public void setIdEmpleado(String IdEmpleado) {
+        this.IdEmpleado = IdEmpleado;
     }
 
     

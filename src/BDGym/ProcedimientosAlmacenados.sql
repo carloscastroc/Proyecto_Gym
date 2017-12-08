@@ -79,3 +79,13 @@ set cod=CONCAT('IN',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));
 select cod;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOPLANENTRENAMIENTO`()
+begin
+declare cod char(8);
+set cod=(select  max(IdPlanEntrenamiento) from planentrenamiento);
+set cod=CONCAT('PE',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));
+select cod;
+END$$
+DELIMITER ;

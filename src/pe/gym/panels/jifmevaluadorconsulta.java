@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.EvaluadorConsultaController;
 import pe.gym.form.DetalleEvaluadorModal;
+import pe.gym.form.RegistrarPlanEntrenamiento;
 import pe.gym.model.EvaluadorConsulta;
 import pe.gym.util.Render;
 
@@ -30,8 +31,8 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
      */
     public jifmevaluadorconsulta() {
         initComponents();
-        btnNuevo.setVisible(false);
-        btnModificar.setVisible(false);
+        
+        
 //        CargaComponentes carga = new CargaComponentes();
         ver_tabla(tabla);
 
@@ -58,7 +59,6 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
         btnConsultar = new org.edisoncor.gui.button.ButtonAction();
         rSPanelImage1 = new rojerusan.RSPanelImage();
         btnNuevo = new rojeru_san.RSButtonRiple();
-        btnModificar = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -186,16 +186,6 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
         });
         jPanel4.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
-        btnModificar.setBackground(new java.awt.Color(38, 86, 186));
-        btnModificar.setText("MODIFICAR");
-        btnModificar.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,12 +221,8 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-
+         new RegistrarPlanEntrenamiento(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-
-    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
         int column = tabla.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -265,7 +251,6 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultar;
-    private rojeru_san.RSButtonRiple btnModificar;
     private rojeru_san.RSButtonRiple btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;

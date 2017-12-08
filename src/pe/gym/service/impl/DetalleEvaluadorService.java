@@ -60,7 +60,45 @@ private final String SQL_SELECT = "select IdPlanEntrenamiento,Ejercicio,N_Maquin
 
     @Override
     public void crear(DetalleEvaluador bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            
+            // Registrar DetPagos
+            PreparedStatement pstm;
+            pstm = cn.prepareStatement("insert into detplanentrenamiento "
+                    + "(IdPlanEntrenamiento, IdPlanE, N_Maquina, Serie, "
+                    + "Repeticiones) values (?,?,?,?,?)");
+            pstm.setString(1, bean.getIdPlanEntrenamiento());
+            pstm.setString(2, bean.getIdPlanE());
+            pstm.setInt(3, bean.getN_Maquina());
+            pstm.setInt(4, bean.getSerie());
+            pstm.setInt(5, bean.getRepeticiones());
+
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear Detalle Plan de entrenamiento. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

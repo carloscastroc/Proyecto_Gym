@@ -62,7 +62,50 @@ public class EvaluadorConsultaService implements EvaluadorConsultaEspec{
 
     @Override
     public void crear(EvaluadorConsulta bean) {
-        
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            
+            //Obtener id de Socio
+            String sql = "call GENERACODIGOPLANENTRENAMIENTO()";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            String id = res.getString("cod");
+
+            // Registrar Socio
+            pstm = cn.prepareStatement("insert into planentrenamiento "
+                    + "(IdPlanEntrenamiento, IdEmpleado, IdInfNutricional) "
+                    + "values (?,?,?)");
+            pstm.setString(1, id);
+            pstm.setString(2, bean.getIdEmpleado());
+            pstm.setString(3, bean.getIdInfNutricional());
+            pstm.executeUpdate();
+            pstm.close();
+            // Recuperar ID del socio
+            bean.setIdPlanEntrenamiento(id);
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear Plan de entrenamiento. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

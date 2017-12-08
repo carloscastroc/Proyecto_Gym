@@ -75,6 +75,12 @@ public class PruebaCombos1 extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxEjercicio1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxEjercicio1ItemStateChanged(evt);
+            }
+        });
+
         btntipo.setText("Tipo");
         btntipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +196,10 @@ public class PruebaCombos1 extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jComboBoxTipoEjercicio1ItemStateChanged
+
+    private void jComboBoxEjercicio1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxEjercicio1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEjercicio1ItemStateChanged
 
     /**
      * @param args the command line arguments

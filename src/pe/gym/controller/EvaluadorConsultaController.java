@@ -25,4 +25,8 @@ public class EvaluadorConsultaController {
         return lista;
     }
 
+    public void crear(EvaluadorConsulta bean){
+        service.crear(bean);
+    }
+    
 }

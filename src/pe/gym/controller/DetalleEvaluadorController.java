@@ -27,5 +27,9 @@ public class DetalleEvaluadorController {
         lista = service.Detalle(idmem);
         return lista;
     }
+    
+    public void crear(DetalleEvaluador bean){
+        service.crear(bean);
+    }
 
 }

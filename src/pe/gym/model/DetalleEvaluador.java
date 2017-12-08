@@ -12,6 +12,7 @@ package pe.gym.model;
 public class DetalleEvaluador {
 
     private String IdPlanEntrenamiento;
+    private String IdPlanE;
     private String Ejercicio;
     private Integer N_Maquina;
     private Integer Serie;
@@ -28,6 +29,16 @@ public class DetalleEvaluador {
         this.IdPlanEntrenamiento = IdPlanEntrenamiento;
     }
 
+    public String getIdPlanE() {
+        return IdPlanE;
+    }
+
+    public void setIdPlanE(String IdPlanE) {
+        this.IdPlanE = IdPlanE;
+    }
+
+    
+    
     public String getEjercicio() {
         return Ejercicio;
     }

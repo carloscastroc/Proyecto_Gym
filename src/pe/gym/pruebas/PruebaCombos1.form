@@ -114,6 +114,9 @@
       </Events>
     </Component>
     <Component class="pe.gym.combos.JComboBoxEjercicio" name="jComboBoxEjercicio1">
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxEjercicio1ItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btntipo">
       <Properties>
