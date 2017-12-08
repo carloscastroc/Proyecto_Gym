@@ -89,3 +89,13 @@ set cod=CONCAT('PE',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));
 select cod;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOEJERCICIO`()
+begin
+declare cod char(5);
+set cod=(select  max(IdPlanE) from ejercicio);
+set cod=CONCAT('EJ',RIGHT(Concat('000',right(IFNULL(cod,'000'),3)+1 ),3));
+select cod;
+END$$
+DELIMITER ;

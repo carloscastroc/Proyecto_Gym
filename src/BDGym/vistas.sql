@@ -52,4 +52,5 @@ inner join infnutricional i on s.IdSocio=i.IdSocio
 inner join detnutricional di on di.IdInfNutricional=i.IdInfNutricional;
 
 
-
+create view V_EJERCICIOS(IdPlanE, TipoEjercicio, Ejercicio) as
+SELECT e.IdPlanE, t.TipoEjercicio,  e.Ejercicio FROM ejercicio e inner join tipoejercicio t on t.IdTipo=e.IdTipo;

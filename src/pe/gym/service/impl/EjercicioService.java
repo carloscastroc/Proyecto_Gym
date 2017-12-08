@@ -58,7 +58,50 @@ public class EjercicioService implements EjercicioEspec{
 
     @Override
     public void crear(Ejercicio bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+            
+            //Obtener id de Socio
+            String sql = "call GENERACODIGOEJERCICIO()";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            String id = res.getString("cod");
+
+            // Registrar Socio
+            pstm = cn.prepareStatement("insert into ejercicio (IdPlanE, IdTipo, "
+                    + "Ejercicio) "
+                    + "values (?,?,?)");
+            pstm.setString(1, id);
+            pstm.setString(2, bean.getIdTipo());
+            pstm.setString(3, bean.getEjercicio());
+            pstm.executeUpdate();
+            pstm.close();
+            // Recuperar ID del socio
+            bean.setIdPlanE(id);
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                String texto1= "Error en el Proceso ";
+                 texto1 += e1.getMessage();
+            }
+            String texto = "Error en el proceso crear ejercicio. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override
@@ -104,6 +147,38 @@ public class EjercicioService implements EjercicioEspec{
             }
         }
         return lista;
+    }
+
+    @Override
+    public void eliminar(String id) {
+        Connection cn = null;
+        try {
+            // Obtener objeto Connection
+            cn = conectaBD.obtener();
+            // Inicio de Tx
+            cn.setAutoCommit(false);
+
+            //Actualizar
+            PreparedStatement pstm = cn.prepareStatement("delete from ejercicio where IdPlanE=?");
+            pstm.setString(1, id);
+            pstm.executeUpdate();
+            pstm.close();
+            // Confirmar Tx
+            cn.commit();
+        } catch (Exception e) {
+            try {
+                cn.rollback();
+            } catch (Exception e1) {
+            }
+            String texto = "Error en el proceso eliminar ejercicio ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
     }
     
 }

@@ -6,14 +6,14 @@
 package pe.gym.service.espec;
 
 import java.util.List;
-import pe.gym.model.Ejercicio;
+import pe.gym.model.EjercicioConsulta;
 
 /**
  *
- * @author JORGE LUIS
+ * @author Carlos
  */
-public interface EjercicioEspec extends CrudServiceSpec<Ejercicio>{
-    List<Ejercicio> consultar();
-    List<Ejercicio> consultarxtipo(String tipo);
-    void eliminar(String id);
+public interface EjercicioConsultaServiceEspec extends CrudServiceSpec<EjercicioConsulta>{
+    
+    List<EjercicioConsulta> consultaE(String nom);   
+    
 }

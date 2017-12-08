@@ -43,7 +43,6 @@ public class MainCajero extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnPagos = new principal.MaterialButtomRectangle();
-        btnGastos = new principal.MaterialButtomRectangle();
         btnGenPagos = new principal.MaterialButtomRectangle();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -99,17 +98,6 @@ public class MainCajero extends javax.swing.JFrame {
             }
         });
 
-        btnGastos.setBackground(new java.awt.Color(227, 125, 41));
-        btnGastos.setForeground(new java.awt.Color(255, 255, 255));
-        btnGastos.setText("dd");
-        btnGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGastos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        btnGastos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGastosActionPerformed(evt);
-            }
-        });
-
         btnGenPagos.setBackground(new java.awt.Color(227, 125, 41));
         btnGenPagos.setForeground(new java.awt.Color(255, 255, 255));
         btnGenPagos.setText("GENERAR PAGO");
@@ -154,7 +142,6 @@ public class MainCajero extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                     .addComponent(btnPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGenPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -171,9 +158,7 @@ public class MainCajero extends javax.swing.JFrame {
                 .addComponent(btnGenPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -225,10 +210,6 @@ public class MainCajero extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGastosActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
         int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
@@ -290,7 +271,6 @@ public class MainCajero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButtomRectangle btnGastos;
     private principal.MaterialButtomRectangle btnGenPagos;
     private principal.MaterialButtomRectangle btnPagos;
     private principal.MaterialButtomRectangle cerrarSesion;

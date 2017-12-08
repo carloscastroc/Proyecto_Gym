@@ -8,7 +8,10 @@ package pe.gym.controller;
 import java.util.ArrayList;
 import java.util.List;
 import pe.gym.model.Ejercicio;
+import pe.gym.model.EjercicioConsulta;
+import pe.gym.service.espec.EjercicioConsultaServiceEspec;
 import pe.gym.service.espec.EjercicioEspec;
+import pe.gym.service.impl.EjercicioConsultaService;
 import pe.gym.service.impl.EjercicioService;
 
 /**
@@ -17,5 +20,20 @@ import pe.gym.service.impl.EjercicioService;
  */
 public class EjercicioController {
     EjercicioEspec service = new EjercicioService();
-    List<Ejercicio> lista = new ArrayList<>();
+    List<EjercicioConsulta> lista = new ArrayList<>();
+    EjercicioConsultaServiceEspec servicec= new EjercicioConsultaService();
+    
+    public List<EjercicioConsulta> consultar(String nom){
+        lista=servicec.consultaE(nom);
+        return lista;
+    }
+    
+    public void crear (Ejercicio bean){
+        service.crear(bean);
+    }
+    
+    public void eliminar(String id){
+        service.eliminar(id);
+    }
+  
 }

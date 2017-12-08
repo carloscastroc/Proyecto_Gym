@@ -225,7 +225,7 @@ public class MainEvaluador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
-        
+        new CambiaPanel(escritorio, new jifejercicios());
     }//GEN-LAST:event_btnPlanesActionPerformed
 
     /**
