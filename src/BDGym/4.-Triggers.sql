@@ -16,3 +16,11 @@ IF (NEW.NroCuota=(SELECT NroCuotas from pagos where IdPago=NEW.IdPago)) THEN
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` TRIGGER cambiaEstadoMembresia 
+AFTER UPDATE ON congelamiento 
+FOR EACH ROW 
+BEGIN 
+	UPDATE membresia set estado="Activo" where IdMembresia=NEW.IdMembresia; 
+END$$
+DELIMITER ;

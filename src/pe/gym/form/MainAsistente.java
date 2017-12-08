@@ -162,6 +162,11 @@ public class MainAsistente extends javax.swing.JFrame {
         btnAsignar.setText("ASIGNAR");
         btnAsignar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAsignar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -275,6 +280,10 @@ public class MainAsistente extends javax.swing.JFrame {
     private void btnMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMembresiaActionPerformed
         new CambiaPanel(escritorio, new jifmembresia());
     }//GEN-LAST:event_btnMembresiaActionPerformed
+
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        new CambiaPanel(escritorio, new jifmembresiacarnet());
+    }//GEN-LAST:event_btnAsignarActionPerformed
 
     /**
      * @param args the command line arguments

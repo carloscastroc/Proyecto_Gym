@@ -2,8 +2,6 @@
 
 Eventos:
 -Pendiente evento que elimine las membresias no pagadas la inicio
--Pendiente el evento que cambie la fecha de congelamiento por medio de una comparativa
--Pendiente crear un evento que cambie el estado de pagos a cancelado cuando todos los detpagos de este esten cancelados
 -Pendiente crear un evento que cambie el estado del socio a moroso, si este no ha cumplido con alguna cuota de sus pagos.
 -Otros
 ----

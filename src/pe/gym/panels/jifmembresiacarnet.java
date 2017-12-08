@@ -17,24 +17,24 @@ import pe.gym.controller.MembreController;
 
 import pe.gym.form.RegistrarMembresias;
 import pe.gym.model.Membresia;
+import pe.gym.util.CreaCarnet;
 
 /**
  *
  * @author Carlos
  */
-public class jifmembresia extends javax.swing.JInternalFrame {
+public class jifmembresiacarnet extends javax.swing.JInternalFrame {
 
     private List<Membresia> lista = new ArrayList<>();
 
     /**
      * Creates new form jifmembresia
      */
-
-    public jifmembresia() {
+    public jifmembresiacarnet() {
         initComponents();
         jPanel4.setSize(this.getWidth(), this.getHeight());
         cargarDatosM();
-        
+
     }
 
     /**
@@ -52,9 +52,8 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtdni = new app.bolivia.swing.JCTextField();
         btnConsultarMembresia = new org.edisoncor.gui.button.ButtonAction();
-        btnModificarMembresia = new rojeru_san.RSButtonRiple();
+        btnAsignaCarnet = new rojeru_san.RSButtonRiple();
         rSPanelImage1 = new rojerusan.RSPanelImage();
-        btnRegistrarMembresia = new rojeru_san.RSButtonRiple();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtmembresia = new rojerusan.RSTableMetro();
 
@@ -125,15 +124,15 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         });
         jPanel4.add(btnConsultarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 72, 250, 82));
 
-        btnModificarMembresia.setBackground(new java.awt.Color(38, 86, 186));
-        btnModificarMembresia.setText("MODIFICAR");
-        btnModificarMembresia.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnModificarMembresia.addActionListener(new java.awt.event.ActionListener() {
+        btnAsignaCarnet.setBackground(new java.awt.Color(38, 86, 186));
+        btnAsignaCarnet.setText("ASIGNAR CARNET");
+        btnAsignaCarnet.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnAsignaCarnet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarMembresiaActionPerformed(evt);
+                btnAsignaCarnetActionPerformed(evt);
             }
         });
-        jPanel4.add(btnModificarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 72, 177, 82));
+        jPanel4.add(btnAsignaCarnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 220, 82));
 
         javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
         rSPanelImage1.setLayout(rSPanelImage1Layout);
@@ -147,16 +146,6 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         );
 
         jPanel4.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 0, -1, -1));
-
-        btnRegistrarMembresia.setBackground(new java.awt.Color(38, 86, 186));
-        btnRegistrarMembresia.setText("NUEVO");
-        btnRegistrarMembresia.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
-        btnRegistrarMembresia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarMembresiaActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnRegistrarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -214,10 +203,6 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMembresiaActionPerformed
-        new RegistrarMembresias(new JFrame(), true).setVisible(true);
-    }//GEN-LAST:event_btnRegistrarMembresiaActionPerformed
-
     private void btnConsultarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMembresiaActionPerformed
         try {
 
@@ -228,28 +213,8 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnConsultarMembresiaActionPerformed
 
-    private void btnModificarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMembresiaActionPerformed
-
-        int row = jtmembresia.getSelectedRow();
-
-        if (row == -1) {
-            return;
-        }
-
-        RegistrarMembresias view;
-        view = new RegistrarMembresias(new JFrame(), true);
-        try {
-            view.setRowData(lista.get(row));
-        } catch (ParseException ex) {
-            Logger.getLogger(jifmembresia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        view.setVisible(true);
-
-
-    }//GEN-LAST:event_btnModificarMembresiaActionPerformed
-
     private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
-        
+
     }//GEN-LAST:event_txtdniActionPerformed
 
     private void txtdniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyPressed
@@ -262,11 +227,42 @@ public class jifmembresia extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtdniKeyPressed
 
+    private void btnAsignaCarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignaCarnetActionPerformed
+
+        try {
+
+            int row = jtmembresia.getSelectedRow();
+
+            if (row == -1) {
+                return;
+            }
+
+            Membresia bean = new Membresia();
+            bean.setApellido(jtmembresia.getValueAt(row, 2).toString());
+            bean.setNombre(jtmembresia.getValueAt(row, 3).toString());
+            bean.setDNI(jtmembresia.getValueAt(row, 4).toString());
+            bean.setNombrePlan(jtmembresia.getValueAt(row, 5).toString());
+            bean.setF_Inicio(jtmembresia.getValueAt(row, 8).toString());
+            bean.setF_Fin(jtmembresia.getValueAt(row, 9).toString());
+            bean.setIdPago(jtmembresia.getValueAt(row, 7).toString());
+
+            if ("No generado".equals(bean.getIdPago())) {
+                JOptionPane.showMessageDialog(null, "Debe generar su pago primero");
+                return;
+            }
+
+            CreaCarnet make = new CreaCarnet();
+            make.CrearCarnet(bean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnAsignaCarnetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.RSButtonRiple btnAsignaCarnet;
     private org.edisoncor.gui.button.ButtonAction btnConsultarMembresia;
-    private rojeru_san.RSButtonRiple btnModificarMembresia;
-    private rojeru_san.RSButtonRiple btnRegistrarMembresia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -281,7 +277,6 @@ public class jifmembresia extends javax.swing.JInternalFrame {
 
         // Datos
         String dni = txtdni.getText();
-        
 
         // Proceso
         MembreController control = new MembreController();
@@ -310,7 +305,7 @@ public class jifmembresia extends javax.swing.JInternalFrame {
                 men.getEstado()
             };
             tabla.addRow(rowData);
-            
+
         }
 
     }
