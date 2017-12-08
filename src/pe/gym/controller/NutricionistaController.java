@@ -19,9 +19,15 @@ public class NutricionistaController {
     
     NutricionistaServiceEspec service = new NutricionistaService();
     List<Nutricionista> lista = new ArrayList<>();
+//    Nutricionista bean = new Nutricionista();
     
     public List<Nutricionista> consultarxDNI(String DNI){
         lista = service.consultar(DNI);
         return lista;
     }
+    
+    public void crear(Nutricionista bean){
+        service.crear(bean);
+    }
+    
 }

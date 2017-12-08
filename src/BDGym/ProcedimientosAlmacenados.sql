@@ -69,3 +69,13 @@ set cod=CONCAT('P',RIGHT(Concat('0000',right(IFNULL(cod,'0000'),4)+1 ),4));
 select cod;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERACODIGOINFNUTRICIONAL`()
+begin
+declare cod char(8);
+set cod=(select  max(IdInfNutricional) from infnutricional);
+set cod=CONCAT('IN',RIGHT(Concat('000000',right(IFNULL(cod,'000000'),6)+1 ),6));
+select cod;
+END$$
+DELIMITER ;

@@ -66,14 +66,14 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "IdInfNutricional", "IdSocio", "IdMembresia", "Nombre", "DNI", "Fecha", "Detalles"
+                "IdInfNutricional", "IdSocio", "Nombre", "DNI", "Fecha", "Detalles"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -183,6 +183,11 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
         btnRegistrarPlan2.setBackground(new java.awt.Color(38, 86, 186));
         btnRegistrarPlan2.setText("NUEVO");
         btnRegistrarPlan2.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnRegistrarPlan2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPlan2ActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnRegistrarPlan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 72, 179, 82));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,12 +250,14 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_jtableinfnuMouseClicked
 
+    private void btnRegistrarPlan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPlan2ActionPerformed
+       new DetalleNutricional(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_btnRegistrarPlan2ActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultarSocio;
-    private rojeru_san.RSButtonRiple btnRegistrarPlan;
-    private rojeru_san.RSButtonRiple btnRegistrarPlan1;
     private rojeru_san.RSButtonRiple btnRegistrarPlan2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
@@ -292,7 +299,6 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
             Object[] rowData = {
                 men.getIdInfNutricional(),
                 men.getIdSocio(),
-                men.getIdMembresia(),
                 men.getNombre(),
                 men.getDNI(),
                 men.getFecha(),

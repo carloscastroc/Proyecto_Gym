@@ -15,8 +15,8 @@ public class NutricionistaMapper implements RowMapper<Nutricionista>{
     public Nutricionista mapRow(ResultSet rs) throws SQLException {
         Nutricionista bean = new Nutricionista();
         bean.setIdInfNutricional(rs.getString("IdInfNutricional"));
+        bean.setIdEmpleado(rs.getString("IdEmpleado"));
         bean.setIdSocio(rs.getString("IdSocio"));
-        bean.setIdMembresia(rs.getString("IdMembresia"));
         bean.setNombre(rs.getString("Nombre"));
         bean.setDNI(rs.getString("DNI"));
         bean.setFecha(rs.getString("Fecha"));

@@ -11,8 +11,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.SocioController;
+import pe.gym.model.Empleado;
 
 import pe.gym.model.Socio;
+import pe.gym.util.Session;
 
 /**
  *
@@ -168,7 +170,16 @@ public class BuscarSocioModal extends javax.swing.JDialog {
         
         String codigo=this.jtablesociomodal.getValueAt(row, 0).toString();
         
-        RegistrarMembresias.txtidsociomodal.setText(codigo);
+        Empleado bean = (Empleado) Session.get("empleado");
+        
+        if ("C0002".equals(bean.getIdCargo())) {
+             RegistrarMembresias.txtidsociomodal.setText(codigo);
+        }
+        else if ("C0004".equals(bean.getIdCargo())) {
+            DetalleNutricional.txtidinf.setText(codigo);
+        }
+        
+
         
         this.dispose();
         

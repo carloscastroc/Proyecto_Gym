@@ -26,5 +26,8 @@ public class DetalleNutricionistaController {
         return bean;
     }
     
-    
+    public void crear(DetalleNutricionista bean){
+        service.crear(bean);
+    }
+        
 }

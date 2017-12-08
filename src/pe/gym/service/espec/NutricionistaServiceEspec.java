@@ -12,7 +12,7 @@ import pe.gym.model.Nutricionista;
  *
  * @author Brayian
  */
-public interface NutricionistaServiceEspec {
+public interface NutricionistaServiceEspec extends CrudServiceSpec<Nutricionista>{
     
     List<Nutricionista> consultar(String DNI);
        

@@ -46,9 +46,9 @@ from membresia m INNER join pagos p on m.IdPago=p.IdPago inner join
 socio s on p.IdSocio=s.IdSocio;
 
 
-create view V_NUTRICION (IdInfNutricional, IdSocio, IdMembresia, Nombre, DNI, Fecha) as
-select i.IdInfNutricional,s.IdSocio,m.IdMembresia,s.Nombre,s.DNI,di.Fecha from socio s 
-inner join infnutricional i on s.IdSocio=i.IdSocio inner join membresia m on s.IdSocio=m.IdSocio 
+create view V_NUTRICION (IdInfNutricional, IdEmpleado, IdSocio, Nombre, DNI, Fecha) as
+select i.IdInfNutricional,i.IdEmpleado,s.IdSocio,s.Nombre,s.DNI,di.Fecha from socio s 
+inner join infnutricional i on s.IdSocio=i.IdSocio 
 inner join detnutricional di on di.IdInfNutricional=i.IdInfNutricional;
 
 
