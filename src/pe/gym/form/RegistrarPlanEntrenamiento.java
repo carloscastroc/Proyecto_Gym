@@ -409,7 +409,7 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error."+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error, Ya existe un plan relacionado a la ficha de informacion nutricional ingresada");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

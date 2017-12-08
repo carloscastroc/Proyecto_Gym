@@ -197,7 +197,7 @@ public class DetalleNutricional extends javax.swing.JDialog {
         txtpantorrilla.setForeground(new java.awt.Color(153, 153, 153));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setText("Ficha de Informacion Nutricional:");
+        jLabel14.setText("IdSocio:");
 
         txtpeso.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         txtpeso.setForeground(new java.awt.Color(153, 153, 153));

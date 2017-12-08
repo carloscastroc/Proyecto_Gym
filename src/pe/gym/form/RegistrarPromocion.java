@@ -239,7 +239,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
             Promociones bean = new Promociones();
             bean.setIdEmpleado(jlblnomemp.getText());
             bean.setNombrePromocion(txtnombre.getText());
-            double desc=Double.parseDouble(txtdesc.getText())/100;
+            double desc=Double.parseDouble(txtdescuento.getText())/100;
             bean.setDescuento(desc);
             bean.setDescripcion(txtdesc.getText());
             
@@ -266,7 +266,7 @@ public class RegistrarPromocion extends javax.swing.JDialog {
             bean.setIdPromociones(jLabel2.getText());
             bean.setIdEmpleado(jlblnomemp.getText());
             bean.setNombrePromocion(txtnombre.getText());
-            double desc=Double.parseDouble(txtdesc.getText())/100;
+            double desc=Double.parseDouble(txtdescuento.getText())/100;
             bean.setDescuento(desc);
             bean.setDescripcion(txtdesc.getText());
             

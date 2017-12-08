@@ -234,6 +234,7 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
             int row = jtmembresia.getSelectedRow();
 
             if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione el socio a asignar el carnet");
                 return;
             }
 

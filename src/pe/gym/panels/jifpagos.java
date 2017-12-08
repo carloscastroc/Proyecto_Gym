@@ -214,7 +214,7 @@ public class jifpagos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtpagosMouseClicked
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-
+        cargaDatosP();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
 
