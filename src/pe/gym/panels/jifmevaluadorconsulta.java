@@ -125,6 +125,11 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
         jLabel1.setText("DNI :");
 
         txtdni.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtdni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtdniKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelImage7Layout = new javax.swing.GroupLayout(panelImage7);
         panelImage7.setLayout(panelImage7Layout);
@@ -247,6 +252,16 @@ public class jifmevaluadorconsulta extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void txtdniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyPressed
+                try {
+
+                    ver_tabla(tabla);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+        }
+    }//GEN-LAST:event_txtdniKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

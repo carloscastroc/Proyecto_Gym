@@ -113,6 +113,11 @@ public class jifplanes extends javax.swing.JInternalFrame {
         jLabel1.setText("NOMBRE:");
 
         txtNombre.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelImage7Layout = new javax.swing.GroupLayout(panelImage7);
         panelImage7.setLayout(panelImage7Layout);
@@ -228,6 +233,16 @@ public class jifplanes extends javax.swing.JInternalFrame {
         view.setRowData(lista.get(row));
         view.setVisible(true);
     }//GEN-LAST:event_btnModificarPlanActionPerformed
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        try {
+
+            cargarDatos();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error. " + e.getMessage());
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

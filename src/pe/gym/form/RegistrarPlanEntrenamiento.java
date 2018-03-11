@@ -137,6 +137,11 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
         });
 
         txtmaquina.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtmaquina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtmaquinaMouseClicked(evt);
+            }
+        });
 
         txtserie.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -221,7 +226,6 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(23, 23, 23)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtserie)
                                     .addComponent(txtrepeticiones)))
@@ -390,9 +394,14 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
 
             eva.setIdEmpleado(jlblnomemp.getText());
             eva.setIdInfNutricional(txtidinfnutricional.getText());
-            
+
+            if (tabla.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar almenos un ejercicio.");
+                return;
+            }
+
             controleva.crear(eva);
-            
+
             int row = tabla.getRowCount();
 
             for (int i = 0; i < row; i++) {
@@ -404,8 +413,8 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
                 bean.setRepeticiones(Integer.parseInt(jtejercicio.getValueAt(i, 4).toString()));
                 controldet.crear(bean);
             }
-            
-            JOptionPane.showMessageDialog(null, "Plan creado correctamente, su id es: "+eva.getIdPlanEntrenamiento());
+
+            JOptionPane.showMessageDialog(null, "Plan creado correctamente, su id es: " + eva.getIdPlanEntrenamiento());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -426,6 +435,10 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
         txtserie.setText("");
         tabla.setRowCount(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtmaquinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtmaquinaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtmaquinaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -488,8 +501,6 @@ public class RegistrarPlanEntrenamiento extends javax.swing.JDialog {
     private javax.swing.JLabel jlblnomemp;
     private rojerusan.RSTableMetro jtejercicio;
     private org.edisoncor.gui.label.LabelHeader labelHeader1;
-    private rojerusan.RSButtonMetro rSButtonMetro1;
-    private rojerusan.RSButtonMetro rSButtonMetro2;
     public static javax.swing.JTextField txtidinfnutricional;
     private javax.swing.JTextField txtmaquina;
     private javax.swing.JTextField txtrepeticiones;

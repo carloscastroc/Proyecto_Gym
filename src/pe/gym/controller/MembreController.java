@@ -20,6 +20,7 @@ public class MembreController {
     MembresiaServiceEspec service= new  MembresiaService();
     List<Membresia> lista = new ArrayList<>();
     Membresia bean=new Membresia();
+    String estado;
     
     public List<Membresia> consultaxdni(String dni){
         lista=service.consultaMembresia(dni);
@@ -63,6 +64,11 @@ public class MembreController {
     
     public void insertaPago(String idm, String idpago){
         service.insertaPago(idm, idpago);
+    }
+    
+    public String estadoultimamem(String id){
+        estado=service.estadoultMembre(id);
+        return estado;
     }
     
 }

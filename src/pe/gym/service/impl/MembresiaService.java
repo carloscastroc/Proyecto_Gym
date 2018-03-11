@@ -368,4 +368,33 @@ public class MembresiaService implements MembresiaServiceEspec {
         return cont;
     }
 
+    @Override
+    public String estadoultMembre(String id) {
+        String estado="";
+        Connection cn = null;
+        try {
+            cn = conectaBD.obtener();
+            String sql = "SELECT max(IdMembresia), Estado FROM membresia where IdSocio=? ";
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                estado=rs.getString("Estado");
+            }
+
+            rs.close();
+            pstm.close();
+        } catch (Exception e) {
+            String texto = "Error en el proceso. ";
+            texto += e.getMessage();
+            throw new RuntimeException(texto);
+        } finally {
+            try {
+                cn.close();
+            } catch (Exception e) {
+            }
+        }
+        return estado;
+    }
+
 }

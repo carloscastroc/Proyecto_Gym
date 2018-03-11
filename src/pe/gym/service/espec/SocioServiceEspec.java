@@ -17,5 +17,6 @@ public interface SocioServiceEspec extends CrudServiceSpec<Socio>{
     
     List<Socio> consultar(String DNI);
     List<Socio> consultarxape(String ape);
+    Socio consultaxid(String id);
     
 }

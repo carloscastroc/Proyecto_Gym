@@ -44,4 +44,9 @@ public class SocioController {
         service.consultarxape(ape);
         return lista;
     }
+    
+    public Socio consultaxid (String id){
+        Socio bean=service.consultaxid(id);
+        return bean;
+    }
 }

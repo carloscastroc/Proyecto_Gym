@@ -28,10 +28,8 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
 
     public jifinfnutricional() {
         initComponents();
-        
+
         cargaDatosI();
-
-
 
     }
 
@@ -207,16 +205,15 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSocioActionPerformed
-        try{
-            
-                    
+        try {
+
             cargaDatosI();
-            
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error" +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
         }
-       
+
     }//GEN-LAST:event_btnConsultarSocioActionPerformed
 
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
@@ -224,37 +221,43 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDniActionPerformed
 
     private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
-     
+        try {
+
+            cargaDatosI();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+        }
     }//GEN-LAST:event_txtDniKeyPressed
 
     private void jtableinfnuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableinfnuMouseClicked
         int column = jtableinfnu.getColumnModel().getColumnIndexAtX(evt.getX());
-            int row = evt.getY() / jtableinfnu.getRowHeight();
-            if (row < jtableinfnu.getRowCount() && row >= 0 && column < jtableinfnu.getColumnCount() && column >=0){
-               Object value = jtableinfnu.getValueAt(row, column);
-               if (value instanceof JButton){
-                   ((JButton) value).doClick();
-                   JButton boton = (JButton) value;
-                   
-                   int rows = jtableinfnu.getSelectedRow();
-                   if(rows == -1){
-                       return;
-                   }
-                   
+        int row = evt.getY() / jtableinfnu.getRowHeight();
+        if (row < jtableinfnu.getRowCount() && row >= 0 && column < jtableinfnu.getColumnCount() && column >= 0) {
+            Object value = jtableinfnu.getValueAt(row, column);
+            if (value instanceof JButton) {
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+
+                int rows = jtableinfnu.getSelectedRow();
+                if (rows == -1) {
+                    return;
+                }
+
                 DetalleNutricional view;
                 view = new DetalleNutricional(new JFrame(), true);
                 view.setRowData(lista.get(row));
                 view.setLocationRelativeTo(null);
                 view.setVisible(true);
-               }
             }
+        }
     }//GEN-LAST:event_jtableinfnuMouseClicked
 
     private void btnRegistrarPlan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPlan2ActionPerformed
-       new DetalleNutricional(new JFrame(), true).setVisible(true);
+        new DetalleNutricional(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnRegistrarPlan2ActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnConsultarSocio;
@@ -269,8 +272,8 @@ public class jifinfnutricional extends javax.swing.JInternalFrame {
     private app.bolivia.swing.JCTextField txtDni;
     // End of variables declaration//GEN-END:variables
 
-    public void cargaDatosI(){
-        
+    public void cargaDatosI() {
+
         jtableinfnu.setDefaultRenderer(Object.class, new Render());
         JButton btn1 = new JButton("Detalle");
         // Datos

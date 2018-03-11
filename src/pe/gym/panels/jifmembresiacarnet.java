@@ -14,9 +14,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.gym.controller.MembreController;
+import pe.gym.controller.SocioController;
 
 import pe.gym.form.RegistrarMembresias;
 import pe.gym.model.Membresia;
+import pe.gym.model.Socio;
+import pe.gym.util.CreaAcuerdo;
 import pe.gym.util.CreaCarnet;
 
 /**
@@ -56,6 +59,7 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
         rSPanelImage1 = new rojerusan.RSPanelImage();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtmembresia = new rojerusan.RSTableMetro();
+        btnAsignaAcuerdo = new rojeru_san.RSButtonRiple();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1048, 911));
@@ -122,7 +126,7 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
                 btnConsultarMembresiaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnConsultarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 72, 250, 82));
+        jPanel4.add(btnConsultarMembresia, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 72, 260, 82));
 
         btnAsignaCarnet.setBackground(new java.awt.Color(38, 86, 186));
         btnAsignaCarnet.setText("ASIGNAR CARNET");
@@ -132,7 +136,7 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
                 btnAsignaCarnetActionPerformed(evt);
             }
         });
-        jPanel4.add(btnAsignaCarnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 220, 82));
+        jPanel4.add(btnAsignaCarnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 230, 50));
 
         javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
         rSPanelImage1.setLayout(rSPanelImage1Layout);
@@ -186,6 +190,16 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
         jScrollPane5.setViewportView(jtmembresia);
 
         jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1000, 662));
+
+        btnAsignaAcuerdo.setBackground(new java.awt.Color(38, 86, 186));
+        btnAsignaAcuerdo.setText("ASIGNAR ACUERDO");
+        btnAsignaAcuerdo.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        btnAsignaAcuerdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignaAcuerdoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnAsignaAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 102, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,8 +274,47 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnAsignaCarnetActionPerformed
 
+    private void btnAsignaAcuerdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignaAcuerdoActionPerformed
+        try {
+
+            int row = jtmembresia.getSelectedRow();
+
+            if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione el socio a asignar el acuerdo");
+                return;
+            }
+
+            Membresia bean = new Membresia();
+            bean.setApellido(jtmembresia.getValueAt(row, 2).toString());
+            bean.setNombre(jtmembresia.getValueAt(row, 3).toString());
+            bean.setDNI(jtmembresia.getValueAt(row, 4).toString());
+            bean.setNombrePlan(jtmembresia.getValueAt(row, 5).toString());
+            bean.setF_Inicio(jtmembresia.getValueAt(row, 8).toString());
+            bean.setF_Fin(jtmembresia.getValueAt(row, 9).toString());
+            bean.setIdPago(jtmembresia.getValueAt(row, 7).toString());
+            bean.setNombrePromocion(jtmembresia.getValueAt(row, 6).toString());
+            bean.setIdSocio(jtmembresia.getValueAt(row, 1).toString());
+            bean.setIdMembresia(jtmembresia.getValueAt(row, 0).toString());
+            
+            Socio bean2 = new Socio();
+            SocioController controlsocio= new SocioController();
+            bean2=controlsocio.consultaxid(bean.getIdSocio());
+
+            if ("No generado".equals(bean.getIdPago())) {
+                JOptionPane.showMessageDialog(null, "Debe generar su pago primero");
+                return;
+            }
+
+            CreaAcuerdo makea = new CreaAcuerdo();
+            makea.CreaAcuerdo(bean, bean2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAsignaAcuerdoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.RSButtonRiple btnAsignaAcuerdo;
     private rojeru_san.RSButtonRiple btnAsignaCarnet;
     private org.edisoncor.gui.button.ButtonAction btnConsultarMembresia;
     private javax.swing.JLabel jLabel1;

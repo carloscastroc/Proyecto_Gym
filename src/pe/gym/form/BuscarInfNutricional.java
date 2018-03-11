@@ -267,6 +267,7 @@ public class BuscarInfNutricional extends javax.swing.JDialog {
         JButton btn1 = new JButton("Detalle");
         // Datos
         String dni ="";
+        dni=jtxtDNI.getText();
 
         try {
             // Proceso

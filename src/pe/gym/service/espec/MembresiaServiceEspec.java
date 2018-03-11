@@ -20,5 +20,6 @@ public interface MembresiaServiceEspec extends CrudServiceSpec<Membresia>{
     void insertaPago(String id, String idpago);
     List<Membresia> compruebaestadopago(String idmem);
     int congelamiento(String id);
+    String estadoultMembre(String id);
     
 }

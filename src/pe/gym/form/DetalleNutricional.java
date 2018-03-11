@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pe.gym.controller.DetalleNutricionistaController;
+import pe.gym.controller.MembreController;
 import pe.gym.controller.NutricionistaController;
 import pe.gym.model.DetalleNutricionista;
 import pe.gym.model.Nutricionista;
@@ -437,12 +438,23 @@ public class DetalleNutricional extends javax.swing.JDialog {
         try {
             NutricionistaController controlnutri = new NutricionistaController();
             DetalleNutricionistaController controldetnut = new DetalleNutricionistaController();
+            MembreController controlmem = new MembreController();
+
             if ("".equals(txtidinf.getText())) {
                 JOptionPane.showMessageDialog(null, "Debe elegir un socio");
                 return;
             }
+
+            String estado = controlmem.estadoultimamem(txtidinf.getText());
+
+            if (!"Activo".equals(estado)) {
+                JOptionPane.showMessageDialog(null, "El socio actual no tiene una membresia activa");
+                return;
+            }
+
             nut.setIdEmpleado(jlblempleado.getText());
             nut.setIdSocio(txtidinf.getText());
+
             try {
                 controlnutri.crear(nut);
                 detnut.setIdInfNutricional(nut.getIdInfNutricional());
