@@ -44,11 +44,11 @@ public class CreaPlan {
         try {
 
             // El archivo pdf que vamos a generar
-            FileOutputStream fileOutputStream = new FileOutputStream(
+            FileOutputStream fileOutputStream1 = new FileOutputStream(
                     "PlanEntrenamiento" + idplan + ".pdf");
 
             // Obtener la instancia del PdfWriter
-            PdfWriter.getInstance(document, fileOutputStream);
+            PdfWriter.getInstance(document, fileOutputStream1);
 
             // Abrir el documento
             document.open();
