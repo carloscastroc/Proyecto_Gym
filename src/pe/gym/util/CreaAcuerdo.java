@@ -34,11 +34,11 @@ public class CreaAcuerdo {
         try {
 
             // El archivo pdf que vamos a generar
-            FileOutputStream fileOutputStream = new FileOutputStream(
+            FileOutputStream fileOutputStream3 = new FileOutputStream(
                     "acuerdoSocio" + bean.getIdSocio() + ".pdf");
 
             // Obtener la instancia del PdfWriter
-            PdfWriter.getInstance(document, fileOutputStream);
+            PdfWriter.getInstance(document, fileOutputStream3);
 
             // Abrir el documento
             document.open();
@@ -184,8 +184,8 @@ public class CreaAcuerdo {
             document.close();
 
             // Abrir el archivo
-            File file = new File("acuerdoSocio" + bean.getIdSocio() + ".pdf");
-            Desktop.getDesktop().open(file);
+            File file3 = new File("acuerdoSocio" + bean.getIdSocio() + ".pdf");
+            Desktop.getDesktop().open(file3);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

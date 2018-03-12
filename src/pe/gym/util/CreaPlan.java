@@ -128,8 +128,8 @@ public class CreaPlan {
             document.close();
 
             // Abrir el archivo
-            File file = new File("PlanEntrenamiento" + idplan + ".pdf");
-            Desktop.getDesktop().open(file);
+            File file1 = new File("PlanEntrenamiento" + idplan + ".pdf");
+            Desktop.getDesktop().open(file1);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

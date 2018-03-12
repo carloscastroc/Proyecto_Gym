@@ -35,11 +35,11 @@ public class CreaCarnet {
         try {
 
             // El archivo pdf que vamos a generar
-            FileOutputStream fileOutputStream = new FileOutputStream(
+            FileOutputStream fileOutputStream2 = new FileOutputStream(
                     "carnet.pdf");
 
             // Obtener la instancia del PdfWriter
-            PdfWriter.getInstance(document, fileOutputStream);
+            PdfWriter.getInstance(document, fileOutputStream2);
 
             // Abrir el documento
             document.open();
@@ -105,8 +105,8 @@ public class CreaCarnet {
             document.close();
 
             // Abrir el archivo
-            File file = new File("carnet.pdf");
-            Desktop.getDesktop().open(file);
+            File file2 = new File("carnet.pdf");
+            Desktop.getDesktop().open(file2);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
