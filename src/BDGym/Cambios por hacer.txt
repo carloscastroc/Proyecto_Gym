@@ -1,9 +1,0 @@
--Importante: Aun faltan todos los procedimientos Almacenados
-
-Eventos:
--Pendiente evento que elimine las membresias no pagadas la inicio
--Pendiente crear un evento que cambie el estado del socio a moroso, si este no ha cumplido con alguna cuota de sus pagos.
--Otros
-----
-
-
