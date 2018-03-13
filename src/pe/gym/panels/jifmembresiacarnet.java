@@ -269,7 +269,7 @@ public class jifmembresiacarnet extends javax.swing.JInternalFrame {
             CreaCarnet make = new CreaCarnet();
             make.CrearCarnet(bean);
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }//GEN-LAST:event_btnAsignaCarnetActionPerformed
