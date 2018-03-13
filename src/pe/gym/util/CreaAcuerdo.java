@@ -44,7 +44,7 @@ public class CreaAcuerdo {
             document.open();
 
             try {
-                Image foto = Image.getInstance("src/pe/gym/img/INTRO3.png");
+                Image foto = Image.getInstance("INTRO3.png");
                 foto.scaleToFit(100, 100);
                 foto.setAlignment(Chunk.ALIGN_LEFT);
                 document.add(foto);

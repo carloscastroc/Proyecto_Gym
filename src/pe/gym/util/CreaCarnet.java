@@ -47,7 +47,7 @@ public class CreaCarnet {
             Image image = null;
 
             // Obtenemos el logo de datojava
-            image = Image.getInstance("src/pe/gym/img/INTRO3.png");
+            image = Image.getInstance("INTRO3.png");
             image.scaleAbsolute(120f, 40f);
             image.setAlignment(Element.ALIGN_CENTER);
 
